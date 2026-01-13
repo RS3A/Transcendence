@@ -1,0 +1,12 @@
+.sidebar {
+  height: 100%;
+  background-color: #f4f4f5;
+  padding: 1rem;
+}
+
+/* Hide sidebar on mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}
