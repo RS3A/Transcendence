@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    # Constrói usando o Dockerfile da pasta atual
+    build: . 
+    
+    # O nome do container para ficar fácil de achar
+    container_name: transcendence-node
+    
+    # adiciona "-- --host" ao comando original
+    # Isso libera o acesso para o seu navegador no Windows
+    command: npm run dev -- --host
+    
+    # Libera a porta 5173
+    ports:
+      - "5173:5173"
+    
+    # (Opcional) Isso faz com que, se você mudar o código no Windows,
+    # o site atualize sozinho sem precisar reiniciar o Docker.
+    # Se der erro, pode remover estas linhas de "volumes"
+    volumes:
+      - ./transcendence:/app
+      - /app/node_modules
