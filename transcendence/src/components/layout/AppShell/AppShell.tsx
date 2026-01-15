@@ -1,23 +1,30 @@
+import './AppShell.css'
+
 type AppShellProps = {
   sidebar: React.ReactNode
   header: React.ReactNode
+  footer: React.ReactNode
   children: React.ReactNode
 }
 
-function AppShell({ sidebar, header, children }: AppShellProps) {
+function AppShell({ sidebar, header, footer, children }: AppShellProps) {
   return (
     <div className="app-shell">
-      <div style={{ gridArea: 'sidebar' }}>
+      <aside className="sidebar">
         {sidebar}
-      </div>
+      </aside>
 
-      <div style={{ gridArea: 'header' }}>
+      <header className="header">
         {header}
-      </div>
+      </header>
 
-      <main style={{ gridArea: 'main' }}>
+      <main>
         {children}
       </main>
+
+      <footer className="footer">
+        {footer}
+      </footer>
     </div>
   )
 }

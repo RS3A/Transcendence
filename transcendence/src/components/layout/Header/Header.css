@@ -1,7 +1,9 @@
 .header {
   height: 64px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  background-color: #685AD6;
+  color: #ffffff;
+
+  border-bottom: none;
   padding: 0 1rem;
 
   display: flex;
