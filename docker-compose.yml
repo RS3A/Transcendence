@@ -49,7 +49,7 @@ services:
     networks:
       - app-network
     volumes:
-      - ./transcendence:/app
+      - ./frontend:/app
       - /app/node_modules
 
 volumes:

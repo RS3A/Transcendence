@@ -28,8 +28,4 @@ COPY . .
 
 EXPOSE 5173
 
-# CMD ["npm", "run", "dev", "--", "--host"]
-
-ENTRYPOINT ["sh", "-c", "npm run dev -- --host & tail -f /dev/null"]
-
-# docker build -t transcendence-node . && docker run -d -p 5173:5173 --name transcendence-dev transcendence-node
+CMD ["npm", "run", "dev", "--", "--host"]
