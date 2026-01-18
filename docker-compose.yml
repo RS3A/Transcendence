@@ -1,36 +1,60 @@
-version: '3'
-
 services:
-  # --- Seu Frontend (Node/Vite) ---
-  app:
-    build: .
-    container_name: transcendence-node
-    command: npm run dev -- --host
+  api:
+    container_name: springboot-api
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/appdb
+      SPRING_DATASOURCE_USERNAME: appuser
+      SPRING_DATASOURCE_PASSWORD: apppass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  db:
+    container_name: postgres-db
+    image: postgres:16
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+  frontend:
+    container_name: react-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "5173:5173"
+    environment:
+      USER_API: http://api:8080/users
+    depends_on:
+      - api
+    networks:
+      - app-network
     volumes:
       - ./transcendence:/app
       - /app/node_modules
-    # Diz para o App esperar o Banco ligar antes de iniciar
-    depends_on:
-      - db
 
-  # --- O Banco de Dados (PostgreSQL) ---
-  db:
-    image: postgres:15
-    container_name: transcendence-db
-    restart: always
-    env_file:
-      - .env
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    ports:
-      - "5432:5432" # Libera a porta para você acessar via DBeaver/PgAdmin
-    volumes:
-      - pg_data:/var/lib/postgresql/data
-
-# --- Configuração do Volume (Onde os dados ficam salvos) ---
 volumes:
-  pg_data:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
