@@ -1,25 +1,23 @@
+import { Outlet } from 'react-router-dom'
 import './AppShell.css'
 
-type AppShellProps = {
-  sidebar: React.ReactNode
-  header: React.ReactNode
-  footer: React.ReactNode
-  children: React.ReactNode
-}
+function AppShell({ sidebar, header, footer }) {
+  const hasAuth = !sidebar
 
-function AppShell({ sidebar, header, footer, children }: AppShellProps) {
   return (
-    <div className="app-shell">
-      <aside className="sidebar">
-        {sidebar}
-      </aside>
+    <div className={`app-shell ${hasAuth ? 'auth' : ''}`}>
+      {sidebar && (
+        <aside className="sidebar">
+          {sidebar}
+        </aside>
+      )}
 
       <header className="header">
         {header}
       </header>
 
       <main>
-        {children}
+        <Outlet />
       </main>
 
       <footer className="footer">
