@@ -1,23 +1,60 @@
-version: '3'
 services:
-  app:
-    # Constrói usando o Dockerfile da pasta atual
-    build: . 
-    
-    # O nome do container para ficar fácil de achar
-    container_name: transcendence-node
-    
-    # adiciona "-- --host" ao comando original
-    # Isso libera o acesso para o seu navegador no Windows
-    command: npm run dev -- --host
-    
-    # Libera a porta 5173
+  api:
+    container_name: springboot-api
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/appdb
+      SPRING_DATASOURCE_USERNAME: appuser
+      SPRING_DATASOURCE_PASSWORD: apppass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  db:
+    container_name: postgres-db
+    image: postgres:16
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+  frontend:
+    container_name: react-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "5173:5173"
-    
-    # (Opcional) Isso faz com que, se você mudar o código no Windows,
-    # o site atualize sozinho sem precisar reiniciar o Docker.
-    # Se der erro, pode remover estas linhas de "volumes"
+    environment:
+      USER_API: http://api:8080/users
+    depends_on:
+      - api
+    networks:
+      - app-network
     volumes:
-      - ./transcendence:/app
+      - ./frontend:/app
       - /app/node_modules
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
