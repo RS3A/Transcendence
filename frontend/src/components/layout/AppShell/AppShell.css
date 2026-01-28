@@ -1,0 +1,45 @@
+.app-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 64px 1fr 48px;
+  height: 100vh;
+}
+
+/* Desktop layout */
+.app-shell > .sidebar {
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+}
+
+.app-shell > .header {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+}
+
+.app-shell > main {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.app-shell > .footer {
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: 64px 1fr 48px;
+  }
+
+  .app-shell > .sidebar {
+    display: none;
+  }
+
+  .app-shell > .header,
+  .app-shell > main,
+  .app-shell > .footer {
+    grid-column: 1 / 2;
+  }
+}
