@@ -14,7 +14,7 @@ function App() {
   return (
     <Routes>
       {/* =====================
-         AUTH ROUTES (Layout com Header + Footer)
+         AUTH ROUTES (AppShell sem Sidebar)
       ===================== */}
       <Route
         element={
@@ -26,8 +26,6 @@ function App() {
         }
       >
         <Route path="/login" element={<AuthPage />} />
-        <Route path="/terms" element={<TermsPage />} />
-        <Route path="/privacy" element={<PrivacyPage />} />
       </Route>
 
       {/* =====================
@@ -44,6 +42,12 @@ function App() {
       >
         <Route path="/home" element={<Home />} />
       </Route>
+
+      {/* =====================
+         INSTITUCIONAL 
+      ===================== */}
+      <Route path="/terms" element={<TermsPage />} />
+      <Route path="/privacy" element={<PrivacyPage />} />
 
       {/* =====================
          FALLBACK
