@@ -8,4 +8,5 @@ import com.ft.trans.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User>  findByEmail(String email);
+    Optional<User>  findByPhoneNumber(String phone_number);
 }

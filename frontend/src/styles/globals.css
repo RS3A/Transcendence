@@ -1,3 +1,26 @@
+/* ===========================
+   CSS VARIABLES (Design Tokens)
+=========================== */
+:root {
+  /* Purple palette */
+  --purple-primary: #5b4fcf;
+  --purple-light: #e8e6f8;
+  --purple-bg: #ebebf8;
+  
+  /* Neutrals */
+  --white: #ffffff;
+  --text-dark: #1a1a2e;
+  --text-medium: #4a4a6a;
+  
+  /* UI elements */
+  --border-color: #d8d6f0;
+  --badge-bg: #5b4fcf;
+  --badge-text: #ffffff;
+}
+
+/* ===========================
+   RESET
+=========================== */
 *,
 *::before,
 *::after {
@@ -12,6 +35,6 @@ html, body {
 }
 
 body {
-  background-color: #ffffff;
-  color: #1a1a1a;
+  background-color: var(--white);
+  color: var(--text-dark);
 }

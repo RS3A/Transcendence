@@ -1,0 +1,97 @@
+.perfil-habilidades {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+  width: 100%;
+}
+
+.perfil-habilidades-titulo {
+  font-weight: 600;
+  color: #080047;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  width: 70%;
+}
+
+/* Container do Input para controlar o Dropdown */
+.search-container {
+  position: relative;
+  width: 70%;
+  max-width: 24rem;
+  margin-bottom: 1.5rem;
+}
+
+.perfil-habilidades-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* Dropdown de Sugestões (Fica por cima das tags) */
+.perfil-habilidades-sugestoes {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  list-style: none;
+  padding: 0;
+  margin-top: 4px;
+  z-index: 100; /* Garante que fique na frente de tudo */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.perfil-habilidades-sugestoes li {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  color: var(--cor-texto-escuro);
+}
+
+.perfil-habilidades-sugestoes li:hover {
+  background-color: #f8fafc;
+}
+
+/* Lista de Tags */
+.perfil-habilidades-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  max-width: 24rem;
+}
+
+.perfil-habilidade-tag {
+  background-color: white;
+  padding: 0.375rem 1.25rem;
+  border-radius: var(--borda-raio-redondo);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--cor-texto-escuro);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.1s ease;
+}
+
+.perfil-habilidade-tag.clicavel:hover {
+  background-color: #fff1f1;
+  color: #ef4444;
+  cursor: pointer;
+  transform: translateY(-1px);
+}
+
+.tag-remover {
+  font-size: 1.2rem;
+  line-height: 0;
+  margin-bottom: 2px;
+}

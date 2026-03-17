@@ -1,0 +1,79 @@
+/* ============================================================
+   USER HEADER
+   ============================================================ */
+.user-header {
+  background-color: var(--white);
+  width: 100%;
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(91, 79, 207, 0.08);
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.profile-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.mentor-badge {
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 18px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Stats pills */
+.profile-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+  padding-top: 8px;
+}
+
+.stat-pill {
+  background-color: #d8d6f0;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+  width: fit-content;
+}
+
+.stat-pill.level {
+  min-width: 120px;
+  margin-left: 20px;
+}
+
+.stat-pill.xp {
+  min-width: 160px;
+  margin-left: 40px;
+}
+
+.stat-pill.days {
+  min-width: 200px;
+  margin-left: 60px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+    .profile-section {
+        align-items: center;
+        gap: 10px;
+    }
+}

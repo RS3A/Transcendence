@@ -2,6 +2,7 @@
   height: 64px;
   background-color: #685AD6;
   color: #ffffff;
+<<<<<<< HEAD
 
   border-bottom: none;
   padding: 0 1rem;
@@ -10,3 +11,111 @@
   align-items: center;
   justify-content: space-between;
 }
+=======
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  /* Isso garante que os elementos fiquem espalhados */
+  justify-content: space-between; 
+}
+
+/* =====================
+   LEFT
+===================== */
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 60px;
+  flex-shrink: 0;
+}
+
+/* =====================
+   RIGHT
+===================== */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* =====================
+   NAV
+===================== */
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+header.authenticated .header-nav {
+  /* O "auto" na margem esquerda empurra o elemento o máximo possível para a direita */
+  margin-left: auto; 
+}
+
+.header-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.header-nav a:hover {
+  text-decoration: underline;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* Garante que o container do botão tenha largura mínima para não esmagar */
+  min-width: 100px; 
+}
+
+.header-login-btn {
+  background-color: #ffffff;
+  color: #685AD6;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.header-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.header-nav a:hover {
+  text-decoration: underline;
+}
+
+/* =====================
+   LOGIN BUTTON
+===================== */
+
+.header-login-btn {
+  background-color: #ffffff;
+  color: #685AD6;
+
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.header-login-btn:hover {
+  opacity: 0.9;
+}
+>>>>>>> 09d7b60121dd6e23fc9048afff60ee2ed85eb8b2

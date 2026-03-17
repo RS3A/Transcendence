@@ -1,0 +1,220 @@
+/* ---- Outer wrapper ---- */
+.home-logged {
+  background-color: var(--purple-bg);
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-dark);
+}
+
+/* ============================================================
+   MAIN CONTENT (two columns)
+   ============================================================ */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto 20px auto;
+  padding: 20px 20px;
+}
+
+/* ---- Left Panel ---- */
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tab-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-medium);
+  padding: 10px 16px 10px 0;
+  margin-right: 16px;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tab-btn.active {
+  color: var(--purple-primary);
+  border-bottom: 2px solid var(--purple-primary);
+}
+
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background-color: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(91, 79, 207, 0.08);
+}
+
+.request-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.request-card:last-child {
+  border-bottom: none;
+}
+
+.request-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #c8c8d8;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-avatar img {
+  width: 40px;
+  height: 40px;
+}
+
+.request-text {
+  flex: 1;
+  font-size: 13px;
+  color: var(--text-dark);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.request-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.action-btn.accept {
+  color: #27ae60;
+}
+
+.action-btn.reject {
+  color: #e74c3c;
+}
+
+.empty-state {
+  padding: 24px;
+  text-align: center;
+  color: var(--text-medium);
+  font-size: 14px;
+}
+
+/* ---- Right Panel ---- */
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.panel-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--purple-primary);
+  margin: 20px 0 16px 0;
+  text-align: right;
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(91, 79, 207, 0.08);
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.schedule-time {
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+/* ============================================================
+   ACHIEVEMENTS SECTION
+   ============================================================ */
+.achievements-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.achievements-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--purple-primary);
+  margin: 0;
+  display: inline-block;
+  border-bottom: 2px solid var(--purple-primary);
+  padding-bottom: 4px;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.achievement-card {
+  background-color: var(--white);
+  border-radius: 16px;
+  height: 100px;
+  box-shadow: 0 2px 8px rgba(91, 79, 207, 0.06);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-title {
+    text-align: left;
+  }
+
+  .achievements-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
