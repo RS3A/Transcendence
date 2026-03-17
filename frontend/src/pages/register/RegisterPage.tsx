@@ -10,17 +10,22 @@ type Errors = {
   confirmEmail?: string
   password?: string
   confirmPassword?: string
+  stacks?: string
   privacy?: string
   terms?: string
 }
 
+const USERS_API = 'http://localhost:8080/users'
+const PROFILE_API = 'http://localhost:8000/profile'
+
 function RegisterPage() {
   const [name, setName] = useState('')
-  const [phone, setPhone] = useState('')
+  const [phone_number, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [confirmEmail, setConfirmEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [stacks, setStacks] = useState('')
   const [acceptPrivacy, setAcceptPrivacy] = useState(false)
   const [acceptTerms, setAcceptTerms] = useState(false)
 
@@ -46,9 +51,9 @@ function RegisterPage() {
 
     if (!name) newErrors.name = 'Nome completo é obrigatório.'
 
-    if (!phone) {
+    if (!phone_number) {
       newErrors.phone = 'Celular é obrigatório.'
-    } else if (!/^\(\d{2}\) \d{5}-\d{4}$/.test(phone)) {
+    } else if (!/^\(\d{2}\) \d{5}-\d{4}$/.test(phone_number)) {
       newErrors.phone = 'Use o formato (xx) xxxxx-xxxx.'
     }
 
@@ -64,6 +69,10 @@ function RegisterPage() {
       newErrors.confirmPassword = 'As senhas não coincidem.'
     }
 
+    if (!stacks.trim()) {
+      newErrors.stacks = 'Informe pelo menos uma stack (ex: React, Java).'
+    }
+
     if (!acceptPrivacy) {
       newErrors.privacy = 'Você deve aceitar a Política de Privacidade.'
     }
@@ -76,19 +85,67 @@ function RegisterPage() {
     return Object.keys(newErrors).length === 0
   }
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
 
-    if (!validate()) return
+    if (!validate()) return;
 
     const payload = {
       name,
-      phone,
+      phone_number,
       email,
       password,
-    }
+      status: true
+    };
 
-    console.log('JSON enviado para o backend:', payload)
+    const parsedStacks = stacks
+      .split(',')
+      .map((stack: string) => stack.trim())
+      .filter((stack: string) => stack.length > 0)
+
+    try {
+      const response = await fetch(USERS_API, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Aqui capturamos os erros do objeto Result/ValidationResult que criamos no Java
+        if (data.result && data.result.errors) {
+            console.error('Erros de validação:', data.result.errors);
+            // Exemplo: alert(data.result.errors.email);
+        }
+        throw new Error('Falha ao cadastrar usuário');
+      }
+
+      const profilePayload = {
+        profile_id: String(data.id ?? email),
+        stacks: parsedStacks,
+      }
+
+      const profileResponse = await fetch(PROFILE_API, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profilePayload),
+      })
+
+      if (!profileResponse.ok) {
+        throw new Error('Usuário criado, mas falha ao salvar stacks no perfil')
+      }
+
+      console.log('Usuário cadastrado com sucesso:', data);
+      // Redirecionar ou limpar formulário aqui
+      
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+    }
   }
 
   return (
@@ -106,7 +163,7 @@ function RegisterPage() {
         <input
           type="tel"
           placeholder="Celular"
-          value={phone}
+          value={phone_number}
           onChange={handlePhoneChange}
           className={errors.phone ? 'error' : ''}
         />
@@ -164,6 +221,17 @@ function RegisterPage() {
         />
         {errors.confirmPassword && (
           <span className="input-error">{errors.confirmPassword}</span>
+        )}
+
+        <input
+          type="text"
+          placeholder="Stacks (ex: React, Java, Python)"
+          value={stacks}
+          onChange={(e) => setStacks(e.target.value)}
+          className={errors.stacks ? 'error' : ''}
+        />
+        {errors.stacks && (
+          <span className="input-error">{errors.stacks}</span>
         )}
 
         <label className="checkbox">
