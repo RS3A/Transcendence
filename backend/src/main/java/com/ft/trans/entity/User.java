@@ -2,29 +2,96 @@ package com.ft.trans.entity;
 
 import java.sql.Date;
 
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.LengthRule;
+import org.passay.PasswordData;
+import org.passay.PasswordValidator;
+import org.passay.WhitespaceRule;
+
+import com.ft.trans.utils.StringUtils;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table(name = "users")
 public class User {
-	// uu_id
-    // password
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long	id;
+	// @Column(unique = true, nullable = false)
     private String	email;
+	private String	name;
+	// @Column(unique = true, nullable = false)
 	private String	username;
-	private String	role;
 	private String	status;
 	private Date	created_at;
 	private String	created_by;
 	private Date	last_update_at;
 	private String	last_update_by;
+	// @Column(unique = true, nullable = false)
 	private String	phone_number;
+	// @Column(nullable = false)
+	private String	password;
+
+	private boolean isNameValid()
+	{
+		this.name = this.name != null ? this.name.trim() : "";
+
+		if (this.name.isBlank())
+			return false;
+		if (this.name.length() < 3 || this.name.length() > 100)
+			return false;
+		if (!StringUtils.isAlphaOnly(this.name))
+			return false;
+		return true;
+	}
+
+	private boolean	isPhoneValid()
+	{
+		this.phone_number = this.phone_number != null ? this.phone_number.trim().replaceAll("\\D", "") : "";
+
+		if (this.phone_number.isBlank())
+			return false;
+		if (!this.phone_number.matches("^\\d{10,11}$"))
+			return false;
+		return true;
+	}
+
+	private boolean	isEmailValid()
+	{
+		this.email = this.email != null ? this.email.trim() : "";
+
+		if (this.email.isBlank())
+			return false;
+		if (!this.email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$"))
+			return false;
+		return true;
+	}
+
+	private boolean isPasswordValid()
+	{
+		PasswordValidator validator = new PasswordValidator(
+			new LengthRule(8, 30),
+			new CharacterRule(EnglishCharacterData.UpperCase, 1),
+			new CharacterRule(EnglishCharacterData.LowerCase, 1),
+			new CharacterRule(EnglishCharacterData.Digit, 1),
+			new CharacterRule(EnglishCharacterData.Special, 1),
+			new WhitespaceRule()
+		);
+		return validator.validate(new PasswordData(this.password)).isValid();
+	}
+
+	public boolean	isValidToBeCreated()
+	{
+		return (isNameValid() && isPhoneValid() && isEmailValid() && isPasswordValid());
+	}
 
 	public Long		getId() {
 		return id;
@@ -48,14 +115,6 @@ public class User {
 
 	public void		setUsername(String username) {
 		this.username = username;
-	}
-
-	public String	getRole() {
-		return role;
-	}
-
-	public void		setRole(String role) {
-		this.role = role;
 	}
 
 	public String	getStatus() {
@@ -106,5 +165,14 @@ public class User {
 		this.phone_number = phone_number;
 	}
 
+	public String	getPassword()
+	{
+		return this.password;
+	}
+
+	public void		setPassword(String pass)
+	{
+		this.password = pass;
+	}
 	
 }

@@ -1,0 +1,8 @@
+# Framework Web para criar a API
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+
+# Driver do MongoDB
+motor==3.6.0
+
+python-dotenv==1.0.1

@@ -3,10 +3,73 @@
   background-color: #685AD6;
   color: #ffffff;
 
-  border-bottom: none;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+/* =====================
+   LEFT
+===================== */
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 36px;
+}
+
+/* =====================
+   RIGHT
+===================== */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* =====================
+   NAV
+===================== */
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.header-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.header-nav a:hover {
+  text-decoration: underline;
+}
+
+/* =====================
+   LOGIN BUTTON
+===================== */
+
+.header-login-btn {
+  background-color: #ffffff;
+  color: #685AD6;
+
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.header-login-btn:hover {
+  opacity: 0.9;
 }

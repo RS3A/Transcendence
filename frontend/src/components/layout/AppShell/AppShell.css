@@ -1,3 +1,7 @@
+/* ===========================
+   BASE LAYOUT (STRUCTURAL)
+=========================== */
+
 .app-shell {
   display: grid;
   grid-template-columns: 240px 1fr;
@@ -5,20 +9,32 @@
   height: 100vh;
 }
 
-/* Desktop layout */
+/* ===========================
+   DESKTOP - LOGADO
+=========================== */
+
 .app-shell > .sidebar {
   grid-column: 1 / 2;
   grid-row: 1 / 4;
 }
 
+/* Header padrão (logado) */
 .app-shell > .header {
-  grid-column: 1 / 3;
+  grid-column: 2 / 3;
   grid-row: 1 / 2;
+}
+
+/* Header ocupa tudo no auth (sem sidebar) */
+.app-shell.auth > .header {
+  grid-column: 1 / 2;
 }
 
 .app-shell > main {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+
+  /* 🔑 ESSENCIAL PARA EVITAR BUG DE ALTURA */
+  min-height: 0;
 }
 
 .app-shell > .footer {
@@ -26,7 +42,39 @@
   grid-row: 3 / 4;
 }
 
-/* Mobile layout */
+/* ===========================
+   AUTH MODE (LOGIN / CADASTRO)
+=========================== */
+
+.app-shell.auth {
+  grid-template-columns: 1fr;
+}
+
+/* Sidebar não existe no auth */
+.app-shell.auth > .sidebar {
+  display: none;
+}
+
+/* Header / Main / Footer ocupam toda a largura */
+.app-shell.auth > .header,
+.app-shell.auth > main,
+.app-shell.auth > .footer {
+  grid-column: 1 / 2;
+}
+
+/* Main no auth: SOMENTE layout */
+.app-shell.auth > main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 🚫 SEM overflow aqui */
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
 @media (max-width: 768px) {
   .app-shell {
     grid-template-columns: 1fr;
