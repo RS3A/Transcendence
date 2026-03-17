@@ -19,7 +19,10 @@ public class UserService {
 
     public User			create(User user)
     {
-        return (_persistUser(user));
+        this.userRepository.save(user);
+        User	savedUser = this.userRepository.findByEmail(user.getEmail())
+			.orElseThrow(() -> new RuntimeException("Failed to create user"));
+        return (savedUser);
     }
 
     public List<User>	list()
@@ -29,7 +32,10 @@ public class UserService {
 
     public User			update(User user)
     {
-        return (_persistUser(user));
+        this.userRepository.save(user);
+        User	savedUser = this.userRepository.findById(user.getId())
+			.orElseThrow(()-> new RuntimeException("Failed to update user"));
+        return (savedUser);
     }
 
     public Boolean		delete(Long id)
@@ -38,14 +44,4 @@ public class UserService {
 		Optional<User> result = this.userRepository.findById(id);
 		return (result.isEmpty());
     }
-
-    private User		_persistUser(User user)
-	{
-		// if (user.isValidToBeCreated())
-            this.userRepository.save(user);
-
-        User	savedUser = this.userRepository.findByEmail(user.getEmail())
-			.orElseThrow(() -> new RuntimeException("Failed to update user"));
-        return (savedUser);
-	}
 }

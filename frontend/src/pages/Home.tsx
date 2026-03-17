@@ -1,12 +1,9 @@
-export default function Home() {
-
+function Home() {
   return (
-    <>
-
-      <main>
-        <h1>Bem-vindo ao Transcendence</h1>
-        <p>Página inicial pública</p>
-      </main>
-    </>
-  );
+    <div style={{ padding: '1rem' }}>
+      Meio da pagina
+    </div>
+  )
 }
+
+export default Home
