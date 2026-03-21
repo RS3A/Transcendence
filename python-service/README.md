@@ -1,61 +1,111 @@
 # Python Profile Service
 
-Microserviço Python para acessar perfis armazenados no MongoDB.
+Microserviço Python responsável por receber as **stacks/skills** do usuário vindas do frontend e persistir no **MongoDB**.
 
-## 📦 O que foi removido e por quê
+---
 
-### ❌ Removido:
-- **`pymongo`** - Redundante, `motor` já inclui
-- **`pydantic`** - Já vem incluído com FastAPI  
-- **`pydantic-settings`** - Desnecessário para configs simples
-- **`python-dotenv`** - Usamos os.getenv() direto
-- **`setup.sh`** - Desnecessário, pip instala direto
-- **Multi-stage build** - Complicação desnecessária para microserviço
-- **Virtual env no Docker** - Container já é isolado
-- **Compiladores (gcc, g++)** - Motor tem wheels pré-compiladas
+## Fluxo: Frontend → Python Service → MongoDB
 
-### ✅ Mantido (essencial):
-- **`fastapi`** - Framework web leve e rápido
-- **`uvicorn[standard]`** - Servidor ASGI de alta performance
-- **`motor`** - Driver assíncrono do MongoDB (melhor para FastAPI)
-
-## 🚀 Como usar
-
-### Build da imagem:
-```bash
-docker build -t profile-service ./python-service/
+```mermaid
+flowchart TD
+    A([Usuário preenche formulário no frontend]) --> B[POST /users\nlocalhost:8080]
+    B --> C[(PostgreSQL\Spring Boot)]
+    C --> D{Usuário criado?}
+    D -- Não --> E([Erro exibido no front])
+    D -- Sim: retorna id --> F[POST /profile\nlocalhost:8000]
+    F --> G[Python Service FastAPI]
+    G --> H[normalize_stacks remove duplicatas e espaços]
+    H --> I[(MongoDB upsert em profiles)]
+    I --> J([Perfil salvo com sucesso])
 ```
 
-### Rodar localmente:
-```bash
-docker run -p 8000:8000 \
-  -e MONGO_URL=mongodb://host.docker.internal:27017 \
-  -e DB_NAME=transcendence \
-  profile-service
+**Payload enviado ao Python Service:**
+```json
+{
+  "profile_id": "42",
+  "stacks": ["TypeScript", "React", "MongoDB"]
+}
 ```
 
-### Testar:
+---
+
+## Estrutura dos arquivos
+
+```
+python-service/
+├── app/
+│   ├── main.py          # API FastAPI: endpoints e lógica de upsert
+│   └── db/
+│       └── noSQL.py     # Conexão com MongoDB via Motor (async)
+├── script/
+│   ├── test2.sh         # Simula payload do frontend e valida persistência
+│   └── test.sh          # Script legado (containers isolados, não usar)
+├── tests/
+│   └── test-data.json   # Dados estáticos usados apenas pelo test.sh legado
+├── requirements.txt
+└── Dockerfile
+```
+
+---
+
+## Endpoints
+
+| Método | Rota                  | Descrição                              |
+|--------|-----------------------|----------------------------------------|
+| GET    | `/`                   | Status do serviço                      |
+| GET    | `/health`             | Verifica conexão com MongoDB           |
+| POST   | `/profile`            | Cria ou atualiza perfil com stacks     |
+| GET    | `/profile/{user_id}`  | Busca stacks de um perfil por user_id  |
+
+---
+
+## Como testar
+
+### Validar o fluxo completo (script):
 ```bash
-# Health check
-curl http://localhost:8000/health
+bash python-service/script/test2.sh
+```
+Simula o exato payload que o frontend envia: faz POST, confirma pelo GET e verifica diretamente no MongoDB.
+
+### Ver os dados persistidos no Mongo manualmente:
+```bash
+# Todos os perfis
+docker exec mongodb mongosh --quiet transcendence \
+  --eval "db.profiles.find({},{_id:0}).toArray()"
+
+# Perfil específico
+docker exec mongodb mongosh --quiet transcendence \
+  --eval "db.profiles.findOne({profile_id:'SEU_ID'},{_id:0})"
+```
+
+### Via curl direto:
+```bash
+# Criar/atualizar perfil
+curl -X POST http://localhost:8000/profile \
+  -H 'Content-Type: application/json' \
+  -d '{"profile_id":"42","stacks":["React","Java"]}'
 
 # Buscar perfil
-curl http://localhost:8000/profile/123
+curl http://localhost:8000/profile/42
+
+# Health check
+curl http://localhost:8000/health
 ```
 
-## 📋 Endpoints
+---
 
-- `GET /` - Status do serviço
-- `GET /profile/{user_id}` - Busca perfil por ID
-- `GET /health` - Verifica saúde do serviço e MongoDB
+## Variáveis de ambiente
 
-## 🔧 Variáveis de ambiente
+| Variável     | Default                      | Descrição              |
+|--------------|------------------------------|------------------------|
+| `MONGO_URL`  | `mongodb://localhost:27017`  | URL de conexão MongoDB |
+| `DB_NAME`    | `transcendence`              | Nome do banco          |
+| `CORS_ORIGINS` | `*`                        | Origens permitidas     |
 
-- `MONGO_URL` - URL de conexão do MongoDB (default: mongodb://localhost:27017)
-- `DB_NAME` - Nome do banco de dados (default: transcendence)
+---
 
+## Sites de estudo
 
-## sites de estudo:
-- `dotenv:` - https://medium.com/@habbema/dotenv-9915bd642533
-- `API:` - https://www.youtube.com/watch?v=eel1OVIdfUw
-- `FastAPI:` - https://www.youtube.com/watch?v=R26iojTwUv8&t=99s
+- [python-dotenv](https://medium.com/@habbema/dotenv-9915bd642533)
+- [FastAPI em vídeo](https://www.youtube.com/watch?v=R26iojTwUv8&t=99s)
+- [API REST conceito](https://www.youtube.com/watch?v=eel1OVIdfUw)

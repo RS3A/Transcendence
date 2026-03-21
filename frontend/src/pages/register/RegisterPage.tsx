@@ -10,9 +10,13 @@ type Errors = {
   confirmEmail?: string
   password?: string
   confirmPassword?: string
+  stacks?: string
   privacy?: string
   terms?: string
 }
+
+const USERS_API = 'http://localhost:8080/users'
+const PROFILE_API = 'http://localhost:8000/profile'
 
 function RegisterPage() {
   const [name, setName] = useState('')
@@ -21,6 +25,7 @@ function RegisterPage() {
   const [confirmEmail, setConfirmEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [stacks, setStacks] = useState('')
   const [acceptPrivacy, setAcceptPrivacy] = useState(false)
   const [acceptTerms, setAcceptTerms] = useState(false)
 
@@ -64,6 +69,10 @@ function RegisterPage() {
       newErrors.confirmPassword = 'As senhas não coincidem.'
     }
 
+    if (!stacks.trim()) {
+      newErrors.stacks = 'Informe pelo menos uma stack (ex: React, Java).'
+    }
+
     if (!acceptPrivacy) {
       newErrors.privacy = 'Você deve aceitar a Política de Privacidade.'
     }
@@ -76,22 +85,6 @@ function RegisterPage() {
     return Object.keys(newErrors).length === 0
   }
 
-  // function handleSubmit(e: React.FormEvent) {
-  //   e.preventDefault()
-
-  //   if (!validate()) return
-
-  //   const payload = {
-  //     name,
-  //     phone_phone: phone_number,
-  //     email,
-  //     password,
-  //     status: 1
-  //   }
-
-  //   console.log('JSON enviado para o backend:', payload)
-  // }
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
@@ -99,14 +92,19 @@ function RegisterPage() {
 
     const payload = {
       name,
-      phone_number, // Ajustado para bater com o campo da sua entidade/DTO
+      phone_number,
       email,
       password,
-      status: true // No Java definimos como boolean
+      status: true
     };
 
+    const parsedStacks = stacks
+      .split(',')
+      .map((stack: string) => stack.trim())
+      .filter((stack: string) => stack.length > 0)
+
     try {
-      const response = await fetch('http://localhost:8080/users', {
+      const response = await fetch(USERS_API, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -123,6 +121,23 @@ function RegisterPage() {
             // Exemplo: alert(data.result.errors.email);
         }
         throw new Error('Falha ao cadastrar usuário');
+      }
+
+      const profilePayload = {
+        profile_id: String(data.id ?? email),
+        stacks: parsedStacks,
+      }
+
+      const profileResponse = await fetch(PROFILE_API, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profilePayload),
+      })
+
+      if (!profileResponse.ok) {
+        throw new Error('Usuário criado, mas falha ao salvar stacks no perfil')
       }
 
       console.log('Usuário cadastrado com sucesso:', data);
@@ -206,6 +221,17 @@ function RegisterPage() {
         />
         {errors.confirmPassword && (
           <span className="input-error">{errors.confirmPassword}</span>
+        )}
+
+        <input
+          type="text"
+          placeholder="Stacks (ex: React, Java, Python)"
+          value={stacks}
+          onChange={(e) => setStacks(e.target.value)}
+          className={errors.stacks ? 'error' : ''}
+        />
+        {errors.stacks && (
+          <span className="input-error">{errors.stacks}</span>
         )}
 
         <label className="checkbox">
