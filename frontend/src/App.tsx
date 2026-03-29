@@ -25,73 +25,56 @@ function App() {
 
   return (
     <ChatProvider>
-      <Routes>
-        {/* =====================
-           HOME / LOGIN (PÚBLICO)
-        ===================== */}
-        <Route
-          element={
-            <AppShell
-              sidebar={null}
-              header={<Header isAuthenticated={false} />}
-              footer={<Footer />}
-            />
-          }
-        >
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<AuthPage />} />
-        </Route>
+  <Routes>
+    {/* --- GRUPO PÚBLICO --- */}
+    <Route
+      element={
+        <AppShell
+          sidebar={null} // Sem sidebar no login/home
+          header={<Header isAuthenticated={false} />}
+          footer={<Footer />}
+        />
+      }
+    >
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<AuthPage />} />
+    </Route>
 
-        {/* REGISTER */}
-        <Route element={<RegisterLayout />}>
-          <Route path="/register" element={<RegisterPage />} />
-        </Route>
+    {/* --- GRUPO LOGADO (Onde o Chat vive) --- */}
+    <Route
+      element={
+        <AppShell
+          sidebar={<ChatSidebar />} // Sidebar de chat injetada AQUI
+          header={<Header isAuthenticated={true} />}
+          footer={<Footer />}
+        />
+      }
+    >
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/home-logged" element={<HomeLogged />} />
+      <Route path="/mentorias" element={<MentoriasPage />} />
+    </Route>
 
-        {/* =====================
-           ÁREA LOGADA (COM SIDEBAR DE CHAT)
-        ===================== */}
-        <Route
-          element={
-            <AppShell
-              // Injetamos a Sidebar de Chat aqui para que apareça no layout
-              sidebar={<ChatSidebar />} 
-              header={<Header isAuthenticated={true} />}
-              footer={<Footer />}
-            />
-          }
-        >
-          <Route path="/profile" element={<ProfilePage />} />
-          {/* Movi Home Logged e Mentorias para dentro do AppShell com Sidebar */}
-          <Route path="/home-logged" element={<HomeLogged />} />
-          <Route path="/mentorias" element={<MentoriasPage />} />
-        </Route>
+    {/* --- INSTITUCIONAL (Sem Sidebar) --- */}
+    <Route
+      element={
+        <AppShell
+          sidebar={null}
+          header={<Header isAuthenticated={isAuthenticated} />}
+          footer={<Footer />}
+        />
+      }
+    >
+      <Route path="/terms" element={<TermsPage />} />
+      <Route path="/privacy" element={<PrivacyPage />} />
+    </Route>
 
-        {/* =====================
-           INSTITUCIONAL (SEM SIDEBAR)
-        ===================== */}
-        <Route
-          element={
-            <AppShell
-              sidebar={null}
-              header={<Header isAuthenticated={isAuthenticated} />}
-              footer={<Footer />}
-            />
-          }
-        >
-          <Route path="/terms" element={<TermsPage />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
-        </Route>
+    <Route path="*" element={<Navigate to="/" />} />
+  </Routes>
 
-        {/* FALLBACK */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-
-      {/* A Janela de Chat fica fora das Routes, mas dentro do Provider. 
-          Ela só aparecerá quando activeChatId não for null (lógica interna do componente).
-      */}
-      {isAuthenticated && <ChatWindow />}
-      
-    </ChatProvider>
+  {/* O ChatWindow flutua, não afeta o layout do Header */}
+  <ChatWindow />
+</ChatProvider>
   )
 }
 

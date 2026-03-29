@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, MoreHorizontal, User, Send, Loader2 } from 'lucide-react'; // Adicionei Loader2
-import { useChat } from './ChatContext';
+import { useChat } from '../ChatContext/ChatContext'
 import './Chat.css';
 
 export const ChatWindow = () => {

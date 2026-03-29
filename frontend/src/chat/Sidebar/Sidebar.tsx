@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { User, Search } from 'lucide-react';
-import { useChat } from './ChatContext';
+import { useChat } from '../ChatContext/ChatContext'
 import './Sidebar.css';
 
 interface UserData {
