@@ -1,8 +1,6 @@
 import { useState } from 'react'
-import {useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import AppShell from '../../components/layout/AppShell/AppShell'
-import Header from '../../components/layout/Header/Header'
-import Footer from '../../components/layout/Footer/Footer'
 import UserHeader from '../../components/layout/UserHeader/UserHeader'
 import Avatar from '../../components/common/Avatar/Avatar'
 import Button from '../../components/common/Button/Button'
@@ -10,37 +8,25 @@ import { Check, X } from "lucide-react";
 import { mockRequests, mockSchedule, mockAchievements } from './HomeLogged.mock.tsx'
 import './HomeLogged.css'
 
-
-
 function HomeLogged() {
   useSearchParams()
   const [activeTab, setActiveTab] = useState<'pending' | 'notifications'>('pending')
   const [requests, setRequests] = useState(() => mockRequests)
 
   const handleAccept = (id: number) => {
-    console.log(`Accepted request with ID: ${id}`)
     setRequests(prev => prev.filter(r => r.id !== id))
   }
 
   const handleDecline = (id: number) => {
-    console.log(`Declined request with ID: ${id}`)
     setRequests(prev => prev.filter(r => r.id !== id))
   }
 
   return (
-    <AppShell
-      sidebar={null}
-      header={<Header isAuthenticated={true} />}
-      footer={<Footer />}
-    >
+    <AppShell sidebar={null}>
       <div className="home-logged">
-        
         <UserHeader />
 
-        {/* Main Content */}
         <section className="main-content">
-
-          {/* Left Panel */}
           <div className="left-panel">
             <div className="tab-bar">
               <button
@@ -67,16 +53,16 @@ function HomeLogged() {
                     <strong>{req.name}</strong> solicitou realizar mentoria. Aceita?
                   </p>
                   <div className="request-actions">
-                    <Button onClick={() => handleAccept(req.id)} className="icon-button" aria-label="Accept">
+                    <Button onClick={() => handleAccept(req.id)} className="icon-button">
                       <Check size={18} color="green"/>
                     </Button>
-                    <Button onClick={() => handleDecline(req.id)} className="icon-button" aria-label="Decline">
+                    <Button onClick={() => handleDecline(req.id)} className="icon-button">
                       <X size={18} color="red"/>
                     </Button>
                   </div>
                 </div>
               ))}
-               {activeTab === 'pending' && requests.length === 0 && (
+              {activeTab === 'pending' && requests.length === 0 && (
                 <div className="empty-state">Sem novas solicitações.</div>
               )}
               {activeTab === 'notifications' && (
@@ -85,7 +71,6 @@ function HomeLogged() {
             </div>
           </div>
 
-          {/* Right Panel - Schedule */}
           <div className="right-panel">
             <h3 className="panel-title">Agenda do Dia</h3>
             <div className="schedule-list">
@@ -99,10 +84,8 @@ function HomeLogged() {
               ))}
             </div>
           </div>
-
         </section>
 
-        {/* Achievements */}
         <section className="achievements-section">
           <h3 className="achievements-title">Conquistas</h3>
           <div className="achievements-grid">
@@ -111,9 +94,7 @@ function HomeLogged() {
             ))}
           </div>
         </section>
-
       </div>
-      {/* <Outlet /> */}
     </AppShell>
   )
 }

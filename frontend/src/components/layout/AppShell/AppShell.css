@@ -103,7 +103,6 @@
   flex: 1;
   overflow-y: visible; /* Mudado de auto para visible */
   background-color: var(--white);
-  /* 🔑 ESSENCIAL PARA EVITAR BUG DE ALTURA */
   min-height: 0;
   overflow-y: auto;
 }

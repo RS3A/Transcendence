@@ -1,14 +1,12 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Search, User, Circle } from 'lucide-react';
+import { User, Circle } from 'lucide-react';
 import type { MentorCardData } from '../../services/mentorService';
 import mentorService from '../../services/mentorService';
 import MentorCard from '../../components/common/MentorCard/Mentorcard';
-import Header from '../../components/layout/Header/Header';
-import Footer from '../../components/layout/Footer/Footer';
+import AppShell from '../../components/layout/AppShell/AppShell';
 import DropdownList from '../../components/common/Dropdown/Dropdown';
 import './MentoriasPage.css';
 
-// 1. Constantes fixas
 const OPCOES_EXPERIENCIA = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "+10"];
 const OPCOES_STATUS = ["Ativo", "Inativo"];
 
@@ -31,20 +29,17 @@ const MiniMentorCard = ({ name, startDate, isActive }: { name: string, startDate
 const MentoriasPage = () => {
   const [mentoresDisponiveis, setMentoresDisponiveis] = useState<MentorCardData[]>([]);
   const [loading, setLoading] = useState(true);
-
-  // --- DADOS DOS MEUS MENTORES (Adicione aqui) ---
-  const meusMentores = [
-    { id: 101, name: "Ciclano", startDate: "03/03/2026", isActive: true },
-    { id: 102, name: "Fulano", startDate: "05/03/2026", isActive: true },
-  ];
-  
-  // --- ESTADOS DE FILTRO ---
   const [filtroExp, setFiltroExp] = useState("");
   const [filtroStatus, setFiltroStatus] = useState("");
   const [filtroCargo, setFiltroCargo] = useState("");
   const [filtroHabilidade, setFiltroHabilidade] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
+
+  const meusMentores = [
+    { id: 101, name: "Ciclano", startDate: "03/03/2026", isActive: true },
+    { id: 102, name: "Fulano", startDate: "05/03/2026", isActive: true },
+  ];
 
   useEffect(() => {
     const fetchMentores = async () => {
@@ -60,7 +55,6 @@ const MentoriasPage = () => {
     fetchMentores();
   }, []);
 
-  // --- GERAÇÃO DINÂMICA DE OPÇÕES (Cargos e Skills que existem na lista) ---
   const opcoesCargos = useMemo(() => 
     Array.from(new Set(mentoresDisponiveis.map(m => m.position))).sort(),
   [mentoresDisponiveis]);
@@ -69,123 +63,72 @@ const MentoriasPage = () => {
     Array.from(new Set(mentoresDisponiveis.flatMap(m => m.skills.map(s => s.name)))).sort(),
   [mentoresDisponiveis]);
 
-  // --- LÓGICA DE FILTRAGEM COMBINADA ---
   const mentoresFiltrados = mentoresDisponiveis.filter(mentor => {
     const matchExp = filtroExp === "" || 
       (filtroExp === "+10" ? mentor.anosExperiencia >= 10 : mentor.anosExperiencia === parseInt(filtroExp));
-    
     const matchStatus = filtroStatus === "" || 
       (filtroStatus === "Ativo" ? mentor.isActive : !mentor.isActive);
-
     const matchCargo = filtroCargo === "" || mentor.position === filtroCargo;
-
     const matchHabilidade = filtroHabilidade === "" || 
       mentor.skills.some(s => s.name === filtroHabilidade);
 
     return matchExp && matchStatus && matchCargo && matchHabilidade;
   });
 
-  // --- PAGINAÇÃO ---
-  const totalPages = Math.ceil(mentoresFiltrados.length / itemsPerPage);
   const currentMentors = mentoresFiltrados.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
-  const paginate = (pageNumber: number) => {
-    if (pageNumber >= 1 && pageNumber <= totalPages) {
-      setCurrentPage(pageNumber);
-      window.scrollTo(0, 0);
-    }
-  };
-
-  const resetarFiltros = () => {
-    setFiltroExp("");
-    setFiltroStatus("");
-    setFiltroCargo("");
-    setFiltroHabilidade("");
-    setCurrentPage(1);
-  };
-
   return (
-    <div className="page-wrapper">
-      <Header isAuthenticated={true} />
-      <section className="mentorias-section">
+    <AppShell sidebar={null}>
+        <section className="mentorias-section">
           <h2 className="section-title title-meus-mentores">Meus Mentores</h2>
           <div className="meus-mentores-grid">
             {meusMentores.map(mentor => (
-              <MiniMentorCard 
-                key={mentor.id} 
-                name={mentor.name} 
-                startDate={mentor.startDate} 
-                isActive={mentor.isActive} 
-              />
+              <MiniMentorCard key={mentor.id} {...mentor} />
             ))}
           </div>
         </section>
-      <main className="mentorias-page-container">
-        <section className="mentorias-section">
-          <h2 className="section-title">Encontrar Mentores</h2>
-          
-          <div className="filtros-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
-            
-            <DropdownList 
-              label="Habilidades"
-              options={opcoesHabilidades}
-              value={filtroHabilidade}
-              isEditing={true}
-              onChange={(val) => { setFiltroHabilidade(val); setCurrentPage(1); }}
-              placeholder="Todas"
-            />
 
-            <DropdownList 
-              label="Cargo"
-              options={opcoesCargos}
-              value={filtroCargo}
-              isEditing={true}
-              onChange={(val) => { setFiltroCargo(val); setCurrentPage(1); }}
-              placeholder="Todos"
-            />
-
-            <DropdownList 
-              label="Experiência"
-              options={OPCOES_EXPERIENCIA}
-              value={filtroExp}
-              isEditing={true}
-              onChange={(val) => { setFiltroExp(val); setCurrentPage(1); }}
-              placeholder="Anos"
-            />
-
-            <DropdownList 
-              label="Status"
-              options={OPCOES_STATUS}
-              value={filtroStatus}
-              isEditing={true}
-              onChange={(val) => { setFiltroStatus(val); setCurrentPage(1); }}
-              placeholder="Todos"
-            />
-
-            <button className="limpar-filtros-btn" onClick={resetarFiltros}>
-              Limpar Filtros
-            </button>
-          </div>
-
-          {loading ? (
-            <p>Carregando mentores...</p>
-          ) : (
-            <div className="encontrar-mentores-grid">
-              {currentMentors.length > 0 ? (
-                currentMentors.map(profile => (
-                  <MentorCard key={profile.id} {...profile} />
-                ))
-              ) : (
-                <p>Nenhum mentor encontrado.</p>
-              )}
+        <main className="mentorias-page-container">
+          <section className="mentorias-section">
+            <h2 className="section-title">Encontrar Mentores</h2>
+            <div className="filtros-container">
+              <DropdownList 
+                label="Habilidades"
+                options={opcoesHabilidades}
+                value={filtroHabilidade}
+                isEditing={true}
+                onChange={(val) => { setFiltroHabilidade(val); setCurrentPage(1); }}
+                placeholder="Todas"
+              />
+              <DropdownList 
+                label="Cargo"
+                options={opcoesCargos}
+                value={filtroCargo}
+                isEditing={true}
+                onChange={(val) => { setFiltroCargo(val); setCurrentPage(1); }}
+                placeholder="Todos"
+              />
+              <DropdownList 
+                label="Experiência"
+                options={OPCOES_EXPERIENCIA}
+                value={filtroExp}
+                isEditing={true}
+                onChange={(val) => { setFiltroExp(val); setCurrentPage(1); }}
+                placeholder="Anos"
+              />
+              <button className="limpar-filtros-btn" onClick={() => { setFiltroExp(""); setFiltroStatus(""); setFiltroCargo(""); setFiltroHabilidade(""); }}>
+                Limpar Filtros
+              </button>
             </div>
-          )}
-          
-          {/* Paginação (omitida aqui por brevidade, manter a mesma do código anterior) */}
-        </section>
-      </main>
-      <Footer />
-    </div>
+
+            {loading ? <p>Carregando mentores...</p> : (
+              <div className="encontrar-mentores-grid">
+                {currentMentors.map(profile => <MentorCard key={profile.id} {...profile} />)}
+              </div>
+            )}
+          </section>
+        </main>
+    </AppShell>
   );
 };
 
