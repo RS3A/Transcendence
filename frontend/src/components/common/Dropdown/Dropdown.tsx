@@ -40,15 +40,15 @@ const DropdownList: React.FC<DropdownListProps> = ({
 
   return (
     <div className={`dropdown-container ${isEditing ? "editing-mode" : ""}`} ref={dropdownRef}>
-      {label && <label className="dropdown-label">{label}</label>}
+      {label && <label className={styles.dropdownLabel}>{label}</label>}
       
       {!isEditing ? (
-        <div className="dropdown-static-value">{value || "Não informado"}</div>
+        <div className={styles.dropdownStaticValue}>{value || "Não informado"}</div>
       ) : (
-        <div className="searchable-dropdown">
+        <div className={styles.searchableDropdown}>
           <input
             type="text"
-            className="custom-input dropdown-select"
+            className={`${styles.customInput} ${styles.dropdownSelect}`}
             placeholder={value || placeholder || "Selecione..."}
             value={isOpen ? searchTerm : value}
             onFocus={() => { setIsOpen(true); setSearchTerm(""); }}
@@ -57,8 +57,8 @@ const DropdownList: React.FC<DropdownListProps> = ({
           />
           
           {isOpen && (
-            <ul className="dropdown-options-list">
-              <li className="option-item reset-option" onClick={() => { onChange(""); setIsOpen(false); }}>
+            <ul className={styles.dropdownOptionsList}>
+              <li className={`${styles.optionItem} ${styles.resetOption}`} onClick={() => { onChange(""); setIsOpen(false); }}>
                 -- Limpar Seleção --
               </li>
               {filteredOptions.length > 0 ? (
@@ -76,7 +76,7 @@ const DropdownList: React.FC<DropdownListProps> = ({
                   </li>
                 ))
               ) : (
-                <li className="option-no-results">Nenhum resultado</li>
+                <li className={styles.optionNoResults}>Nenhum resultado</li>
               )}
             </ul>
           )}

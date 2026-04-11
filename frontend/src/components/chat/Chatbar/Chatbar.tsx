@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { User, Search, MessageCircle } from 'lucide-react';
 import { useChat } from '../ChatContext/ChatContext';
 import { apiFetch } from '../../../services/api';
-import './Chatbar.css';
+import styles from './Chatbar.module.css';
 
 interface UserData {
   id: number;
@@ -124,10 +124,10 @@ export const Sidebar = () => {
 
   return (
     <aside className={`chat-sidebar${collapsed ? ' collapsed' : ''}`}>
-      <div className="sidebar-header">
+      <div className={styles.sidebarHeader}>
   {!collapsed && <h2>Mensagens</h2>}
   <button
-    className="sidebar-toggle-btn"
+    className={styles.sidebarToggleBtn}
     onClick={() => setCollapsed((c) => !c)}
     title={collapsed ? 'Expandir' : 'Minimizar'}
     style={hasUnreadMessages ? { color: '#7c3aed' } : {}}
@@ -135,7 +135,7 @@ export const Sidebar = () => {
     <MessageCircle size={22} fill={hasUnreadMessages ? '#7c3aed' : 'none'} />
   </button>
         {!collapsed && (
-          <div className="search-bar">
+          <div className={styles.searchBar}>
             <Search size={18} />
             <input 
               type="text" 
@@ -147,15 +147,15 @@ export const Sidebar = () => {
         )}
       </div>
       {!collapsed && (
-        <div className="user-list">
+        <div className={styles.userList}>
           {filteredUsers.map((user) => (
             <div 
               key={user.id} 
               className={`user-item ${activeChatId === user.id ? 'active' : ''}`}
               onClick={() => setActiveChatId(user.id)}
             >
-              <div className="avatar-container">
-                <div className="sidebar-avatar">
+              <div className={styles.avatarContainer}>
+                <div className={styles.sidebarAvatar}>
                   {user.avatarUrl ? (
                     <img src={user.avatarUrl} alt={user.name} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
                   ) : (
@@ -175,16 +175,16 @@ export const Sidebar = () => {
                     </div>
                   )}
                 </div>
-                {onlineUsers.has(user.id) && <div className="status-indicator online" />}
+                {onlineUsers.has(user.id) && <div className={`${styles.statusIndicator} ${styles.online}`} />}
               </div>
-              <div className="user-details">
-                <span className="user-name">{user.name}</span>
-                <span className="last-msg">Clique para conversar</span>
+              <div className={styles.userDetails}>
+                <span className={styles.userName}>{user.name}</span>
+                <span className={styles.lastMsg}>Clique para conversar</span>
               </div>
             </div>
           ))}
           {filteredUsers.length === 0 && (
-            <p className="empty-list">Nenhum usuário encontrado.</p>
+            <p className={styles.emptyList}>Nenhum usuário encontrado.</p>
           )}
         </div>
       )}

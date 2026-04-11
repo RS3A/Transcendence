@@ -1,0 +1,27 @@
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-medium);
+  font-weight: 500;
+}
+
+.ratingStar {
+  flex-shrink: 0;
+}
+
+.ratingText {
+  display: flex;
+  align-items: center;
+}
+
+.ratingStarsContainer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.submitRatingBtn {
+  margin-top: 16px;
+  justify-content: center;
+}

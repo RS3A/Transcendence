@@ -1,0 +1,217 @@
+/* Container principal da página */
+.mentoriasPageContainer {
+  background-color: #f4f5fa; 
+  min-height: 100vh;
+  padding: 40px;
+  font-family: sans-serif;
+  color: #374151;
+}
+
+/* Títulos das seções */
+.sectionTitle {
+  color: #5b4eb1; 
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.mentoriasSection {
+  margin-bottom: 50px;
+}
+
+/* =========================================
+   SEÇÃO: MEUS MENTORES (Cards Menores)
+   ========================================= */
+.sectionTitle.titleMeusMentores {
+  margin-left: 40px; /* Ajuste o valor conforme necessário para alinhar com o grid */
+}
+.meusMentoresGrid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-left: 5vh;
+}
+
+.miniMentorCard {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 280px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.miniAvatarContainer {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.miniInfo h4 {
+  margin: 0 0 4px 0;
+  font-size: 1rem;
+}
+
+.miniInfo p {
+  margin: 0 0 6px 0;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.miniStatus {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* =========================================
+   SEÇÃO: ENCONTRAR MENTORES
+   ========================================= */
+
+.filtrosContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 30px;
+  align-items: flex-start; 
+}
+
+.dropdownContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dropdownLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-left: 8px;
+}
+
+/* Estilo do Select (Pílula) */
+.customInput.dropdownSelect {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
+  padding: 8px 16px;
+  color: #5b4eb1;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  min-width: 140px;
+  appearance: none; /* Remove a seta padrão do navegador */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235b4eb1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+  padding-right: 35px;
+}
+
+.customInput.dropdownSelect:hover {
+  background-color: #f3f4f6;
+  border-color: #5b4eb1;
+}
+
+.customInput.dropdownSelect:focus {
+  border-color: #685ad6;
+  box-shadow: 0 0 0 2px rgba(104, 90, 214, 0.1);
+}
+
+/* Botão Limpar Filtros */
+.limparFiltrosBtn {
+  background-color: #685ad6;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0 24px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  height: 38px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 21px; 
+}
+
+.limparFiltrosBtn:hover {
+  background-color: #5b4eb1;
+}
+
+.limparFiltrosBtn:active {
+  transform: scale(0.98);
+}
+
+/* Estilo para quando o filtro estiver ativo (opcional) */
+.dropdownSelect:not([value=""]) {
+  background-color: #f5f3ff;
+  border-color: #685ad6;
+}
+
+/* Grid Principal (2 colunas como na imagem) */
+.encontrarMentoresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+/* =========================================
+   PAGINAÇÃO
+   ========================================= */
+.paginacaoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  font-size: 0.85rem;
+  color: #5b4eb1;
+  font-weight: 600;
+}
+
+.pageLink {
+  cursor: pointer;
+}
+
+.pageLink:hover {
+  text-decoration: underline;
+}
+
+.pageNumber {
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.pageNumber:hover {
+  color: #5b4eb1;
+}
+
+.pageDots {
+  color: #9ca3af;
+}
+
+.pageNumber.active {
+    color: #5b4eb1; /* Cor de destaque */
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.pageLink {
+    cursor: pointer;
+    user-select: none;
+}
+
+.pageLink:hover {
+    opacity: 0.7;
+}

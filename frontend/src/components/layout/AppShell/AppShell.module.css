@@ -1,0 +1,125 @@
+/* ===========================
+   BASE LAYOUT (STRUCTURAL)
+=========================== */
+
+.appShell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Mudado de height para min-height */
+  background-color: var(--white);
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.appShell > footer {
+  flex-shrink: 0;
+}
+/* ===========================
+   WITH SIDEBAR
+=========================== */
+
+.appShell.withSidebar {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: auto 1fr auto;
+}
+
+.appShell.withSidebar > .sidebar {
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+  left: 0;
+  right: unset;
+  position: relative;
+  height: 100vh;
+  z-index: 1001;
+  border-right: 1px solid #eef0f2;
+  border-left: none;
+}
+
+.appShell.withSidebar > header {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.appShell.withSidebar > main {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.appShell.withSidebar > footer {
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+}
+
+/* ===========================
+   DESKTOP - LOGADO
+=========================== */
+
+.appShell > main {
+  flex: 1;
+  background-color: transparent;
+  /* 🔑 ESSENCIAL PARA EVITAR BUG DE ALTURA */
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.appShell > .footer {
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+}
+
+/* ===========================
+   AUTH MODE (LOGIN / CADASTRO)
+=========================== */
+
+.appShell.auth {
+  grid-template-columns: 1fr;
+}
+
+/* Sidebar não existe no auth */
+.appShell.auth > .sidebar {
+  display: none;
+}
+
+/* Header / Main / Footer ocupam toda a largura */
+.appShell.auth > .header,
+.appShell.auth > main,
+.appShell.auth > .footer {
+  grid-column: 1 / 2;
+}
+
+/* Main no auth: SOMENTE layout */
+.appShell.auth > main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 🚫 SEM overflow aqui */
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 768px) {
+  .appShell {
+    grid-template-columns: 1fr;
+    grid-template-rows: 64px 1fr 48px;
+  }
+
+  .appShell > .sidebar {
+    display: none;
+  }
+
+  .appShell > .header,
+  .appShell > main,
+  .appShell > .footer {
+    grid-column: 1 / 2;
+  }
+}

@@ -21,9 +21,9 @@ export const Achievements = ({ achievements, title = 'Conquistas' }: Achievement
   }
 
   return (
-    <section className="achievements-section">
-      <h3 className="achievements-title">{title}</h3>
-      <div className="achievements-grid">
+    <section className={styles.achievementsSection}>
+      <h3 className={styles.achievementsTitle}>{title}</h3>
+      <div className={styles.achievementsGrid}>
         {achievements.map((a, index) => {
           // Support both naming conventions
           const displayTitle = a.title || a.name || 'Achievementlocked'
@@ -31,19 +31,19 @@ export const Achievements = ({ achievements, title = 'Conquistas' }: Achievement
           const key = a.id || index
 
           return (
-            <div key={key} className="achievement-card">
+            <div key={key} className={styles.achievementCard}>
               {displayIcon && (
                 <img
                   src={displayIcon}
                   alt={displayTitle}
-                  className="achievement-icon"
+                  className={styles.achievementIcon}
                   onError={(e) => {
                     // Hide image if it fails to load
                     (e.target as HTMLImageElement).style.display = 'none'
                   }}
                 />
               )}
-              <div className="achievement-name">{displayTitle}</div>
+              <div className={styles.achievementName}>{displayTitle}</div>
             </div>
           )
         })}

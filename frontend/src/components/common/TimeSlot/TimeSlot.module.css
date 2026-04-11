@@ -1,0 +1,217 @@
+.saveButton {
+    background-color: var(--purple-primary);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.saveButton:hover {
+    color: var(--white);
+    background-color: var(--purple-dark);
+}
+
+.availabilityGrid {
+    display: grid;
+    width: auto;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.dayColumn {
+    background-color: var(--purple-bg);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.dayColumn h4 {
+    margin: 0 0 1rem;
+    color: var(--text-dark);
+}
+
+.timeSlots {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 100px;
+}
+
+.timeSlot {
+    background-color: var(--purple-light);
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deleteSlot {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--purple-primary);
+}
+
+.addTimeSlot {
+    background: none;
+    border: none;
+    color: var(--purple-primary);
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.availabilityFooter {
+    background-color: var(--purple-bg-light);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+}
+
+/* --- Modal Styles --- */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 400px;
+    overflow: hidden;
+}
+
+.modalHeader {
+    color: var(--text-dark);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalHeader h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.modalHeader svg {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.modalHeader svg:hover {
+    opacity: 0.7;
+}
+
+.modalBody {
+    padding: 1.5rem;
+}
+
+.timeInputGroup {
+    margin-bottom: 1.5rem;
+}
+
+.timeInputGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--gray-dark);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.timeInputGroup input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--input-group-bg);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.timeInputGroup input:focus {
+    outline: none;
+    border-color: var(--purple-primary);
+}
+
+.timePreview {
+    background-color: var(--white);
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--purple-primary);
+}
+
+.modalFooter {
+    padding: 1.5rem;
+    background-color: var(--white);
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.modalFooter .button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+.modalFooter .cancelBtn {
+    padding: 8px 16px;
+    text-align: center;
+    align-items: center;
+    max-width: 120px;
+    max-height: 42px;
+    border-radius: 8px;
+    background-color: var(--gray-light);
+    color: var(--text-dark);
+    border: none;
+}
+
+.modalFooter .cancelBtn:hover {
+    background-color: var(--gray-medium);
+}
+
+.modalFooter .confirmBtn {
+    padding: 8px 16px;
+    text-align: center;
+    align-items: center;
+    max-width: 120px;
+    max-height: 42px;
+    border-radius: 8px;
+    background-color: var(--purple-light);
+    color: var(--text-dark);
+    border:1px solid var(--purple-primary);
+}
+
+.modalFooter .confirmBtn:hover {
+    color: var(--white);
+    background-color: var(--purple-primary);
+}
+
+@media (max-width: 1200px) {
+    .availabilityGrid {
+        display: grid;
+        grid: column;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

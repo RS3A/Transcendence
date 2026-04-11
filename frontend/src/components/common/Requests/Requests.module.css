@@ -1,0 +1,129 @@
+/* ---- Container ---- */
+.leftPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.panelTitle {
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0 0 1.5rem 0;
+}
+
+.tabBar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 1rem;
+}
+
+.tabBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  padding: 8px 12px;
+  margin: 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  text-align: left;
+  width: 100%;
+}
+
+.tabBtn.active {
+  color: var(--purple-primary);
+  border-bottom: 2px solid var(--purple-light);
+}
+
+.requestsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.requestsList:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.requestCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.requestCard:last-child {
+  border-bottom: none;
+}
+
+.requestAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #c8c8d8;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.requestText {
+  flex: 1;
+  font-size: 0.95rem;
+  color: #333;
+  margin: 0;
+  font-weight: 500;
+}
+
+.requestActions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.actionBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.actionBtn:hover {
+  transform: scale(1.15);
+}
+
+.actionBtn.accept {
+  color: #27ae60;
+}
+
+.actionBtn.reject {
+  color: #e74c3c;
+}
+
+.emptyState {
+  padding: 1.5rem;
+  text-align: center;
+  color: #666;
+  font-size: 0.95rem;
+}
+

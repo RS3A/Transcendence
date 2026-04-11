@@ -58,9 +58,9 @@ function Header({ isAuthenticated = false }: HeaderProps) {
   return (
     <header className={`header ${isAuthenticated ? 'authenticated' : 'unauthenticated'}`}>
       
-      <img src={logo} alt="Transcendence logo" className="header-logo" />
+      <img src={logo} alt="Transcendence logo" className={styles.headerLogo} />
 
-      <nav className="header-nav">
+      <nav className={styles.headerNav}>
         {!isAuthenticated ? (
           <>
             <Link to="/about">Quem somos</Link>
@@ -79,14 +79,14 @@ function Header({ isAuthenticated = false }: HeaderProps) {
 
       {/* Lado direito */}
       {!isAuthenticated ? (
-        <div className="header-right">
-          <Link to="/login" className="header-login-btn">
+        <div className={styles.headerRight}>
+          <Link to="/login" className={styles.headerLoginBtn}>
             Logar
           </Link>
         </div>
       ) : (
-        <div className="header-right">
-          <button onClick={handleLogout} className="header-logout-btn">
+        <div className={styles.headerRight}>
+          <button onClick={handleLogout} className={styles.headerLogoutBtn}>
             Sair
           </button>
         </div>

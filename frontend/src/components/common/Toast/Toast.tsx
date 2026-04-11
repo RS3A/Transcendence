@@ -83,7 +83,7 @@ const ToastClose = React.forwardRef<
     className={`toast-close ${className || ''}`.trim()}
     {...props}
   >
-    <X className="toast-close-icon" />
+    <X className={styles.toastCloseIcon} />
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;

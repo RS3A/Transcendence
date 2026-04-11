@@ -1,0 +1,136 @@
+.iconButton {
+  border: none;
+  border-radius: 40px;
+  padding: 12px 24px;
+  min-width: 32px;
+  min-height: 32px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--purple-light);
+  color: var(--white);
+}
+
+.iconButtonIcon {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-shrink: 0;
+}
+
+.iconButtonIcon svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.5;
+}
+
+.iconButtonText {
+  display: flex;
+  align-items: center;
+}
+
+.iconButtonPrimary {
+  background-color: var(--purple-light);
+  color: var(--text-dark);
+  border: 1px solid var(--purple-medium);
+}
+
+.iconButtonPrimary:hover {
+  background-color: var(--purple-primary);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(91, 79, 207, 0.3);
+}
+
+.iconButtonPrimary:active {
+  background-color: var(--purple-medium);
+  transform: scale(0.98);
+}
+
+.iconButtonSecondary {
+  background-color: transparent;
+  color: var(--text-dark);
+  border: 2px solid var(--gray-medium);
+}
+
+.iconButtonSecondary:hover {
+  border-color: var(--gray-dark);
+  color: var(--text-dark);
+  background-color: var(--gray-light);
+}
+
+.iconButtonSecondary:active {
+  transform: scale(0.98);
+}
+
+.iconButtonWithdraw {
+  background-color: transparent;
+  color: var(--is-inactive-red);
+  border: 2px solid var(--is-inactive-red);
+}
+
+.iconButtonWithdraw:hover {
+  background-color: var(--red-pale);
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.iconButtonWithdraw:active {
+  transform: scale(0.98);
+}
+
+.iconButton:disabled,
+.iconButton.disabled {
+  background-color: var(--gray-light);
+  color:var(--gray-medium);
+  border-color: var(--gray-light);
+  cursor: not-allowed;
+  opacity: 0.7;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
+}
+
+.iconButtonRating {
+  border-radius: 12px;
+  background-color: transparent;
+  color: var(--text-dark);
+  border: 2px solid var(--gray-light);
+}
+
+.iconButtonRating:hover {
+  border-color: var(--rating-yellow-medium);
+  color: var(--text-dark);
+  background-color: var(--rating-yellow);
+}
+
+.iconButtonRating:active {
+  transform: scale(0.98);
+  background-color: var(--rating-yellow);
+}
+
+.iconButtonCapacity {
+  padding: 4px;
+  max-width: 8px;
+  max-height: 8px;
+  border-radius: 40px;
+  background-color: transparent;
+  color: var(--text-dark);
+  border: 2px solid var(--gray-light);
+}
+
+.iconButtonCapacity:hover {
+  border-color: var(--purple-primary);
+  color: var(--text-dark);
+  background-color: var(--purple-light);
+}
+
+.iconButtonCapacity:active {
+  transform: scale(0.98);
+}

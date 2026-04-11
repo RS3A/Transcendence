@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import Button from '../Button/Button';
-import './TimeSlot.css';
+import styles from './TimeSlot.module.css';
 
 interface TimeSlotProps {
   timeRange: string;
@@ -10,7 +10,7 @@ interface TimeSlotProps {
 
 const TimeSlot: React.FC<TimeSlotProps> = ({ timeRange, onDelete }) => {
   return (
-    <div className="time-slot">
+    <div className={styles.timeSlot}>
       <span>{timeRange}</span>
       <X size={18} onClick={onDelete} color="red" cursor="pointer" />
     </div>
@@ -33,9 +33,9 @@ export const DayColumn: React.FC<DayColumnProps> = ({ day, dayIndex, slots, onDe
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="day-column">
+    <div className={styles.dayColumn}>
       <h4>{day}</h4>
-      <div className="time-slots">
+      <div className={styles.timeSlots}>
         {slots.map(slot => (
           <TimeSlot
             key={slot.id}
@@ -45,7 +45,7 @@ export const DayColumn: React.FC<DayColumnProps> = ({ day, dayIndex, slots, onDe
         ))}
       </div>
       <Button 
-        className="add-time-slot" 
+        className={styles.addTimeSlot} 
         onClick={() => setShowModal(true)}
       >
         + Horário
@@ -144,13 +144,13 @@ const AddTimeSlotModal: React.FC<AddTimeSlotModalProps> = ({ day, onClose, onCon
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.modalHeader}>
           <h3>Adicionar Horário - {day}</h3>
           <X size={24} onClick={onClose} cursor="pointer" color="var(--purple-primary)" />
         </div>
-        <div className="modal-body">
+        <div className={styles.modalBody}>
           {error && (
             <div style={{
               backgroundColor: '#fee',
@@ -165,7 +165,7 @@ const AddTimeSlotModal: React.FC<AddTimeSlotModalProps> = ({ day, onClose, onCon
             </div>
           )}
 
-          <div className="time-input-group">
+          <div className={styles.timeInputGroup}>
             <label>Hora de Início</label>
             <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
               <select
@@ -194,7 +194,7 @@ const AddTimeSlotModal: React.FC<AddTimeSlotModalProps> = ({ day, onClose, onCon
             </div>
           </div>
 
-          <div className="time-input-group">
+          <div className={styles.timeInputGroup}>
             <label>Hora de Fim</label>
             <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
               <select
@@ -223,15 +223,15 @@ const AddTimeSlotModal: React.FC<AddTimeSlotModalProps> = ({ day, onClose, onCon
             </div>
           </div>
 
-          <div className="time-preview">
+          <div className={styles.timePreview}>
             <span>{startHour}:{startMinute} - {endHour}:{endMinute}</span>
           </div>
         </div>
-        <div className="modal-footer">
-          <Button className="cancel-btn" onClick={onClose}>
+        <div className={styles.modalFooter}>
+          <Button className={styles.cancelBtn} onClick={onClose}>
             Cancelar
           </Button>
-          <Button className="confirm-btn" onClick={handleConfirm}>
+          <Button className={styles.confirmBtn} onClick={handleConfirm}>
             Adicionar
           </Button>
         </div>
@@ -246,7 +246,7 @@ export const AvailabilityGrid: React.FC<AvailabilityGridProps> = ({ availability
 
   return (
     <>
-      <div className="availability-grid">
+      <div className={styles.availabilityGrid}>
         {daysOfWeek.map((day, index) => (
           <DayColumn
             key={day}
@@ -258,7 +258,7 @@ export const AvailabilityGrid: React.FC<AvailabilityGridProps> = ({ availability
           />
         ))}
       </div>
-      <div className="availability-footer">
+      <div className={styles.availabilityFooter}>
         <span>{totalSlots} Bloco(s) definido(s)</span>
       </div>
     </>

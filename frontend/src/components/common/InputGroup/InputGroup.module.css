@@ -1,0 +1,106 @@
+.inputGroupContainer {
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.inputLabel {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.customInput,
+.viewBox {
+  width: 100%;
+  max-width: 100%;
+  background-color: var(--input-group-bg);
+  border: none;
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-size: 14px;
+  min-height: 45px;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.customTextarea,
+.viewTextarea {
+  border-radius: 25px;
+  min-height: 120px;
+  resize: none;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  overflow: auto;
+}
+
+.viewBox {
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+
+.placeholderText {
+  color: #999;
+}
+
+.customInput:focus {
+  outline: 2px solid #6e54d1;
+}
+
+.viewBox {
+    padding: 8px;
+    color: #374151;
+    min-height: 38px;
+    display: flex;
+    align-items: flex-start;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- ESTILO DE EDIÇÃO --- */
+
+/* Quando o container está em modo de edição, forçamos o fundo branco no input/textarea */
+.editingMode .customInput {
+    background-color: #ffffff !important; /* Fundo branco */
+    border: 1px solid #d1d5db; /* Borda cinza suave */
+    border-radius: 6px;
+    padding: 12px 16px;
+    width: 100%;
+    max-width: 100%;
+    color: #111827;
+    transition: all 0.2s ease;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05); /* Sombra interna leve */
+    box-sizing: border-box;
+}
+
+/* Efeito de foco para destacar ainda mais qual campo está sendo editado */
+.editingMode .customInput:focus {
+    outline: none;
+    border-color: #3b82f6; /* Borda azul */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); /* Brilho azul em volta */
+}
+
+/* Ajuste específico para a altura do textarea no modo edição */
+.editingMode .customTextarea {
+    min-height: 100px;
+    resize: none;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}

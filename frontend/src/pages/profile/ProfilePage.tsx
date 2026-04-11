@@ -467,27 +467,27 @@ useEffect(() => {
 }, []);
 
   return (
-    <div className="perfil-container">
-      <div className="perfil-header">
+    <div className={styles.perfilContainer}>
+      <div className={styles.perfilHeader}>
         <Avatar
           avatarUrl={userData.avatarUrl}
           size={128}
           isEditable={true}
           onImageChange={(file) => handleImageUpload(file)}
         />
-        <div className="perfil-badges">
+        <div className={styles.perfilBadges}>
           <ProgressBar
             currentXp={userData.xp || 0}
             nextLevelXp={userData.nextLevelXp}
             currentLevel={userData.level || 0}
             size="medium"
           />
-          <div className="perfil-badge">Level: {userData.level || 0}</div>
-          <div className="perfil-badge">XP: {userData.xp || 0}</div>
+          <div className={styles.perfilBadge}>Level: {userData.level || 0}</div>
+          <div className={styles.perfilBadge}>XP: {userData.xp || 0}</div>
         </div>
       </div>
 
-      <div className="perfil-tabs-nav">
+      <div className={styles.perfilTabsNav}>
         <button
           onClick={() => setAbaAtiva("gerais")}
          className={`perfil-tab-btn ${abaAtiva === "gerais" ? "ativa" : "inativa"}`}
@@ -501,33 +501,33 @@ useEffect(() => {
           Dados Pessoais
         </button>
       </div>
-      <div className="perfil-conteudo">
-        <div className="perfil-grid">
-          <div className="perfil-coluna">
-            <div className="perfil-titulo-secao">
-              <span className="perfil-tag-titulo">
+      <div className={styles.perfilConteudo}>
+        <div className={styles.perfilGrid}>
+          <div className={styles.perfilColuna}>
+            <div className={styles.perfilTituloSecao}>
+              <span className={styles.perfilTagTitulo}>
                 {abaAtiva === "gerais" 
                   ? (userData.role?.toLowerCase() === "mentor" ? "Pessoa Mentora" : "Pessoa Mentorada")
                   : "Dados de contato"}
               </span>
 
               {isEditing ? (
-                <div className="botoes-edicao-topo">
+                <div className={styles.botoesEdicaoTopo}>
                   <Save
                     size={22}
-                    className="perfil-icone-salvar"
+                    className={styles.perfilIconeSalvar}
                     onClick={handleSaveAll}
                   />
                   <Trash2
                     size={22}
-                    className="perfil-icone-cancelar"
+                    className={styles.perfilIconeCancelar}
                     onClick={handleCancel}
                   />
                 </div>
               ) : (
                 <Pencil
                   size={18}
-                  className="perfil-icone-editar"
+                  className={styles.perfilIconeEditar}
                   onClick={() => setIsEditing(true)}
                 />
               )}
@@ -557,7 +557,7 @@ useEffect(() => {
                     setUserData({ ...userData, presentationText: val })
                   }
                 />
-                <div className="anos-experiencia">
+                <div className={styles.anosExperiencia}>
                   <InputGroup
                     label="Anos de experiência"
                     value={userData.anosExperiencia}
@@ -609,7 +609,7 @@ useEffect(() => {
               </>
             )}
           </div>
-          <div className="perfil-coluna">
+          <div className={styles.perfilColuna}>
             {abaAtiva === "gerais" ? (
             <Habilities 
               selectedSkills={userSkills} 
@@ -621,27 +621,27 @@ useEffect(() => {
                   : "Habilidades que quero receber mentoria"}
               />
             ) : (
-              <div className="perfil-caixa-senha">
+              <div className={styles.perfilCaixaSenha}>
                 <h3>Alterar a Senha:</h3>
                 <input
                   type="password"
                   placeholder="Senha Atual"
-                  className="perfil-input"
+                  className={styles.perfilInput}
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
                 />
                 <input
                   type="password"
                   placeholder="Nova Senha"
-                  className="perfil-input"
+                  className={styles.perfilInput}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                 />
-                <p className="senha-dica">
+                <p className={styles.senhaDica}>
                   Mínimo 8 caracteres, com maiúscula, número e símbolo.
                 </p>
                 <button
-                  className="perfil-botao-salvar"
+                  className={styles.perfilBotaoSalvar}
                   onClick={handleUpdatePassword}
                 >
                   Salvar Nova Senha

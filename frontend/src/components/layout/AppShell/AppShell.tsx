@@ -8,7 +8,7 @@ function AppShell({ sidebar, header, footer, children }) {
   return (
     <div className={`app-shell ${hasAuth ? 'auth' : ''} ${hasSidebar ? 'with-sidebar' : ''}`}>
       {sidebar && (
-        <aside className="sidebar">
+        <aside className={styles.sidebar}>
           {sidebar}
         </aside>
       )}
@@ -21,7 +21,7 @@ function AppShell({ sidebar, header, footer, children }) {
         {children || <Outlet />}
       </main>
 
-      <footer className="footer">
+      <footer className={styles.footer}>
         {footer}
       </footer>
     </div>

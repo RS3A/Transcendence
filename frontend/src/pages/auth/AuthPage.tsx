@@ -7,9 +7,9 @@ function AuthPage() {
   const [mode, setMode] = useState<'login' | 'register'>('login')
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <div className="auth-tabs">
+    <div className={styles.authContainer}>
+      <div className={styles.authCard}>
+        <div className={styles.authTabs}>
           <button
             className={mode === 'login' ? 'active' : ''}
             onClick={() => setMode('login')}

@@ -1,0 +1,97 @@
+/* ===========================
+   SIDEBAR (DESKTOP)
+=========================== */
+
+.registerSidebar {
+  height: 100%;
+  background-color: #e6e3fa;
+
+  padding: 2rem 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* 🔑 evita quebrar layout */
+  overflow-y: auto;
+}
+
+.registerSidebar h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.registerSidebar strong {
+  font-weight: 700;
+}
+
+.registerIllustration {
+  width: 100%;
+  max-width: 220px;
+  align-self: center;
+}
+
+/* ===========================
+   FORM
+=========================== */
+
+.registerFormWrapper {
+  height: 100%;
+  padding: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 🔑 permite scroll interno */
+  overflow-y: auto;
+}
+
+.registerIllustration {
+  width: 100vw;
+  height: 100vh;
+}
+
+.registerForm {
+  width: 100%;
+  max-width: 420px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ===========================
+   ERRORS
+=========================== */
+
+.inputError {
+  font-size: 0.75rem;
+  color: #d14343;
+  margin-bottom: 0.25rem;
+}
+
+input.error {
+  outline: 2px solid #d14343;
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 768px) {
+  /* Sidebar desaparece no mobile */
+  .registerSidebar {
+    display: none;
+  }
+
+  .registerFormWrapper {
+    padding: 1.5rem 1rem;
+    align-items: flex-start;
+  }
+
+  .registerForm {
+    max-width: 100%;
+  }
+}

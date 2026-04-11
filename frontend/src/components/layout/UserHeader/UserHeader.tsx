@@ -184,19 +184,19 @@ export const UserHeader = () => {
   }, [])
 
   return (
-    <section className="user-header">
+    <section className={styles.userHeader}>
 
       {/* Perfil */}
-      <div className="profile-section">
-        <div className="header-info">
-          <div className="header-avatar">
+      <div className={styles.profileSection}>
+        <div className={styles.headerInfo}>
+          <div className={styles.headerAvatar}>
             <Avatar avatarUrl={userData.avatarUrl} size={150} />
           </div>
         </div>
-        <div className="header-info">
+        <div className={styles.headerInfo}>
           <ProfileBadge text={userData.role === 'MENTOR' ? 'Pessoa Mentora' : 'Mentorada'} />
-          <h2 className="profile-user-name">{userData.nome}</h2>
-          <span className="profile-details">
+          <h2 className={styles.profileUserName}>{userData.nome}</h2>
+          <span className={styles.profileDetails}>
             @{userData.username} | {userData.cargo}
           </span>
         </div>
@@ -204,9 +204,9 @@ export const UserHeader = () => {
 
       {/* Stats */}
 
-      <div className="profile-stats-bg">
-        <div className="profile-stats-container">
-          <div className="xp-section">
+      <div className={styles.profileStatsBg}>
+        <div className={styles.profileStatsContainer}>
+          <div className={styles.xpSection}>
             <ProgressBar
               currentXp={userData.xp}
               nextLevelXp={userData.nextLevelXp}

@@ -1,0 +1,134 @@
+.header {
+  height: 64px;
+  background-color: #685AD6;
+  color: #ffffff;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  /* Isso garante que os elementos fiquem espalhados */
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* =====================
+   LEFT
+===================== */
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+}
+
+.headerLogo {
+  height: 60px;
+  flex-shrink: 0;
+}
+
+/* =====================
+   RIGHT
+===================== */
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* =====================
+   NAV
+===================== */
+
+.headerNav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+header.authenticated .headerNav {
+  /* O "auto" na margem esquerda empurra o elemento o máximo possível para a direita */
+  margin-left: auto; 
+}
+
+.headerNav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.headerNav a:hover {
+  text-decoration: underline;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* Garante que o container do botão tenha largura mínima para não esmagar */
+  min-width: 100px; 
+}
+
+.headerLoginBtn {
+  background-color: #ffffff;
+  color: #685AD6;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.headerNav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.headerNav a:hover {
+  text-decoration: underline;
+}
+
+/* =====================
+   LOGIN BUTTON
+===================== */
+
+.headerLoginBtn {
+  background-color: #ffffff;
+  color: #685AD6;
+
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.headerLoginBtn:hover {
+  opacity: 0.9;
+}
+
+/* =====================
+   LOGOUT BUTTON
+===================== */
+
+.headerLogoutBtn {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.headerLogoutBtn:hover {
+  background-color: #ffffff;
+  color: #685AD6;
+}

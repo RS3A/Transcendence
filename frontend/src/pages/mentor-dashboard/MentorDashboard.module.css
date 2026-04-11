@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  
+  .mentorDashboard {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    background-color: var(--purple-bg-light);
+  }
+ 
+  .dashboardContainer {
+    width: 80vw;
+    margin: 0 auto;
+  }
+
+  .dashboardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--purple-primary);
+    color: var(--white)
+  }
+  
+  .dashboardHeader .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: var(--white);
+    color: var(--purple-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+  }
+  
+  .dashboardHeader nav a {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .dashboardHeader .headerIcons .chatIcon {
+    /* Placeholder for chat icon */
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--white);
+    border-radius: 50%;
+  }
+  
+  .dashboardContent {
+    width: 80vw;
+    padding: 2rem;
+    display: grid;
+    gap: 2rem;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--gray-medium);
+    border-radius: 50%;
+  }
+  
+  .sessionInfo p {
+    margin: 0;
+  }
+  
+  .arrow {
+    font-size: 1.5rem;
+    color: var(--purple-primary);
+  }
+  
+  .menteesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .menteeItem {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .menteeItem p {
+    margin: 0;
+    flex-grow: 1;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboardHeader {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .availabilityGrid {
+      grid-template-columns: 1fr;
+    }
+  
+    .menteesGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+

@@ -223,8 +223,8 @@ function RegisterPage() {
   });
 
   return (
-    <main className="register-form-wrapper">
-      <form className="register-form" onSubmit={handleSubmit}>
+    <main className={styles.registerFormWrapper}>
+      <form className={styles.registerForm} onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Nome Completo"
@@ -232,7 +232,7 @@ function RegisterPage() {
           onChange={(e) => setName(e.target.value)}
           className={errors.name ? 'error' : ''}
         />
-        {errors.name && <span className="input-error">{errors.name}</span>}
+        {errors.name && <span className={styles.inputError}>{errors.name}</span>}
 
         <input
           type="tel"
@@ -241,15 +241,15 @@ function RegisterPage() {
           onChange={handlePhoneChange}
           className={errors.phone ? 'error' : ''}
         />
-        {errors.phone && <span className="input-error">{errors.phone}</span>}
+        {errors.phone && <span className={styles.inputError}>{errors.phone}</span>}
 
-        <div className="social-buttons">
-          <button type="button" className="social-btn" onClick={() => handleGoogleLogin()}>
+        <div className={styles.socialButtons}>
+          <button type="button" className={styles.socialBtn} onClick={() => handleGoogleLogin()}>
             <img src={logo_google} alt="Google" />
             <span>Continuar com Google</span>
           </button>
         </div>
-        {errors.profileType && <span className="input-error">{errors.profileType}</span>}
+        {errors.profileType && <span className={styles.inputError}>{errors.profileType}</span>}
 
         <input
           type="email"
@@ -258,7 +258,7 @@ function RegisterPage() {
           onChange={(e) => setEmail(e.target.value)}
           className={errors.email ? 'error' : ''}
         />
-        {errors.email && <span className="input-error">{errors.email}</span>}
+        {errors.email && <span className={styles.inputError}>{errors.email}</span>}
 
         <input
           type="email"
@@ -267,7 +267,7 @@ function RegisterPage() {
           onChange={(e) => setConfirmEmail(e.target.value)}
           className={errors.confirmEmail ? 'error' : ''}
         />
-        {errors.confirmEmail && <span className="input-error">{errors.confirmEmail}</span>}
+        {errors.confirmEmail && <span className={styles.inputError}>{errors.confirmEmail}</span>}
 
         <input
           type="password"
@@ -276,7 +276,7 @@ function RegisterPage() {
           onChange={(e) => setPassword(e.target.value)}
           className={errors.password ? 'error' : ''}
         />
-        {errors.password && <span className="input-error">{errors.password}</span>}
+        {errors.password && <span className={styles.inputError}>{errors.password}</span>}
 
         <input
           type="password"
@@ -285,9 +285,9 @@ function RegisterPage() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           className={errors.confirmPassword ? 'error' : ''}
         />
-        {errors.confirmPassword && <span className="input-error">{errors.confirmPassword}</span>}
+        {errors.confirmPassword && <span className={styles.inputError}>{errors.confirmPassword}</span>}
 
-        <label className="checkbox">
+        <label className={styles.checkbox}>
           <input
             type="checkbox"
             checked={acceptPrivacy}
@@ -295,9 +295,9 @@ function RegisterPage() {
           />
           <span>Concordo com a Política de Privacidade</span>
         </label>
-        {errors.privacy && <span className="input-error">{errors.privacy}</span>}
+        {errors.privacy && <span className={styles.inputError}>{errors.privacy}</span>}
 
-        <label className="checkbox">
+        <label className={styles.checkbox}>
           <input
             type="checkbox"
             checked={acceptTerms}
@@ -305,9 +305,9 @@ function RegisterPage() {
           />
           <span>Concordo com os Termos de Uso</span>
         </label>
-        {errors.terms && <span className="input-error">{errors.terms}</span>}
+        {errors.terms && <span className={styles.inputError}>{errors.terms}</span>}
 
-        <button type="submit" className="submit-btn" disabled={isSubmitting}>
+        <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
           {isSubmitting ? 'Enviando...' : 'Enviar'}
         </button>
       </form>

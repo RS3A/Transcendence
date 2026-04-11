@@ -58,12 +58,12 @@ export const ProgressBar = ({
 
   return (
     // <div className={`progress-bar progress-bar--${size}`}>
-      <div className="progress-bar__track" data-size={size}>
+      <div className={styles.progressBarTrack} data-size={size}>
         <div
-          className="progress-bar__fill"
+          className={styles.progressBarFill}
           style={{ width: `${fillPercentage}%` }}
         />
-        <div className="progress-bar__label">
+        <div className={styles.progressBarLabel}>
           {displayNextLevelXp
             ? `XP: ${Math.floor(displayXp)} / ${Math.floor(displayNextLevelXp)}`
             : `XP: ${Math.floor(displayXp)} / MAX`}

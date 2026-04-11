@@ -1,0 +1,303 @@
+.sessionList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sessionListHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.sessionListTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sessionListTitleIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--purple-primary); /* Darker purple */
+}
+
+.sessionListTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gray-medium); /* Darker text */
+}
+
+.sessionListBadge {
+  background-color: var(--gray-light); /* Light indigo */
+  color: var(--purple-primary); /* Indigo */
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.sessionListSectionTitle {
+  font-size: 0.875rem; /* Smaller section title */
+  font-weight: 600;
+  color: var(--gray-medium); /* Grayer text */
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.sessionItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--gray-light);
+  border-radius: 0.5rem;
+  background-color: var(--purple-bg-light);
+  margin-bottom: 1rem;
+  justify-content: space-between;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+  
+.sessionInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sessionDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-medium);
+  font-weight: 500;
+  width: 4rem;
+  flex-shrink: 0;
+}
+
+.sessionDateDay {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.sessionDateMonth {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: var(--gray-dark);
+}
+
+.sessionDetails {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sessionTime {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.sessionStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.sessionStatusBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.sessionStatusIconContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--gray-medium);
+}
+
+.sessionStatusIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.sessionActions {
+  grid: column;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto; 
+}
+
+.sessionActionButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: var(--purple-primary);
+}
+
+.meetButtonIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.rescheduleButtonIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Variant colors for status badges */
+.badgeScheduled {
+  background-color: var(--purple-light);
+  color: var(--purple-primary);
+}
+
+.badgeCompleted {
+  background-color: #dcfce7;
+  color: var(--is-active-green);
+}
+
+.badgeRescheduled {
+  background-color: #fef3c7;
+  color: var(--rating-yellow-medium);
+}
+
+.badgeNoShow {
+  background-color: var(--red-pale);
+  color: var(--red);
+}
+
+/* --- Modal Dialog Styles --- */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.modalHeader h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.modalBody {
+  padding: 1.5rem;
+}
+
+.modalBody h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.modalBody h4 {
+  margin: 0.75rem 0 1rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gray-dark);
+}
+
+.attentionBox {
+  background-color: #fef3c7;
+  border-left: 4px solid var(--rating-yellow-medium);
+  padding: 1rem;
+  border-radius: 0.375rem;
+  margin: 1rem 0;
+}
+
+.attentionBox p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--gray-light);
+}
+
+.modalFooter button {
+  padding: 0.5rem 1.5rem;
+}
+
+.cancelButton {
+  background-color: var(--gray-light) !important;
+  color: var(--text-dark) !important;
+}
+
+.cancelButton:hover:not(:disabled) {
+  background-color: #e5e7eb !important;
+}
+
+.confirmButton {
+  background-color: var(--red) !important;
+  color: white !important;
+}
+
+.confirmButton:hover:not(:disabled) {
+  background-color: #dc2626 !important;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1200px) {
+  .sessionItem {
+    display: flex;
+    align-items: center;
+  }
+
+  .availabilityGrid {
+      display: grid;
+      grid: column;
+      grid-template-columns: repeat(1, 1fr);
+  }
+}

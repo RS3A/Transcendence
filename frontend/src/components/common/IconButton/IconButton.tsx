@@ -1,5 +1,5 @@
 import React from 'react';
-import './IconButton.css';
+import styles from './IconButton.module.css';
 
 interface IconButtonProps {
   variant?: 'primary' | 'secondary' | 'withdraw' | 'rating' | 'capacity';
@@ -24,8 +24,8 @@ const IconButton: React.FC<IconButtonProps> = ({
       onClick={disabled ? undefined : onClick}
       disabled={disabled}
     >
-      {icon && <span className="icon-button-icon">{icon}</span>}
-      <span className="icon-button-text">{children}</span>
+      {icon && <span className={styles.iconButtonIcon}>{icon}</span>}
+      <span className={styles.iconButtonText}>{children}</span>
     </button>
   );
 };

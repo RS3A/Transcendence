@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { User, Circle, Users, MessageCircle, Star, LogOut } from 'lucide-react';
-import './MentorInfo.css';
+import styles from './MentorInfo.module.css';
 import IconButton from '../IconButton/IconButton';
 import Rating from '../Rating/Rating';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../Dialog/Dialog';
@@ -98,57 +98,57 @@ const MentorCard: React.FC<MentorCardProps> = ({
   };
 
   return (
-    <div className="mentor-info-card">
-      <div className="mentor-info-card-header">
-        <div className="mentor-info-avatar-container">
+    <div className={styles.mentorInfoCard}>
+      <div className={styles.mentorInfoCardHeader}>
+        <div className={styles.mentorInfoAvatarContainer}>
           {avatarUrl ? (
-            <img src={avatarUrl} alt={name} className="mentor-avatar-img" />
+            <img src={avatarUrl} alt={name} className={styles.mentorAvatarImg} />
           ) : (
-            <User size={40} className="mentor-avatar-icon" />
+            <User size={40} className={styles.mentorAvatarIcon} />
           )}
         </div>
         
-        <div className="mentor-info-basic">
-          <h3 className="mentor-info-name">{name}</h3>
-          <p className="mentor-info-details">{position} | {experience} anos</p>
-          <div className="mentor-info-status">
+        <div className={styles.mentorInfoBasic}>
+          <h3 className={styles.mentorInfoName}>{name}</h3>
+          <p className={styles.mentorInfoDetails}>{position} | {experience} anos</p>
+          <div className={styles.mentorInfoStatus}>
             {isActive ? 'Ativo' : 'Indisponível'}
             <Circle 
               size={12} 
               fill={isActive ? "var(--is-active-green)" : "var(--is-inactive-red)"} 
               color="transparent" 
-              className="status-dot-2"
+              className={styles.statusDot2}
             />
           </div>
-          <p className="mentor-info-bio">{bio || "Opa, esse mentor ainda não preencheu a bio."}</p>
-          <div className="mentor-info-skills-pills">
+          <p className={styles.mentorInfoBio}>{bio || "Opa, esse mentor ainda não preencheu a bio."}</p>
+          <div className={styles.mentorInfoSkillsPills}>
             {displaySkills.length > 0 ? (
               <>
                 {displaySkills.map((skill) => (
-                  <span key={skill.id} className="skill-tag">{skill.name}</span>
+                  <span key={skill.id} className={styles.skillTag}>{skill.name}</span>
                 ))}
                 {hasMoreSkills && (
-                  <button className="skill-tag btn-ver-mais">+{skills.length - 5}</button>
+                  <button className={`${styles.skillTag} ${styles.btnVerMais}`}>+{skills.length - 5}</button>
                 )}
               </>
             ) : (
-              <p className="no-skills-message">Sem habilidades informadas</p>
+              <p className={styles.noSkillsMessage}>Sem habilidades informadas</p>
             )}
           </div>
-          <div className="mentor-info-stats-section">
+          <div className={styles.mentorInfoStatsSection}>
               {currentRating !== undefined && (
                 <Rating rating={currentRating} />
               )}
-              <div className="mentor-info-mentorships">
+              <div className={styles.mentorInfoMentorships}>
                 <Users size={16} />
-                <span className="mentor-info-mentorships-text">{menteeCount ?? 0}</span>
+                <span className={styles.mentorInfoMentorshipsText}>{menteeCount ?? 0}</span>
               </div>
           </div>
         </div>
       </div>
-      <div className="mentor-info-divider" />
+      <div className={styles.mentorInfoDivider} />
 
-      <div className="mentor-info-footer">
+      <div className={styles.mentorInfoFooter}>
         <IconButton variant="primary" icon={<MessageCircle size={18} />} onClick={onChat}>Conversar</IconButton>
         <IconButton
           variant="secondary"
@@ -174,7 +174,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       </div>
 
       <Dialog open={isRatingDialogOpen} onOpenChange={setIsRatingDialogOpen}>
-        <DialogContent className="rating-dialog">
+        <DialogContent className={styles.ratingDialog}>
           <DialogHeader>
             <DialogTitle>
               O quanto você curtiu esse mentor?
@@ -183,7 +183,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
               Escolha uma nota de 1 a 5:
             </DialogDescription>
           </DialogHeader>
-          <div className="rating-stars-container">
+          <div className={styles.ratingStarsContainer}>
             {[1, 2, 3, 4, 5].map((star) => (
               <IconButton 
                 key={star} 

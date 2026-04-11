@@ -1,0 +1,178 @@
+.saveCapacityButton {
+  padding: 8px 16px;
+  text-align: center;
+  align-items: center;
+  max-width: 120px;
+  max-height: 42px;
+  border-radius: 8px;
+  background-color: var(--purple-light);
+  color: var(--text-dark);
+  border:1px solid var(--purple-primary);
+}
+
+.saveCapacityButton:hover {
+  color: var(--white);
+  background-color: var(--purple-primary);
+}
+
+.card {
+  background-color: var(--white);
+  border: 1px solid var(--gray-light);
+  width: 80vw;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.capacityContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.capacityInfo {
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.capacityText {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-medium);
+  font-weight: 500;
+}
+
+.capacityControls {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.cardHeader h2, .cardHeader h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text-dark);
+}
+
+.capacityCard p {
+  margin: 0.5rem 0 1rem;
+  color: var(--text-medium);
+}
+
+.progressBar {
+  background-color: var(--gray-light);
+  border-radius: 8px;
+  height: 8px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: var(--purple-primary);
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s ease;
+}
+
+.menteeCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--gray-light);
+  border-radius: 0.5rem;
+  background-color: var(--purple-bg-light);
+  margin-bottom: 1rem;
+  justify-content: space-between;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.menteeCard.clickable {
+  cursor: pointer;
+  width: auto;
+  min-width: 240px;
+}
+
+.menteeCard.clickable:hover {
+  background-color: var(--gray-medium);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.menteeCardContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.menteeName {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menteeArrow {
+  font-size: 1.5rem;
+  color: var(--purple-primary);
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+.menteesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.menteeListEmpty,
+.menteeListError,
+.menteeListLoading {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--gray-medium);
+  font-size: 0.95rem;
+}
+
+.menteeListError {
+  color: var(--red);
+  background-color: var(--red-pale);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.menteeItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:  var(--purple-bg-light);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .menteesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .menteeCardContent {
+    flex: 1;
+    min-width: 0;
+  }
+}

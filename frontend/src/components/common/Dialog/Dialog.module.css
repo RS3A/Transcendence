@@ -1,0 +1,87 @@
+.dialogOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialogContent {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+  display: grid;
+  width: 100%;
+  max-width: 32rem;
+  transform: translate(-50%, -50%);
+  gap: 1rem;
+  border: 1px solid var(--text-medium);
+  background-color: var(--white);
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.dialogClose {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  border-radius: 0.25rem;
+  opacity: 0.7;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.dialogClose:hover {
+  opacity: 1;
+}
+
+.dialogCloseIcon {
+  height: 1rem;
+  width: 1rem;
+}
+
+.dialogCloseSrOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.dialogTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0 0;
+}
+
+.dialogDescription {
+  font-size: 1rem;
+  color: var(--text-medium);
+  margin: 0;
+}
+
+.dialogFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.dialogHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.ratingDialog {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  padding-bottom: 3rem;
+}

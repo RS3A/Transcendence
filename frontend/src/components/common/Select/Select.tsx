@@ -20,7 +20,7 @@ const SelectTrigger = React.forwardRef<
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="select-trigger-icon" />
+      <ChevronDown className={styles.selectTriggerIcon} />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -35,7 +35,7 @@ const SelectScrollUpButton = React.forwardRef<
     className={`select-scroll-up-button ${className || ''}`.trim()}
     {...props}
   >
-    <ChevronUp className="select-scroll-up-button-icon" />
+    <ChevronUp className={styles.selectScrollUpButtonIcon} />
   </SelectPrimitive.ScrollUpButton>
 ));
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
@@ -49,7 +49,7 @@ const SelectScrollDownButton = React.forwardRef<
     className={`select-scroll-down-button ${className || ''}`.trim()}
     {...props}
   >
-    <ChevronDown className="select-scroll-down-button-icon" />
+    <ChevronDown className={styles.selectScrollDownButtonIcon} />
   </SelectPrimitive.ScrollDownButton>
 ));
 SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName;
@@ -98,9 +98,9 @@ const SelectItem = React.forwardRef<
     className={`select-item ${className || ''}`.trim()}
     {...props}
   >
-    <span className="select-item-indicator">
+    <span className={styles.selectItemIndicator}>
       <SelectPrimitive.ItemIndicator>
-        <Check className="select-item-indicator-icon" />
+        <Check className={styles.selectItemIndicatorIcon} />
       </SelectPrimitive.ItemIndicator>
     </span>
 

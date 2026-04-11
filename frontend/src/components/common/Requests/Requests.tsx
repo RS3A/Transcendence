@@ -29,8 +29,8 @@ export const Requests = ({
   const [activeTab, setActiveTab] = useState<'pending' | 'notifications'>('pending')
 
   return (
-    <div className="left-panel">
-      <div className="tab-bar">
+    <div className={styles.leftPanel}>
+      <div className={styles.tabBar}>
         <button
           className={`tab-btn ${activeTab === 'pending' ? 'active' : ''}`}
           onClick={() => setActiveTab('pending')}
@@ -45,7 +45,7 @@ export const Requests = ({
         </button>
       </div>
 
-      <div className="requests-list">
+      <div className={styles.requestsList}>
         {activeTab === 'pending' && (
           <PendingRequests
             userRole={userRole}
@@ -84,7 +84,7 @@ export const PendingRequests = ({
   const showActions = userRole === 'MENTOR'
 
   if (requests.length === 0) {
-    return <div className="empty-state">Sem novas solicitações.</div>
+    return <div className={styles.emptyState}>Sem novas solicitações.</div>
   }
 
   return (
@@ -133,8 +133,8 @@ export const RequestCard = ({
   }
 
   return (
-    <div className="request-card">
-      <div className="request-avatar">
+    <div className={styles.requestCard}>
+      <div className={styles.requestAvatar}>
         {request.avatar ? (
           <img 
             src={request.avatar} 
@@ -148,19 +148,19 @@ export const RequestCard = ({
           <User size={20} color="#9ca3af" />
         )}
       </div>
-      <p className="request-text">{getMessage()}</p>
+      <p className={styles.requestText}>{getMessage()}</p>
       {showActions && (
-        <div className="request-actions">
+        <div className={styles.requestActions}>
           <Button
             onClick={onAccept}
-            className="icon-button"
+            className={styles.iconButton}
             aria-label="Accept"
           >
             <Check size={18} color="green" />
           </Button>
           <Button
             onClick={onDecline}
-            className="icon-button"
+            className={styles.iconButton}
             aria-label="Decline"
           >
             <X size={18} color="red" />
@@ -174,7 +174,7 @@ export const RequestCard = ({
 // --- Notifications Component ---
 
 export const Notifications = () => {
-  return <div className="empty-state">Sem novas notificações.</div>
+  return <div className={styles.emptyState}>Sem novas notificações.</div>
 }
 
 export default Requests

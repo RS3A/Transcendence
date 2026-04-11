@@ -39,9 +39,9 @@ const DialogContent = React.forwardRef<
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="dialog-close">
-        <X className="dialog-close-icon" />
-        <span className="dialog-close-sr-only">Close</span>
+      <DialogPrimitive.Close className={styles.dialogClose}>
+        <X className={styles.dialogCloseIcon} />
+        <span className={styles.dialogCloseSrOnly}>Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </DialogPortal>

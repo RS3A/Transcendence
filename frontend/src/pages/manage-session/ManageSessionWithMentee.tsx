@@ -236,10 +236,10 @@ const handleLeave = async () => {
 
 if (loading) {
   return (
-    <div className="book-session-loading">
-      <div className="loading-content">
-        <div className="loading-spinner"></div>
-        <p className="loading-text">Carregando dados...</p>
+    <div className={styles.bookSessionLoading}>
+      <div className={styles.loadingContent}>
+        <div className={styles.loadingSpinner}></div>
+        <p className={styles.loadingText}>Carregando dados...</p>
       </div>
     </div>
   );
@@ -247,14 +247,14 @@ if (loading) {
 
 if (error || !selectedMentee) {
   return (
-    <div className="book-session-error">
-      <div className="error-container">
-        <div className="error-box">
-          <h2 className="error-title">Perfil não encontrado</h2>
-          <p className="error-message">{error || 'Não conseguimos carregar os dados.'}</p>
+    <div className={styles.bookSessionError}>
+      <div className={styles.errorContainer}>
+        <div className={styles.errorBox}>
+          <h2 className={styles.errorTitle}>Perfil não encontrado</h2>
+          <p className={styles.errorMessage}>{error || 'Não conseguimos carregar os dados.'}</p>
           <button
             onClick={() => navigate('/mentorias')}
-            className="error-button"
+            className={styles.errorButton}
           >
             ← Voltar
           </button>
@@ -275,7 +275,7 @@ const schedulerMenteeId = mentorProfileId?.toString();
   // const currentUserIdStr = currentUserId?.toString() || '0';
 
   return (
-    <div className="manage-session-with-mentee">
+    <div className={styles.manageSessionWithMentee}>
       <MenteeInfo
         menteeId={selectedMentee.id || selectedMentee.profileId || selectedMentee.userId}
         name={selectedMentee.name}
@@ -291,7 +291,7 @@ const schedulerMenteeId = mentorProfileId?.toString();
         onChat={selectedMentee.userId ? () => setActiveChatId(selectedMentee.userId!) : undefined}
       />
 
-      <div className="calendar-container">
+      <div className={styles.calendarContainer}>
         <SessionList 
           key={sessionRefreshKey}
           mentorId={schedulerMentorId || '0'}

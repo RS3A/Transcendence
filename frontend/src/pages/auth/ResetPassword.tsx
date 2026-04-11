@@ -113,12 +113,12 @@ function ResetPassword() {
 
   if (validatingToken) {
     return (
-      <div className="auth-container">
-        <div className="auth-card">
-          <div className="auth-tabs">
-            <button className="active">Resetar Senha</button>
+      <div className={styles.authContainer}>
+        <div className={styles.authCard}>
+          <div className={styles.authTabs}>
+            <button className={styles.active}>Resetar Senha</button>
           </div>
-          <div className="loading-message">
+          <div className={styles.loadingMessage}>
             <p>Validando link...</p>
           </div>
         </div>
@@ -128,14 +128,14 @@ function ResetPassword() {
 
   if (!tokenValid) {
     return (
-      <div className="auth-container">
-        <div className="auth-card">
-          <div className="auth-tabs">
-            <button className="active">Resetar Senha</button>
+      <div className={styles.authContainer}>
+        <div className={styles.authCard}>
+          <div className={styles.authTabs}>
+            <button className={styles.active}>Resetar Senha</button>
           </div>
-          <div className="error-message">
+          <div className={styles.errorMessage}>
             <p>{errorMessage}</p>
-            <Link to="/forgot" className="auth-link-back">
+            <Link to="/forgot" className={styles.authLinkBack}>
               Solicitar nova recuperação de senha
             </Link>
           </div>
@@ -145,24 +145,24 @@ function ResetPassword() {
   }
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <div className="auth-tabs">
-          <button className="active">Resetar Senha</button>
+    <div className={styles.authContainer}>
+      <div className={styles.authCard}>
+        <div className={styles.authTabs}>
+          <button className={styles.active}>Resetar Senha</button>
         </div>
 
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <p className="auth-description">
+        <form className={styles.authForm} onSubmit={handleSubmit}>
+          <p className={styles.authDescription}>
             Digite uma nova senha segura com mínimo 8 caracteres, incluindo maiúscula, número e símbolo especial.
           </p>
 
           {errorMessage && (
-            <div className="error-alert">
+            <div className={styles.errorAlert}>
               <span>{errorMessage}</span>
             </div>
           )}
 
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="newPassword">Nova Senha</label>
             <input
               id="newPassword"
@@ -174,7 +174,7 @@ function ResetPassword() {
             />
           </div>
 
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="confirmPassword">Confirmar Senha</label>
             <input
               id="confirmPassword"
@@ -186,11 +186,11 @@ function ResetPassword() {
             />
           </div>
 
-          <button type="submit" className="auth-submit" disabled={loading}>
+          <button type="submit" className={styles.authSubmit} disabled={loading}>
             {loading ? 'Resetando...' : 'Resetar Senha'}
           </button>
 
-          <Link to="/login" className="auth-link-back">
+          <Link to="/login" className={styles.authLinkBack}>
             Voltar para o login
           </Link>
         </form>

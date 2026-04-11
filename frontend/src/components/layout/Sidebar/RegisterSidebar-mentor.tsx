@@ -3,7 +3,7 @@ import illustration from '../../images/svg/mentor.svg'
 
 function RegisterSidebar() {
   return (
-    <div className="register-sidebar">
+    <div className={styles.registerSidebar}>
       <h2>
         Complete os campos<br />
         ao lado para iniciar<br />
@@ -14,7 +14,7 @@ function RegisterSidebar() {
       <img
         src={illustration}
         alt="Ilustração de mentoria"
-        className="register-illustration"
+        className={styles.registerIllustration}
       />
     </div>
   )

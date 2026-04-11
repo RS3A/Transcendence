@@ -1,0 +1,76 @@
+/* ============================================================
+   ACHIEVEMENTS SECTION
+============================================================ */
+
+.achievementsSection {
+  width: 100%;
+  width: 80vw;
+  margin: 24px auto 32px auto;
+  box-sizing: border-box;
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.achievementsTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0 0 1.5rem 0;
+  display: block;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.achievementsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 0;
+  padding-bottom: 0;
+}
+
+.achievementCard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  height: 100px;
+  box-shadow: none;
+  align-items: center;
+  padding: 12px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.achievementCard:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+.achievementCard .achievementName {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--purple-dark);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.achievementCard .achievementIcon {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 768px) {
+  .achievementsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

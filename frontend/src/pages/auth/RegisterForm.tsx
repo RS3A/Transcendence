@@ -5,27 +5,27 @@ function RegisterForm() {
   const navigate = useNavigate()
 
   return (
-    <div className="register-options">
-      <p className="register-subtitle">
+    <div className={styles.registerOptions}>
+      <p className={styles.registerSubtitle}>
         Selecione uma opção para se cadastrar
       </p>
 
       <button
         type="button"
-        className="register-option"
+        className={styles.registerOption}
         onClick={() => navigate('/register?type=mentorado')}
       >
         <span>Mentorado</span>
-        <div className="arrow">→</div>
+        <div className={styles.arrow}>→</div>
       </button>
 
       <button
         type="button"
-        className="register-option"
+        className={styles.registerOption}
         onClick={() => navigate('/register?type=mentor')}
       >
         <span>Mentor</span>
-        <div className="arrow">→</div>
+        <div className={styles.arrow}>→</div>
       </button>
     </div>
   )

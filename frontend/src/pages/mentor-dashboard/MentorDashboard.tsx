@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './MentorDashboard.css';
+import styles from './MentorDashboard.module.css';
 import Button from '../../components/common/Button/Button';
 import { AvailabilityGrid } from '../../components/common/TimeSlot/TimeSlot';
 import { SessionList } from '../../components/common/SessionList/SessionList';
@@ -174,19 +174,19 @@ const MentorDashboard: React.FC = () => {
   const availabilityDataForGrid = getAvailabilityDataForGrid();
 
   return (
-      <div className="mentor-dashboard">
-        <div className="dashboard-container">
-          <main className="dashboard-content">
-            <div className="card capacity-card">
+      <div className={styles.mentorDashboard}>
+        <div className={styles.dashboardContainer}>
+          <main className={styles.dashboardContent}>
+            <div className={`${styles.card} ${styles.capacityCard}`}>
               {mentorId && (
                 <CapacityCard mentorId={mentorId} />
               )}
             </div>
 
-            <div className="card availability-card">
-              <div className="card-header">
+            <div className={`${styles.card} ${styles.availabilityCard}`}>
+              <div className={styles.cardHeader}>
                 <h2>Minha Disponibilidade</h2>
-                <Button className="save-capacity-button" onClick={handleSave} disabled={loading}>
+                <Button className={styles.saveCapacityButton} onClick={handleSave} disabled={loading}>
                   {loading ? 'Salvando...' : 'Salvar'}
                 </Button>
               </div>
@@ -199,8 +199,8 @@ const MentorDashboard: React.FC = () => {
               )}
             </div>
 
-            <div className="card sessions-card">
-              <div className="card-header">
+            <div className={`${styles.card} ${styles.sessionsCard}`}>
+              <div className={styles.cardHeader}>
                 <h2>Próximas Sessões</h2>
               </div>
               {mentorId && (
@@ -214,8 +214,8 @@ const MentorDashboard: React.FC = () => {
               )}
             </div>
 
-            <div className="card mentees-card">
-            <div className="card-header">
+            <div className={`${styles.card} ${styles.menteesCard}`}>
+            <div className={styles.cardHeader}>
               <h3>Meus Mentorados</h3>
             </div>
               {mentorId && (

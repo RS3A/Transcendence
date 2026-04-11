@@ -1,5 +1,5 @@
 // InputGroup.tsx
-import './InputGroup.css';
+import styles from './InputGroup.module.css';
 
 interface InputGroupProps {
   label?: string;
@@ -24,12 +24,12 @@ export const InputGroup = ({ label, value, onChange, isEditing, isNumeric, isTex
   return (
   /* Adicionamos a classe 'editing-mode' apenas quando isEditing for true */
   <div className={`input-group-container ${isEditing ? 'editing-mode' : ''}`}>
-    {label && <label className="input-label">{label}</label>}
+    {label && <label className={styles.inputLabel}>{label}</label>}
     
     {isEditing ? (
       isTextArea ? (
         <textarea 
-          className="custom-input custom-textarea" 
+          className={`${styles.customInput} ${styles.customTextarea}`} 
           value={value} 
           onChange={handleChange}
           placeholder={placeholder}
@@ -37,7 +37,7 @@ export const InputGroup = ({ label, value, onChange, isEditing, isNumeric, isTex
       ) : (
         <input 
           type="text" 
-          className="custom-input" 
+          className={styles.customInput} 
           value={value} 
           onChange={handleChange}
           placeholder={placeholder}
@@ -45,7 +45,7 @@ export const InputGroup = ({ label, value, onChange, isEditing, isNumeric, isTex
       )
     ) : (
       <div className={`view-box ${isTextArea ? 'view-textarea' : ''}`}>
-        {value || <span className="placeholder-text">{placeholder}</span>}
+        {value || <span className={styles.placeholderText}>{placeholder}</span>}
       </div>
     )}
   </div>

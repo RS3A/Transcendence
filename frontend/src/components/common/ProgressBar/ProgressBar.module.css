@@ -1,0 +1,70 @@
+/* ProgressBar Component Styles - Match InputGroup appearance */
+
+.progressBar {
+  width: 100%;
+}
+
+.progressBarTrack {
+  width: 100%;
+  background-color: var(--input-group-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 38px;
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.progressBarFill {
+  height: 100%;
+  background-color: var(--stat-bar-green);
+  border-radius: 20px;
+  transition: width 0.3s ease;
+}
+
+.progressBarLabel {
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+  position: absolute;
+  left: 10px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  white-space: nowrap;
+}
+
+/* Size variants */
+
+.progressBarSmall .progressBarTrack {
+  height: 38px;
+  min-height: 38px;
+}
+
+.progressBarSmall .progressBarLabel {
+  font-size: 12px;
+}
+
+.progressBarMedium .progressBarTrack {
+  height: 45px;
+  min-height: 45px;
+}
+
+.progressBarMedium .progressBarLabel {
+  font-size: 14px;
+}
+
+.progressBarLarge .progressBarTrack {
+  height: 52px;
+  min-height: 52px;
+}
+
+.progressBarLarge .progressBarLabel {
+  font-size: 16px;
+}

@@ -177,10 +177,10 @@ export const DailySchedule = ({ userRole, profileId }: DailyScheduleProps) => {
   const isLoading = loading || (isWeekView && weekLoading)
 
   return (
-    <div className="right-panel">
-      <div className="schedule-header">
-        <h3 className="panel-title">{isWeekView ? 'Agenda da Semana' : 'Agenda do Dia'}</h3>
-        <div className="view-toggle">
+    <div className={styles.rightPanel}>
+      <div className={styles.scheduleHeader}>
+        <h3 className={styles.panelTitle}>{isWeekView ? 'Agenda da Semana' : 'Agenda do Dia'}</h3>
+        <div className={styles.viewToggle}>
           <button
             className={`toggle-btn${viewMode === 'day' ? ' active' : ''}`}
             onClick={() => setViewMode('day')}
@@ -196,17 +196,17 @@ export const DailySchedule = ({ userRole, profileId }: DailyScheduleProps) => {
         </div>
       </div>
 
-      <div className="schedule-list">
+      <div className={styles.scheduleList}>
         {isLoading ? (
-          <div className="empty-state">Carregando agenda...</div>
+          <div className={styles.emptyState}>Carregando agenda...</div>
         ) : isWeekView ? (
           weeklyGroups.length > 0 ? (
             weeklyGroups.map((group) => (
-              <div key={group.dateKey} className="week-day-group">
-                <div className="week-day-header">{group.dateLabel}</div>
+              <div key={group.dateKey} className={styles.weekDayGroup}>
+                <div className={styles.weekDayHeader}>{group.dateLabel}</div>
                 {group.items.map((item) => (
-                  <div key={item.id} className="schedule-item">
-                    <span className="schedule-time">
+                  <div key={item.id} className={styles.scheduleItem}>
+                    <span className={styles.scheduleTime}>
                       <strong>{item.time}</strong> - {item.mentee}
                     </span>
                     <Button>Remarcar</Button>
@@ -215,20 +215,20 @@ export const DailySchedule = ({ userRole, profileId }: DailyScheduleProps) => {
               </div>
             ))
           ) : (
-            <div className="empty-state">Nao ha mentorias previstas para esta semana</div>
+            <div className={styles.emptyState}>Nao ha mentorias previstas para esta semana</div>
           )
         ) : (
           dailySchedule.length > 0 ? (
             dailySchedule.map((item) => (
-              <div key={item.id} className="schedule-item">
-                <span className="schedule-time">
+              <div key={item.id} className={styles.scheduleItem}>
+                <span className={styles.scheduleTime}>
                   <strong>{item.time}</strong> - {item.mentee || item.mentor}
                 </span>
                 <Button>Remarcar</Button>
               </div>
             ))
           ) : (
-            <div className="empty-state">Nao ha mentorias previstas para hoje</div>
+            <div className={styles.emptyState}>Nao ha mentorias previstas para hoje</div>
           )
         )}
       </div>

@@ -1,0 +1,128 @@
+.bookSessionWithMentor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--purple-bg-light);
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 24px;
+  padding-bottom: 12px;
+}
+
+.calendarContainer {
+  width: 100%;
+  width: 80vw;
+  margin: 12px auto 24px auto;
+  box-sizing: border-box;
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-light);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.calendarContainer:hover {
+  transform: translateY(-2px);
+}
+
+/* Loading State Styles */
+.bookSessionLoading {
+  min-height: 100vh;
+  background-color: var(--purple-bg);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingContent {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loadingSpinner {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid transparent;
+  border-top-color: var(--primary, #3b82f6);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+/* Error State Styles */
+.bookSessionError {
+  min-height: 100vh;
+  background-color: var(--purple-bg);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorContainer {
+  max-width: 28rem;
+  width: 100%;
+}
+
+.errorBox {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.errorTitle {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #991b1b;
+  margin-bottom: 0.5rem;
+}
+
+.errorMessage {
+  color: #b91c1c;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.errorButton {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+.errorButton:hover {
+  background-color: #1d4ed8;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .calendarContainer {
+    min-width: auto;
+    width: 90%;
+  }
+
+  .errorBox {
+    padding: 1rem;
+  }
+}

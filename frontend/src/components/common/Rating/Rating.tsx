@@ -1,6 +1,6 @@
 import React from 'react';
 import { Star } from 'lucide-react';
-import './Rating.css';
+import styles from './Rating.module.css';
 
 interface RatingProps {
   rating?: number;
@@ -14,14 +14,14 @@ const Rating: React.FC<RatingProps> = ({ rating, size = 16 }) => {
     : 0;
   
   return (
-    <div className="rating">
+    <div className={styles.rating}>
       <Star 
         size={size}
         fill="var(--rating-yellow)" 
         color="transparent" 
-        className="rating-star" 
+        className={styles.ratingStar} 
       />
-      <span className="rating-text">{normalizedRating}</span>
+      <span className={styles.ratingText}>{normalizedRating}</span>
     </div>
   );
 };

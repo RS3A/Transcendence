@@ -14,7 +14,7 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { toast } from '../../../hooks/use-toast';
 import type { TimeBlock } from '../BookingCalendar/types';
-import './SlotSelector.css';
+import styles from './SlotSelector.module.css';
 
 
 interface SlotSelectorProps {
@@ -259,8 +259,8 @@ export function SlotSelector({ connected, mentorId, menteeId, connectionId, onBo
 
   return (
     <>
-      <CalendarCardHeader className="slot-selector-card-header">
-        <CalendarCardTitle className="slot-selector-card-title">
+      <CalendarCardHeader className={styles.slotSelectorCardHeader}>
+        <CalendarCardTitle className={styles.slotSelectorCardTitle}>
           <CalendarIcon 
             size={18}
             color="var(--purple-primary)"
@@ -268,7 +268,7 @@ export function SlotSelector({ connected, mentorId, menteeId, connectionId, onBo
           Agendar Próxima Mentoria
         </CalendarCardTitle>
       </CalendarCardHeader>
-      <CalendarCardContent className="slot-selector-card-content">
+      <CalendarCardContent className={styles.slotSelectorCardContent}>
           {loadingAvailability && (
             <div style={{ textAlign: 'center', padding: '2rem' }}>
               <div style={{ 
@@ -326,7 +326,7 @@ export function SlotSelector({ connected, mentorId, menteeId, connectionId, onBo
           )}
 
           {/* Calendar - ALWAYS visible (regardless of loading state, errors, or availability blocks) */}
-          <div className="slot-selector-calendar-container">
+          <div className={styles.slotSelectorCalendarContainer}>
             {!loadingAvailability && !availabilityError && (
               <></>
             )}
@@ -345,26 +345,26 @@ export function SlotSelector({ connected, mentorId, menteeId, connectionId, onBo
           </div>
 
           {/* Block & Time Selection - always visible, read-only when disconnected */}
-          <div className="slot-selector-selection-container">
+          <div className={styles.slotSelectorSelectionContainer}>
             {selectedDate ? (
-              <div className="slot-selector-selection-header">
-                <h4 className="slot-selector-selection-title">Horários Disponíveis</h4>
-                <p className="slot-selector-selection-subtitle">
+              <div className={styles.slotSelectorSelectionHeader}>
+                <h4 className={styles.slotSelectorSelectionTitle}>Horários Disponíveis</h4>
+                <p className={styles.slotSelectorSelectionSubtitle}>
                 {format(selectedDate, "EEEE, d 'de' MMMM", { locale: ptBR })}
               </p>
             </div>
           ) : (
-            <div className="slot-selector-placeholder">
+            <div className={styles.slotSelectorPlaceholder}>
               <p>Selecione uma data no calendário</p>
             </div>
           )}
           
           {selectedDate && (
-            <div className="slot-selector-blocks-container">
+            <div className={styles.slotSelectorBlocksContainer}>
               {blocks.length > 0 ? (
                 <>
                   {/* Available Blocks */}
-                  <div className="slot-selector-block-list">
+                  <div className={styles.slotSelectorBlockList}>
                     {blocks.map((block, idx) => (
                       <button
                         key={idx}
@@ -374,7 +374,7 @@ export function SlotSelector({ connected, mentorId, menteeId, connectionId, onBo
                         className={`slot-selector-block-button ${connected && selectedBlockIdx === idx ? 'selected' : ''} ${!connected ? 'readonly' : ''}`}
                       >
                         <Clock color="var(--purple-primary)"/>
-                        <div className="slot-selector-block-button-info">
+                        <div className={styles.slotSelectorBlockButtonInfo}>
                           <p>{block.startTime} – {block.endTime}</p>
                           <p>
                             {formatDuration(toMinutes(block.endTime) - toMinutes(block.startTime))} disponível
@@ -385,17 +385,17 @@ export function SlotSelector({ connected, mentorId, menteeId, connectionId, onBo
                   </div>
 
                   {!connected && (
-                    <p className="slot-selector-readonly-hint">
+                    <p className={styles.slotSelectorReadonlyHint}>
                       Conecte-se com o mentor para escolher horário e confirmar o agendamento.
                     </p>
                   )}
 
                   {/* Start Time & Duration pickers */}
                   {connected && selectedBlock && (
-                    <div className="slot-selector-pickers">
-                      <div className="slot-selector-pickers-grid">
+                    <div className={styles.slotSelectorPickers}>
+                      <div className={styles.slotSelectorPickersGrid}>
                         <div>
-                          <Label className="slot-selector-picker-label">Início</Label>
+                          <Label className={styles.slotSelectorPickerLabel}>Início</Label>
                           <Select
                             value={selectedStartTime || ''}
                             onValueChange={(v: string) => { setSelectedStartTime(v); setSelectedDuration(60); }}
@@ -411,7 +411,7 @@ export function SlotSelector({ connected, mentorId, menteeId, connectionId, onBo
                           </Select>
                         </div>
                         <div>
-                          <Label className="slot-selector-picker-label">Duração</Label>
+                          <Label className={styles.slotSelectorPickerLabel}>Duração</Label>
                           <Select
                             value={String(selectedDuration)}
                             onValueChange={(v: string) => setSelectedDuration(Number(v))}
@@ -430,7 +430,7 @@ export function SlotSelector({ connected, mentorId, menteeId, connectionId, onBo
                       </div>
 
                       {selectedStartTime && (
-                        <p className="slot-selector-session-info">
+                        <p className={styles.slotSelectorSessionInfo}>
                           Sessão: <strong>{selectedStartTime} – {endTime}</strong> ({formatDuration(selectedDuration)})
                         </p>
                       )}
@@ -439,26 +439,26 @@ export function SlotSelector({ connected, mentorId, menteeId, connectionId, onBo
 
                   {/* Recurring + Confirm */}
                   {connected && selectedStartTime && (
-                    <div className="slot-selector-actions">
-                      <div className="slot-selector-recurring-option">
-                        <RefreshCw className="slot-selector-recurring-icon" />
-                        <div className="slot-selector-recurring-text">
-                          <Label htmlFor="recurring" className="slot-selector-recurring-label">
+                    <div className={styles.slotSelectorActions}>
+                      <div className={styles.slotSelectorRecurringOption}>
+                        <RefreshCw className={styles.slotSelectorRecurringIcon} />
+                        <div className={styles.slotSelectorRecurringText}>
+                          <Label htmlFor="recurring" className={styles.slotSelectorRecurringLabel}>
                             Repetir semanalmente
                           </Label>
-                          <p className="slot-selector-recurring-description">Máx. 10 encontros</p>
+                          <p className={styles.slotSelectorRecurringDescription}>Máx. 10 encontros</p>
                         </div>
                         <Switch id="recurring" checked={isRecurring} onCheckedChange={setIsRecurring} />
                       </div>
-                      <Button className="slot-selector-confirm-button" onClick={() => setShowConfirm(true)}>
-                        <Video className="slot-selector-confirm-button-icon" />
+                      <Button className={styles.slotSelectorConfirmButton} onClick={() => setShowConfirm(true)}>
+                        <Video className={styles.slotSelectorConfirmButtonIcon} />
                         Confirmar Agendamento
                       </Button>
                     </div>
                   )}
                 </>
               ) : (
-                <p className="slot-selector-no-slots">Nenhum horário disponível nesta data.</p>
+                <p className={styles.slotSelectorNoSlots}>Nenhum horário disponível nesta data.</p>
               )}
             </div>
           )}
@@ -468,18 +468,18 @@ export function SlotSelector({ connected, mentorId, menteeId, connectionId, onBo
         <Dialog open={showConfirm} onOpenChange={setShowConfirm}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle className="font-display">Confirmar Agendamento</DialogTitle>
+              <DialogTitle className={styles.fontDisplay}>Confirmar Agendamento</DialogTitle>
               <DialogDescription asChild>
                 {selectedDate && selectedStartTime && (
-                  <span className="slot-selector-dialog-description-content" style={{ display: 'block' }}>
+                  <span className={styles.slotSelectorDialogDescriptionContent} style={{ display: 'block' }}>
                     <p><strong>Data:</strong> {format(selectedDate, "dd/MM/yyyy (EEEE)", { locale: ptBR })}</p>
                     <p><strong>Horário:</strong> {selectedStartTime} – {endTime} ({formatDuration(selectedDuration)})</p>
                     {isRecurring && (
-                      <Badge className="slot-selector-dialog-badge">
-                        <RefreshCw className="slot-selector-dialog-badge-icon" /> Recorrente · 10 sessões
+                      <Badge className={styles.slotSelectorDialogBadge}>
+                        <RefreshCw className={styles.slotSelectorDialogBadgeIcon} /> Recorrente · 10 sessões
                       </Badge>
                     )}
-                    <p className="slot-selector-dialog-info">Um link do Google Meet será gerado automaticamente.</p>
+                    <p className={styles.slotSelectorDialogInfo}>Um link do Google Meet será gerado automaticamente.</p>
                   </span>
                 )}
               </DialogDescription>

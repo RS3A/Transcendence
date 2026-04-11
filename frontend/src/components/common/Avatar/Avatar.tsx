@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { User, Pencil } from 'lucide-react';
 import { processAvatarUrl } from '../../../utils/imageUtils';
-import './Avatar.css';
+import styles from './Avatar.module.css';
 
 interface AvatarProps {
   avatarUrl?: string;
@@ -46,15 +46,15 @@ export const Avatar = ({ avatarUrl, size = 120, isEditable = false, onImageChang
 
   return (
     <div 
-      className="avatar-wrapper" 
+      className={styles.avatarWrapper} 
       style={{ width: size, height: size }}
     >
-      <div className="perfil-avatar-base">
+      <div className={styles.perfilAvatarBase}>
         {!showFallback && processedUrl ? (
           <img 
             src={processedUrl} 
             alt="Avatar do usuário" 
-            className="avatar-img"
+            className={styles.avatarImg}
             onError={handleImageError}
           />
         ) : (
@@ -64,7 +64,7 @@ export const Avatar = ({ avatarUrl, size = 120, isEditable = false, onImageChang
 
       {isEditable && (
         <>
-          <button className="avatar-edit-button" onClick={handlePencilClick}>
+          <button className={styles.avatarEditButton} onClick={handlePencilClick}>
             <Pencil size={size / 6} />
           </button>
           <input 

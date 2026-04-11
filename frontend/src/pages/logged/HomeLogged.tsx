@@ -260,11 +260,11 @@ function HomeLogged() {
   }
 
   return (
-      <div className="home-logged">
+      <div className={styles.homeLogged}>
 
         <UserHeader />
 
-        <section className="main-content">
+        <section className={styles.mainContent}>
 
           <Requests
             userRole={userRole}

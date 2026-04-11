@@ -34,14 +34,14 @@ function Forgot() {
   }
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <div className="auth-tabs">
-          <button className="active">Recuperar Senha</button>
+    <div className={styles.authContainer}>
+      <div className={styles.authCard}>
+        <div className={styles.authTabs}>
+          <button className={styles.active}>Recuperar Senha</button>
         </div>
 
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <p className="auth-description">
+        <form className={styles.authForm} onSubmit={handleSubmit}>
+          <p className={styles.authDescription}>
             Enviaremos um código de verificação a este e-mail se corresponder a uma conta do FTBridge.
           </p>
 
@@ -53,11 +53,11 @@ function Forgot() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <button type="submit" className="auth-submit" disabled={loading}>
+          <button type="submit" className={styles.authSubmit} disabled={loading}>
             {loading ? 'Enviando...' : 'Confirmar'}
           </button>
 
-          <Link to="/login" className="auth-link-back">
+          <Link to="/login" className={styles.authLinkBack}>
             Voltar para o login
           </Link>
         </form>

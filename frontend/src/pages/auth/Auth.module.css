@@ -1,0 +1,121 @@
+.authContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.authCard {
+  width: 390px;
+  background-color: #e5e5e5;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.authTabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.authTabs button {
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding-bottom: 0.25rem;
+}
+
+.authTabs .active {
+  border-bottom: 2px solid #685AD6;
+  color: #685AD6;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.authDescription {
+  font-size: 0.875rem;
+}
+
+.authForm input {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: none;
+}
+
+.authLink {
+  font-size: 0.75rem;
+  text-align: right;
+}
+
+.authDivider {
+  text-align: center;
+  font-size: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.authProvider {
+  background: white;
+  border-radius: 8px;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.authSubmit {
+  margin-top: 0.5rem;
+  background-color: #685AD6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem;
+  cursor: pointer;
+}
+
+/* ===========================
+   SOCIAL BUTTONS
+=========================== */
+
+.socialButtons {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.socialBtn {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  padding: 0.85rem 1.25rem;
+
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background-color: #ffffff;
+
+  cursor: pointer;
+
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  transition: all 0.2s ease;
+}
+
+.socialBtn:hover {
+  background-color: #f7f7f7;
+  transform: translateY(-1px);
+}
+
+.socialBtn img {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
