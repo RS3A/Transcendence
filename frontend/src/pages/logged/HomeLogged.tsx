@@ -6,9 +6,7 @@ import DailySchedule from '../../components/common/DailySchedule/DailySchedule'
 import { mockRequests, mockAchievements } from './HomeLogged.mock.tsx'
 import { apiFetch } from '../../services/api'
 import { extractBase64FromAvatarUrl } from '../../utils/imageUtils'
-import './HomeLogged.css'
-
-interface PendingRequest {
+import styles from './HomeLogged.module.css';interface PendingRequest {
   id: number
   name: string
   avatar?: string
@@ -260,11 +258,11 @@ function HomeLogged() {
   }
 
   return (
-      <div className="home-logged">
+      <div className={styles["home-logged"]}>
 
         <UserHeader />
 
-        <section className="main-content">
+        <section className={styles["main-content"]}>
 
           <Requests
             userRole={userRole}

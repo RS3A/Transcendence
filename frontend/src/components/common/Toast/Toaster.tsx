@@ -13,7 +13,7 @@ export function Toaster() {
             {...props}
             onDismiss={() => dismiss(id)}
           >
-            <div className="grid gap-1">
+            <div className={`${styles.grid} ${styles["gap-1"]}`}>
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && <ToastDescription>{description}</ToastDescription>}
             </div>

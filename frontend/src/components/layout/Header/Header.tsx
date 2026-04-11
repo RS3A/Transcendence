@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import './Header.css'
-import logo from '../../images/jpg/logo.png'
+import styles from './Header.module.css';import logo from '../../images/jpg/logo.png'
 import { clearAuthToken, apiFetch } from '../../../services/api'
 
 interface HeaderProps {
@@ -58,9 +57,9 @@ function Header({ isAuthenticated = false }: HeaderProps) {
   return (
     <header className={`header ${isAuthenticated ? 'authenticated' : 'unauthenticated'}`}>
       
-      <img src={logo} alt="Transcendence logo" className="header-logo" />
+      <img src={logo} alt="Transcendence logo" className={styles["header-logo"]} />
 
-      <nav className="header-nav">
+      <nav className={styles["header-nav"]}>
         {!isAuthenticated ? (
           <>
             <Link to="/about">Quem somos</Link>
@@ -79,14 +78,14 @@ function Header({ isAuthenticated = false }: HeaderProps) {
 
       {/* Lado direito */}
       {!isAuthenticated ? (
-        <div className="header-right">
-          <Link to="/login" className="header-login-btn">
+        <div className={styles["header-right"]}>
+          <Link to="/login" className={styles["header-login-btn"]}>
             Logar
           </Link>
         </div>
       ) : (
-        <div className="header-right">
-          <button onClick={handleLogout} className="header-logout-btn">
+        <div className={styles["header-right"]}>
+          <button onClick={handleLogout} className={styles["header-logout-btn"]}>
             Sair
           </button>
         </div>

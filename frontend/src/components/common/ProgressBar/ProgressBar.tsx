@@ -1,5 +1,4 @@
-import './ProgressBar.css'
-import { normalizeGamificationState } from '../../../utils/gamificationLevels'
+import styles from './ProgressBar.module.css';import { normalizeGamificationState } from '../../../utils/gamificationLevels'
 
 interface ProgressBarProps {
   currentXp: number
@@ -58,12 +57,12 @@ export const ProgressBar = ({
 
   return (
     // <div className={`progress-bar progress-bar--${size}`}>
-      <div className="progress-bar__track" data-size={size}>
+      <div className={styles["progress-bar__track"]} data-size={size}>
         <div
-          className="progress-bar__fill"
+          className={styles["progress-bar__fill"]}
           style={{ width: `${fillPercentage}%` }}
         />
-        <div className="progress-bar__label">
+        <div className={styles["progress-bar__label"]}>
           {displayNextLevelXp
             ? `XP: ${Math.floor(displayXp)} / ${Math.floor(displayNextLevelXp)}`
             : `XP: ${Math.floor(displayXp)} / MAX`}

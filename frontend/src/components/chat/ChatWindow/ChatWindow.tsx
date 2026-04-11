@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, MoreHorizontal, User, Send, Loader2 } from 'lucide-react';
 import { useChat } from '../ChatContext/ChatContext'
 import { getAuthToken, apiFetch } from '../../../services/api';
-import './Chat.css';
+import styles from './Chat.module.css';
 
 // Utility function to generate avatar color from name
 const getAvatarColor = (name: string): string => {
@@ -142,10 +142,10 @@ export const ChatWindow = () => {
   if (!activeChatId) return null;
 
   return (
-    <div className="chat-window">
-      <div className="chat-header">
-        <div className="user-info">
-          <div className="avatar">
+    <div className={styles["chat-window"]}>
+      <div className={styles["chat-header"]}>
+        <div className={styles["user-info"]}>
+          <div className={styles.avatar}>
             {contactAvatar ? (
               <img 
                 src={contactAvatar} 
@@ -176,25 +176,25 @@ export const ChatWindow = () => {
               </div>
             )}
           </div>
-          <span className="username">{contactName}</span>
+          <span className={styles.username}>{contactName}</span>
         </div>
-        <div className="header-actions">
-          <button className="icon-btn" onClick={() => setActiveChatId(null)}><X size={20} /></button>
+        <div className={styles["header-actions"]}>
+          <button className={styles["icon-btn"]} onClick={() => setActiveChatId(null)}><X size={20} /></button>
         </div>
       </div>
 
-      <div className="chat-messages" ref={scrollRef}>
+      <div className={styles["chat-messages"]} ref={scrollRef}>
         {loading ? (
-          <div className="chat-loading">
-            <Loader2 className="animate-spin" size={24} />
+          <div className={styles["chat-loading"]}>
+            <Loader2 className={styles["animate-spin"]} size={24} />
             <span>Carregando histórico...</span>
           </div>
         ) : (
           messages.map((msg, i) => (
             <div key={i} className={`message-row ${msg.senderId === myId ? 'mine' : 'theirs'}`}>
-              <div className="message-bubble">
+              <div className={styles["message-bubble"]}>
                 {msg.content}
-                <span className="message-time">
+                <span className={styles["message-time"]}>
                    {msg.createdAt ? new Date(msg.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : ''}
                 </span>
               </div>
@@ -203,7 +203,7 @@ export const ChatWindow = () => {
         )}
       </div>
 
-      <div className="chat-input-area">
+      <div className={styles["chat-input-area"]}>
         <textarea 
           placeholder="Escreva uma mensagem..." 
           value={input}
@@ -218,7 +218,7 @@ export const ChatWindow = () => {
             }
           }}
         />
-        <button className="send-btn" onClick={() => {
+        <button className={styles["send-btn"]} onClick={() => {
            if(input.trim()) {
              sendMessage(activeChatId, input);
              setInput('');

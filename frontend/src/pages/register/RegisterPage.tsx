@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
-import './RegisterPage.css'
-import logo_42 from '../../components/images/jpg/logo-42.png'
+import styles from './RegisterPage.module.css';import logo_42 from '../../components/images/jpg/logo-42.png'
 import { useGoogleLogin } from '@react-oauth/google';
 import logo_google from '../../components/images/jpg/logo-google.png'
 import { loginFetch, saveAuthToken, apiFetch } from '../../services/api'
@@ -223,8 +222,8 @@ function RegisterPage() {
   });
 
   return (
-    <main className="register-form-wrapper">
-      <form className="register-form" onSubmit={handleSubmit}>
+    <main className={styles["register-form-wrapper"]}>
+      <form className={styles["register-form"]} onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Nome Completo"
@@ -232,7 +231,7 @@ function RegisterPage() {
           onChange={(e) => setName(e.target.value)}
           className={errors.name ? 'error' : ''}
         />
-        {errors.name && <span className="input-error">{errors.name}</span>}
+        {errors.name && <span className={styles["input-error"]}>{errors.name}</span>}
 
         <input
           type="tel"
@@ -241,15 +240,15 @@ function RegisterPage() {
           onChange={handlePhoneChange}
           className={errors.phone ? 'error' : ''}
         />
-        {errors.phone && <span className="input-error">{errors.phone}</span>}
+        {errors.phone && <span className={styles["input-error"]}>{errors.phone}</span>}
 
-        <div className="social-buttons">
-          <button type="button" className="social-btn" onClick={() => handleGoogleLogin()}>
+        <div className={styles["social-buttons"]}>
+          <button type="button" className={styles["social-btn"]} onClick={() => handleGoogleLogin()}>
             <img src={logo_google} alt="Google" />
             <span>Continuar com Google</span>
           </button>
         </div>
-        {errors.profileType && <span className="input-error">{errors.profileType}</span>}
+        {errors.profileType && <span className={styles["input-error"]}>{errors.profileType}</span>}
 
         <input
           type="email"
@@ -258,7 +257,7 @@ function RegisterPage() {
           onChange={(e) => setEmail(e.target.value)}
           className={errors.email ? 'error' : ''}
         />
-        {errors.email && <span className="input-error">{errors.email}</span>}
+        {errors.email && <span className={styles["input-error"]}>{errors.email}</span>}
 
         <input
           type="email"
@@ -267,7 +266,7 @@ function RegisterPage() {
           onChange={(e) => setConfirmEmail(e.target.value)}
           className={errors.confirmEmail ? 'error' : ''}
         />
-        {errors.confirmEmail && <span className="input-error">{errors.confirmEmail}</span>}
+        {errors.confirmEmail && <span className={styles["input-error"]}>{errors.confirmEmail}</span>}
 
         <input
           type="password"
@@ -276,7 +275,7 @@ function RegisterPage() {
           onChange={(e) => setPassword(e.target.value)}
           className={errors.password ? 'error' : ''}
         />
-        {errors.password && <span className="input-error">{errors.password}</span>}
+        {errors.password && <span className={styles["input-error"]}>{errors.password}</span>}
 
         <input
           type="password"
@@ -285,9 +284,9 @@ function RegisterPage() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           className={errors.confirmPassword ? 'error' : ''}
         />
-        {errors.confirmPassword && <span className="input-error">{errors.confirmPassword}</span>}
+        {errors.confirmPassword && <span className={styles["input-error"]}>{errors.confirmPassword}</span>}
 
-        <label className="checkbox">
+        <label className={styles.checkbox}>
           <input
             type="checkbox"
             checked={acceptPrivacy}
@@ -295,9 +294,9 @@ function RegisterPage() {
           />
           <span>Concordo com a Política de Privacidade</span>
         </label>
-        {errors.privacy && <span className="input-error">{errors.privacy}</span>}
+        {errors.privacy && <span className={styles["input-error"]}>{errors.privacy}</span>}
 
-        <label className="checkbox">
+        <label className={styles.checkbox}>
           <input
             type="checkbox"
             checked={acceptTerms}
@@ -305,9 +304,9 @@ function RegisterPage() {
           />
           <span>Concordo com os Termos de Uso</span>
         </label>
-        {errors.terms && <span className="input-error">{errors.terms}</span>}
+        {errors.terms && <span className={styles["input-error"]}>{errors.terms}</span>}
 
-        <button type="submit" className="submit-btn" disabled={isSubmitting}>
+        <button type="submit" className={styles["submit-btn"]} disabled={isSubmitting}>
           {isSubmitting ? 'Enviando...' : 'Enviar'}
         </button>
       </form>

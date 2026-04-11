@@ -1,6 +1,4 @@
-import './Achievements.css'
-
-// Support both data formats: from HomeLogged (with id/title/icon) and from backend (with name/iconUrl)
+import styles from './Achievements.module.css';// Support both data formats: from HomeLogged (with id/title/icon) and from backend (with name/iconUrl)
 export interface Achievement {
   id?: number
   icon?: string
@@ -21,9 +19,9 @@ export const Achievements = ({ achievements, title = 'Conquistas' }: Achievement
   }
 
   return (
-    <section className="achievements-section">
-      <h3 className="achievements-title">{title}</h3>
-      <div className="achievements-grid">
+    <section className={styles["achievements-section"]}>
+      <h3 className={styles["achievements-title"]}>{title}</h3>
+      <div className={styles["achievements-grid"]}>
         {achievements.map((a, index) => {
           // Support both naming conventions
           const displayTitle = a.title || a.name || 'Achievementlocked'
@@ -31,19 +29,19 @@ export const Achievements = ({ achievements, title = 'Conquistas' }: Achievement
           const key = a.id || index
 
           return (
-            <div key={key} className="achievement-card">
+            <div key={key} className={styles["achievement-card"]}>
               {displayIcon && (
                 <img
                   src={displayIcon}
                   alt={displayTitle}
-                  className="achievement-icon"
+                  className={styles["achievement-icon"]}
                   onError={(e) => {
                     // Hide image if it fails to load
                     (e.target as HTMLImageElement).style.display = 'none'
                   }}
                 />
               )}
-              <div className="achievement-name">{displayTitle}</div>
+              <div className={styles["achievement-name"]}>{displayTitle}</div>
             </div>
           )
         })}

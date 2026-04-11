@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { Clock, Video, RefreshCw, ExternalLink, X } from "lucide-react";
-import "./SessionList.css";
+import styles from './SessionList.module.css';
 import { format, parseISO, isPast, isWithinInterval, addDays } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { apiFetch } from '../../../services/api';
@@ -51,19 +51,19 @@ const SessionItem: React.FC<{ session: Session; onCancelClick: (session: Session
   );
 
   return (
-    <div className="session-item">
-      <div className="session-date">
-        <span className="session-date-day">{format(parseISO(session.scheduledDate), 'dd')}</span>
-        <span className="session-date-month">{format(parseISO(session.scheduledDate), 'MMM', { locale: ptBR })}</span>
+    <div className={styles["session-item"]}>
+      <div className={styles["session-date"]}>
+        <span className={styles["session-date-day"]}>{format(parseISO(session.scheduledDate), 'dd')}</span>
+        <span className={styles["session-date-month"]}>{format(parseISO(session.scheduledDate), 'MMM', { locale: ptBR })}</span>
       </div>
 
-      <div className="session-details">
-        <div className="session-time">{startTime} – {endTime}</div>
-        <div className="session-status">
+      <div className={styles["session-details"]}>
+        <div className={styles["session-time"]}>{startTime} – {endTime}</div>
+        <div className={styles["session-status"]}>
           <span className={`session-status-badge ${config.className}`}>{config.label}</span>
           {isRecurrent && recurrenceIndex && (
-            <div className="session-status-icon-container">
-              <RefreshCw className="session-status-icon" />
+            <div className={styles["session-status-icon-container"]}>
+              <RefreshCw className={styles["session-status-icon"]} />
               <span>{recurrenceIndex}/10</span>
             </div>
           )}
@@ -71,17 +71,17 @@ const SessionItem: React.FC<{ session: Session; onCancelClick: (session: Session
       </div>
 
       {isFuture && status === 'SCHEDULED' && session.meetUrl && (
-        <div className="session-actions">
-          <a href={session.meetUrl} target="_blank" rel="noopener noreferrer" className="session-action-button">
-            <Video className="meet-button-icon" />
+        <div className={styles["session-actions"]}>
+          <a href={session.meetUrl} target="_blank" rel="noopener noreferrer" className={styles["session-action-button"]}>
+            <Video className={styles["meet-button-icon"]} />
             <span>Meet</span>
-            <ExternalLink className="reschedule-button-icon" />
+            <ExternalLink className={styles["reschedule-button-icon"]} />
           </a>
           <button 
-            className="session-action-button"
+            className={styles["session-action-button"]}
             onClick={() => onCancelClick(session)}
           >
-            <RefreshCw className="reschedule-button-icon" />
+            <RefreshCw className={styles["reschedule-button-icon"]} />
             <span>Cancelar</span>
           </button>
         </div>
@@ -226,12 +226,12 @@ export function SessionList({
   return (
     <>
       {showHeader && (
-        <div className="session-list-header">
-          <div className="session-list-title-container">
-            <Clock className="session-list-title-icon" />
-            <h2 className="session-list-title">Histórico de Sessões</h2>
+        <div className={styles["session-list-header"]}>
+          <div className={styles["session-list-title-container"]}>
+            <Clock className={styles["session-list-title-icon"]} />
+            <h2 className={styles["session-list-title"]}>Histórico de Sessões</h2>
           </div>
-          <span className="session-list-badge">
+          <span className={styles["session-list-badge"]}>
             {completedCount} mentoria(s) realizada(s)
           </span>
         </div>
@@ -239,7 +239,7 @@ export function SessionList({
 
       {upcomingSessions.length > 0 && (
         <div>
-          {showHeader && <h3 className="session-list-section-title">PRÓXIMAS</h3>}
+          {showHeader && <h3 className={styles["session-list-section-title"]}>PRÓXIMAS</h3>}
           {upcomingSessions.map((session) => (
             <SessionItem key={session.id} session={session} onCancelClick={setCancelDialogSession} />
           ))}
@@ -248,7 +248,7 @@ export function SessionList({
 
       {showHeader && pastSessions.length > 0 && (
         <div>
-          <h3 className="session-list-section-title">ANTERIORES</h3>
+          <h3 className={styles["session-list-section-title"]}>ANTERIORES</h3>
           {pastSessions.map((session) => (
             <SessionItem key={session.id} session={session} onCancelClick={setCancelDialogSession} />
           ))}
@@ -263,14 +263,14 @@ export function SessionList({
               Tem certeza de que quer continuar?
             </DialogDescription>
           </DialogHeader>
-          <div className="attention-box">
+          <div className={styles["attention-box"]}>
             <p>Não se esqueça de entrar em contato com seu mentor/mentorado para remarcar essa sessão.</p>
           </div>
           <DialogFooter>
             <Button 
               onClick={() => setCancelDialogSession(null)}
               disabled={isDeleting}
-              className="cancel-button"
+              className={styles["cancel-button"]}
               style={{ backgroundColor: 'transparent', color: '#666', border: '1px solid #ccc' }}
             >
               Não
@@ -278,7 +278,7 @@ export function SessionList({
             <Button 
               onClick={handleCancelConfirm}
               disabled={isDeleting}
-              className="confirm-button"
+              className={styles["confirm-button"]}
               style={{ backgroundColor: '#e53e3e', color: 'white' }}
             >
               {isDeleting ? 'Cancelando...' : 'Sim, cancelar'}

@@ -1,5 +1,4 @@
-import './ManageSessionWithMentee.css'
-import { useNavigate, useParams, useLocation } from 'react-router-dom'
+import styles from './ManageSessionWithMentee.module.css';import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { MentoringProvider } from '../../components/common/BookingCalendar/MentoringContext'
 import { SessionList } from '../../components/common/SessionList/SessionList'
@@ -236,10 +235,10 @@ const handleLeave = async () => {
 
 if (loading) {
   return (
-    <div className="book-session-loading">
-      <div className="loading-content">
-        <div className="loading-spinner"></div>
-        <p className="loading-text">Carregando dados...</p>
+    <div className={styles["book-session-loading"]}>
+      <div className={styles["loading-content"]}>
+        <div className={styles["loading-spinner"]}></div>
+        <p className={styles["loading-text"]}>Carregando dados...</p>
       </div>
     </div>
   );
@@ -247,14 +246,14 @@ if (loading) {
 
 if (error || !selectedMentee) {
   return (
-    <div className="book-session-error">
-      <div className="error-container">
-        <div className="error-box">
-          <h2 className="error-title">Perfil não encontrado</h2>
-          <p className="error-message">{error || 'Não conseguimos carregar os dados.'}</p>
+    <div className={styles["book-session-error"]}>
+      <div className={styles["error-container"]}>
+        <div className={styles["error-box"]}>
+          <h2 className={styles["error-title"]}>Perfil não encontrado</h2>
+          <p className={styles["error-message"]}>{error || 'Não conseguimos carregar os dados.'}</p>
           <button
             onClick={() => navigate('/mentorias')}
-            className="error-button"
+            className={styles["error-button"]}
           >
             ← Voltar
           </button>
@@ -275,7 +274,7 @@ const schedulerMenteeId = mentorProfileId?.toString();
   // const currentUserIdStr = currentUserId?.toString() || '0';
 
   return (
-    <div className="manage-session-with-mentee">
+    <div className={styles["manage-session-with-mentee"]}>
       <MenteeInfo
         menteeId={selectedMentee.id || selectedMentee.profileId || selectedMentee.userId}
         name={selectedMentee.name}
@@ -291,7 +290,7 @@ const schedulerMenteeId = mentorProfileId?.toString();
         onChat={selectedMentee.userId ? () => setActiveChatId(selectedMentee.userId!) : undefined}
       />
 
-      <div className="calendar-container">
+      <div className={styles["calendar-container"]}>
         <SessionList 
           key={sessionRefreshKey}
           mentorId={schedulerMentorId || '0'}

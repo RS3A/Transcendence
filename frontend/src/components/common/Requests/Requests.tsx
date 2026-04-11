@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import { Check, X, User } from 'lucide-react'
 import Button from '../Button/Button'
-import './Requests.css'
-
-export interface PendingRequest {
+import styles from './Requests.module.css';export interface PendingRequest {
   id: number
   name: string
   avatar?: string
@@ -29,8 +27,8 @@ export const Requests = ({
   const [activeTab, setActiveTab] = useState<'pending' | 'notifications'>('pending')
 
   return (
-    <div className="left-panel">
-      <div className="tab-bar">
+    <div className={styles["left-panel"]}>
+      <div className={styles["tab-bar"]}>
         <button
           className={`tab-btn ${activeTab === 'pending' ? 'active' : ''}`}
           onClick={() => setActiveTab('pending')}
@@ -45,7 +43,7 @@ export const Requests = ({
         </button>
       </div>
 
-      <div className="requests-list">
+      <div className={styles["requests-list"]}>
         {activeTab === 'pending' && (
           <PendingRequests
             userRole={userRole}
@@ -84,7 +82,7 @@ export const PendingRequests = ({
   const showActions = userRole === 'MENTOR'
 
   if (requests.length === 0) {
-    return <div className="empty-state">Sem novas solicitações.</div>
+    return <div className={styles["empty-state"]}>Sem novas solicitações.</div>
   }
 
   return (
@@ -133,8 +131,8 @@ export const RequestCard = ({
   }
 
   return (
-    <div className="request-card">
-      <div className="request-avatar">
+    <div className={styles["request-card"]}>
+      <div className={styles["request-avatar"]}>
         {request.avatar ? (
           <img 
             src={request.avatar} 
@@ -148,19 +146,19 @@ export const RequestCard = ({
           <User size={20} color="#9ca3af" />
         )}
       </div>
-      <p className="request-text">{getMessage()}</p>
+      <p className={styles["request-text"]}>{getMessage()}</p>
       {showActions && (
-        <div className="request-actions">
+        <div className={styles["request-actions"]}>
           <Button
             onClick={onAccept}
-            className="icon-button"
+            className={styles["icon-button"]}
             aria-label="Accept"
           >
             <Check size={18} color="green" />
           </Button>
           <Button
             onClick={onDecline}
-            className="icon-button"
+            className={styles["icon-button"]}
             aria-label="Decline"
           >
             <X size={18} color="red" />
@@ -174,7 +172,7 @@ export const RequestCard = ({
 // --- Notifications Component ---
 
 export const Notifications = () => {
-  return <div className="empty-state">Sem novas notificações.</div>
+  return <div className={styles["empty-state"]}>Sem novas notificações.</div>
 }
 
 export default Requests

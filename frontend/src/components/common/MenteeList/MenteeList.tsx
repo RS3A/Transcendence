@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Avatar } from '../Avatar/Avatar';
 import Button from '../Button/Button';
-import './MenteeList.css';
+import styles from './MenteeList.module.css';
 import { apiFetch } from '../../../services/api';
 import { saveMentorCapacity } from '../../../services/mentorAvailabilityService';
 import menteeService from '../../../services/menteeService';
@@ -122,24 +122,24 @@ export function CapacityCard({ mentorId }: CapacityCardProps) {
   return (
     <>
       {!error && (
-        <div className="capacity-container">
-          <div className="capacity-info">
-            <div className="card-header">
+        <div className={styles["capacity-container"]}>
+          <div className={styles["capacity-info"]}>
+            <div className={styles["card-header"]}>
               <h3>Capacidade da Carteira</h3>
             </div>
-            <p className="capacity-text">
+            <p className={styles["capacity-text"]}>
               {capacity.currentMentees} de {editingMaxMentees} mentorados
             </p>
           </div>
-          <div className="capacity-info">
+          <div className={styles["capacity-info"]}>
               <Button 
-                className="save-capacity-button" 
+                className={styles["save-capacity-button"]} 
                 onClick={handleSaveCapacity} 
                 disabled={loading}
               >
                 {loading ? 'Salvando...' : 'Salvar'}
               </Button>
-            <div className="capacity-controls">
+            <div className={styles["capacity-controls"]}>
               <IconButton
                 variant="capacity"
                 onClick={handleDecreaseCapacity}
@@ -158,9 +158,9 @@ export function CapacityCard({ mentorId }: CapacityCardProps) {
           </div>
         </div>
       )}
-      <div className="progress-bar">
+      <div className={styles["progress-bar"]}>
         <div 
-          className="progress" 
+          className={styles.progress} 
           style={{ width: `${percentageUsed}%` }}
         ></div>
       </div>
@@ -226,7 +226,7 @@ export function MenteeList({ mentorId, emptyStateMessage = 'Você não tem mento
 
   if (loading) {
     return (
-      <div className="mentee-list-loading">
+      <div className={styles["mentee-list-loading"]}>
         Carregando mentorados...
       </div>
     );
@@ -234,7 +234,7 @@ export function MenteeList({ mentorId, emptyStateMessage = 'Você não tem mento
 
   if (error) {
     return (
-      <div className="mentee-list-error">
+      <div className={styles["mentee-list-error"]}>
         {error}
       </div>
     );
@@ -242,28 +242,28 @@ export function MenteeList({ mentorId, emptyStateMessage = 'Você não tem mento
 
   if (mentees.length === 0) {
     return (
-      <div className="mentee-list-empty">
+      <div className={styles["mentee-list-empty"]}>
         {emptyStateMessage}
       </div>
     );
   }
 
   return (
-    <div className="mentees-grid">
+    <div className={styles["mentees-grid"]}>
       {mentees.map((mentee) => (
         <div 
           key={mentee.id} 
-          className="mentee-card clickable" 
+          className={`${styles["mentee-card"]} ${styles.clickable}`} 
           onClick={() => navigate(`/manage-session/${mentee.id}`)}
         >
-          <div className="mentee-card-content">
+          <div className={styles["mentee-card-content"]}>
             <Avatar 
               avatarUrl={mentee.avatarUrl}
               size={64}
             />
-            <p className="mentee-name">{mentee.name}</p>
+            <p className={styles["mentee-name"]}>{mentee.name}</p>
           </div>
-          <MoveRight size={16} className="mentee-arrow" />
+          <MoveRight size={16} className={styles["mentee-arrow"]} />
         </div>
       ))}
     </div>

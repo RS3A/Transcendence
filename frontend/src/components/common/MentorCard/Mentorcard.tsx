@@ -2,7 +2,7 @@ import React from 'react';
 import { Circle, Users } from 'lucide-react'; // Adicionei o ícone Users para vagas
 import { useNavigate } from 'react-router-dom';
 import { Avatar } from '../../common/Avatar/Avatar';
-import './Mentorcard.css';
+import styles from './Mentorcard.module.css';
 
 interface Skill {
   id: string;
@@ -73,54 +73,54 @@ const MentorCard: React.FC<MentorCardProps> = ({
       role={isAvailable ? 'button' : 'article'}
       tabIndex={isAvailable ? 0 : -1}
     >
-      <div className="mentor-card-header">
-        <div className="mentor-avatar-container">
+      <div className={styles["mentor-card-header"]}>
+        <div className={styles["mentor-avatar-container"]}>
           <Avatar avatarUrl={avatarUrl} size={90} /> 
         </div>
-        <div className="mentor-info-basic">
-          <h3 className="mentor-name">{name}</h3>
-          <p className="mentor-position"><strong>Cargo:</strong> {position}</p>
+        <div className={styles["mentor-info-basic"]}>
+          <h3 className={styles["mentor-name"]}>{name}</h3>
+          <p className={styles["mentor-position"]}><strong>Cargo:</strong> {position}</p>
         </div>
       </div>
 
-      <div className="mentor-skills-section">
-        <p className="skills-label">Habilidades:</p>
-        <div className="mentor-skills-list">
+      <div className={styles["mentor-skills-section"]}>
+        <p className={styles["skills-label"]}>Habilidades:</p>
+        <div className={styles["mentor-skills-list"]}>
           {displaySkills.length > 0 ? (
             <>
               {displaySkills.map((skill) => (
-                <span key={skill.id} className="skill-tag">{skill.name}</span>
+                <span key={skill.id} className={styles["skill-tag"]}>{skill.name}</span>
               ))}
               {hasMoreSkills && (
-                <button className="skill-tag btn-ver-mais">+{skills.length - 5}</button>
+                <button className={`${styles["skill-tag"]} ${styles["btn-ver-mais"]}`}>+{skills.length - 5}</button>
               )}
             </>
           ) : (
-            <p className="no-skills-message">Sem habilidades informadas</p>
+            <p className={styles["no-skills-message"]}>Sem habilidades informadas</p>
           )}
         </div>
       </div>
 
-      <div className="mentor-footer">
-        <div className="mentor-stats-row">
-          <p className="mentor-xp"><strong>Experiência:</strong> {anosExperiencia} anos</p>
+      <div className={styles["mentor-footer"]}>
+        <div className={styles["mentor-stats-row"]}>
+          <p className={styles["mentor-xp"]}><strong>Experiência:</strong> {anosExperiencia} anos</p>
           
           {/* Only show "Lista de Espera" badge/button if NO vagas available */}
           {!isAvailable && (
-            <div className="vacancy-badge no-vagas">
+            <div className={`${styles["vacancy-badge"]} ${styles["no-vagas"]}`}>
               <Users size={14} />
               <span>Lista de Espera</span>
             </div>
           )}
         </div>
         
-        <div className="mentor-status">
+        <div className={styles["mentor-status"]}>
           <strong>Perfil:</strong> {isActive && isAvailable ? 'Ativo' : 'Inativo'}
           <Circle 
             size={12} 
             fill={isActive && isAvailable ? "#4ade80" : "#fb7185"} 
             color="transparent" 
-            className="status-dot"
+            className={styles["status-dot"]}
           />
         </div>
       </div>
@@ -128,7 +128,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       {/* Show action button only if NO vagas available */}
       {!isAvailable && (
         <button 
-          className="btn-conectar btn-waitlist"
+          className={`${styles["btn-conectar"]} ${styles["btn-waitlist"]}`}
           onClick={handleWaitlistClick}
         >
           Entrar na Lista

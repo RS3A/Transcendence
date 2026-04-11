@@ -4,8 +4,7 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import { ChatWindow } from '../../chat/ChatWindow/ChatWindow'
 import AppShell from '../AppShell/AppShell'
-import '../AppShell/AppShell.css'
-import Chatbar from '../../chat/Chatbar/Chatbar'
+import styles from '../AppShell/AppShell.module.css';import Chatbar from '../../chat/Chatbar/Chatbar'
 
 function GlobalLayout() {
   return (

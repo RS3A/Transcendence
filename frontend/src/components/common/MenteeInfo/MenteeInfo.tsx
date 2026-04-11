@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { User, Circle, MessageCircle, LogOut } from 'lucide-react';
-import './MenteeInfo.css';
+import styles from './MenteeInfo.module.css';
 import IconButton from '../IconButton/IconButton';
 import menteeService from '../../../services/menteeService';
 
@@ -86,56 +86,56 @@ const MenteeCard: React.FC<MenteeCardProps> = ({
   const hasMoreSkills = skills.length > 5;
 
   if (isLoading) {
-    return <div className="mentee-info-card">Carregando dados...</div>;
+    return <div className={styles["mentee-info-card"]}>Carregando dados...</div>;
   }
 
   if (error) {
-    return <div className="mentee-info-card">Erro: {error}</div>;
+    return <div className={styles["mentee-info-card"]}>Erro: {error}</div>;
   }
 
   return (
-    <div className="mentee-info-card">
-      <div className="mentee-info-card-header">
-        <div className="mentee-info-avatar-container">
+    <div className={styles["mentee-info-card"]}>
+      <div className={styles["mentee-info-card-header"]}>
+        <div className={styles["mentee-info-avatar-container"]}>
           {avatarUrl ? (
-            <img src={avatarUrl} alt={name} className="mentee-avatar-img" />
+            <img src={avatarUrl} alt={name} className={styles["mentee-avatar-img"]} />
           ) : (
-            <User size={40} className="mentee-avatar-icon" />
+            <User size={40} className={styles["mentee-avatar-icon"]} />
           )}
         </div>
         
-        <div className="mentee-info-basic">
-          <h3 className="mentee-info-name">{name}</h3>
-          <p className="mentee-info-details">{position} | {experience} anos</p>
-          <div className="mentee-info-status">
+        <div className={styles["mentee-info-basic"]}>
+          <h3 className={styles["mentee-info-name"]}>{name}</h3>
+          <p className={styles["mentee-info-details"]}>{position} | {experience} anos</p>
+          <div className={styles["mentee-info-status"]}>
             {isActive ? 'Ativo' : 'Indisponível'}
             <Circle 
               size={12} 
               fill={isActive ? "var(--is-active-green)" : "var(--is-inactive-red)"} 
               color="transparent" 
-              className="status-dot-2"
+              className={styles["status-dot-2"]}
             />
           </div>
-          <p className="mentee-info-bio">{bio}</p>
-          <div className="mentee-info-skills-pills">
+          <p className={styles["mentee-info-bio"]}>{bio}</p>
+          <div className={styles["mentee-info-skills-pills"]}>
             {displaySkills.length > 0 ? (
               <>
                 {displaySkills.map((skill) => (
-                  <span key={skill.id} className="skill-tag">{skill.name}</span>
+                  <span key={skill.id} className={styles["skill-tag"]}>{skill.name}</span>
                 ))}
                 {hasMoreSkills && (
-                  <button className="skill-tag btn-ver-mais">+{skills.length - 5}</button>
+                  <button className={`${styles["skill-tag"]} ${styles["btn-ver-mais"]}`}>+{skills.length - 5}</button>
                 )}
               </>
             ) : (
-              <p className="no-skills-message">Sem habilidades informadas</p>
+              <p className={styles["no-skills-message"]}>Sem habilidades informadas</p>
             )}
           </div>
         </div>
       </div>
-      <div className="mentee-info-divider" />
+      <div className={styles["mentee-info-divider"]} />
 
-      <div className="mentee-info-footer">
+      <div className={styles["mentee-info-footer"]}>
         {connectionStatus === 'none' && (
           <IconButton 
             variant="primary" 

@@ -1,8 +1,6 @@
-import './Sidebar.css'
-
-function Sidebar() {
+import styles from './Sidebar.module.css';function Sidebar() {
   return (
-    <aside className="sidebar">
+    <aside className={styles.sidebar}>
       Logo
     </aside>
   )

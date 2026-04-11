@@ -6,9 +6,7 @@ import { ProgressBar } from '../../common/ProgressBar/ProgressBar'
 import Achievements from '../../common/Achievements/Achievements'
 import { apiFetch } from '../../../services/api'
 import { normalizeGamificationState } from '../../../utils/gamificationLevels'
-import './UserHeader.css'
-
-type HistoryItem = {
+import styles from './UserHeader.module.css';type HistoryItem = {
   reason: string
   xp: number
 }
@@ -184,19 +182,19 @@ export const UserHeader = () => {
   }, [])
 
   return (
-    <section className="user-header">
+    <section className={styles["user-header"]}>
 
       {/* Perfil */}
-      <div className="profile-section">
-        <div className="header-info">
-          <div className="header-avatar">
+      <div className={styles["profile-section"]}>
+        <div className={styles["header-info"]}>
+          <div className={styles["header-avatar"]}>
             <Avatar avatarUrl={userData.avatarUrl} size={150} />
           </div>
         </div>
-        <div className="header-info">
+        <div className={styles["header-info"]}>
           <ProfileBadge text={userData.role === 'MENTOR' ? 'Pessoa Mentora' : 'Mentorada'} />
-          <h2 className="profile-user-name">{userData.nome}</h2>
-          <span className="profile-details">
+          <h2 className={styles["profile-user-name"]}>{userData.nome}</h2>
+          <span className={styles["profile-details"]}>
             @{userData.username} | {userData.cargo}
           </span>
         </div>
@@ -204,9 +202,9 @@ export const UserHeader = () => {
 
       {/* Stats */}
 
-      <div className="profile-stats-bg">
-        <div className="profile-stats-container">
-          <div className="xp-section">
+      <div className={styles["profile-stats-bg"]}>
+        <div className={styles["profile-stats-container"]}>
+          <div className={styles["xp-section"]}>
             <ProgressBar
               currentXp={userData.xp}
               nextLevelXp={userData.nextLevelXp}

@@ -1,14 +1,12 @@
 import { Outlet } from 'react-router-dom'
-import './AppShell.css'
-
-function AppShell({ sidebar, header, footer, children }) {
+import styles from './AppShell.module.css';function AppShell({ sidebar, header, footer, children }) {
   const hasAuth = !sidebar
   const hasSidebar = !!sidebar
 
   return (
     <div className={`app-shell ${hasAuth ? 'auth' : ''} ${hasSidebar ? 'with-sidebar' : ''}`}>
       {sidebar && (
-        <aside className="sidebar">
+        <aside className={styles.sidebar}>
           {sidebar}
         </aside>
       )}
@@ -21,7 +19,7 @@ function AppShell({ sidebar, header, footer, children }) {
         {children || <Outlet />}
       </main>
 
-      <footer className="footer">
+      <footer className={styles.footer}>
         {footer}
       </footer>
     </div>

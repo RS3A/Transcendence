@@ -1,9 +1,7 @@
-import './Footer.css'
-
-function Footer() {
+import styles from './Footer.module.css';function Footer() {
   return (
-    <footer className="footer">
-      <nav className="footer-nav" aria-label="Footer navigation">
+    <footer className={styles.footer}>
+      <nav className={styles["footer-nav"]} aria-label="Footer navigation">
         <a
           href="/terms"
           target="_blank"
@@ -20,7 +18,7 @@ function Footer() {
           Política de Privacidade
         </a>
 
-        <span className="footer-copy">© 2026 Transcendence</span>
+        <span className={styles["footer-copy"]}>© 2026 Transcendence</span>
       </nav>
     </footer>
   )

@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
 import Button from '../Button/Button'
 import { apiFetch } from '../../../services/api'
-import './DailySchedule.css'
-
-export interface ScheduleItem {
+import styles from './DailySchedule.module.css';export interface ScheduleItem {
   id: number
   time: string
   date: string
@@ -177,10 +175,10 @@ export const DailySchedule = ({ userRole, profileId }: DailyScheduleProps) => {
   const isLoading = loading || (isWeekView && weekLoading)
 
   return (
-    <div className="right-panel">
-      <div className="schedule-header">
-        <h3 className="panel-title">{isWeekView ? 'Agenda da Semana' : 'Agenda do Dia'}</h3>
-        <div className="view-toggle">
+    <div className={styles["right-panel"]}>
+      <div className={styles["schedule-header"]}>
+        <h3 className={styles["panel-title"]}>{isWeekView ? 'Agenda da Semana' : 'Agenda do Dia'}</h3>
+        <div className={styles["view-toggle"]}>
           <button
             className={`toggle-btn${viewMode === 'day' ? ' active' : ''}`}
             onClick={() => setViewMode('day')}
@@ -196,17 +194,17 @@ export const DailySchedule = ({ userRole, profileId }: DailyScheduleProps) => {
         </div>
       </div>
 
-      <div className="schedule-list">
+      <div className={styles["schedule-list"]}>
         {isLoading ? (
-          <div className="empty-state">Carregando agenda...</div>
+          <div className={styles["empty-state"]}>Carregando agenda...</div>
         ) : isWeekView ? (
           weeklyGroups.length > 0 ? (
             weeklyGroups.map((group) => (
-              <div key={group.dateKey} className="week-day-group">
-                <div className="week-day-header">{group.dateLabel}</div>
+              <div key={group.dateKey} className={styles["week-day-group"]}>
+                <div className={styles["week-day-header"]}>{group.dateLabel}</div>
                 {group.items.map((item) => (
-                  <div key={item.id} className="schedule-item">
-                    <span className="schedule-time">
+                  <div key={item.id} className={styles["schedule-item"]}>
+                    <span className={styles["schedule-time"]}>
                       <strong>{item.time}</strong> - {item.mentee}
                     </span>
                     <Button>Remarcar</Button>
@@ -215,20 +213,20 @@ export const DailySchedule = ({ userRole, profileId }: DailyScheduleProps) => {
               </div>
             ))
           ) : (
-            <div className="empty-state">Nao ha mentorias previstas para esta semana</div>
+            <div className={styles["empty-state"]}>Nao ha mentorias previstas para esta semana</div>
           )
         ) : (
           dailySchedule.length > 0 ? (
             dailySchedule.map((item) => (
-              <div key={item.id} className="schedule-item">
-                <span className="schedule-time">
+              <div key={item.id} className={styles["schedule-item"]}>
+                <span className={styles["schedule-time"]}>
                   <strong>{item.time}</strong> - {item.mentee || item.mentor}
                 </span>
                 <Button>Remarcar</Button>
               </div>
             ))
           ) : (
-            <div className="empty-state">Nao ha mentorias previstas para hoje</div>
+            <div className={styles["empty-state"]}>Nao ha mentorias previstas para hoje</div>
           )
         )}
       </div>

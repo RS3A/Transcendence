@@ -6,7 +6,7 @@ import mentorService from '../../services/mentorService';
 import menteeService from '../../services/menteeService';
 import MentorCard from '../../components/common/MentorCard/Mentorcard';
 import DropdownList from '../../components/common/Dropdown/Dropdown';
-import './MentoriasPage.css';
+import styles from './MentoriasPage.module.css';
 
 const OPCOES_EXPERIENCIA = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "+10"];
 const OPCOES_STATUS = ["Ativo", "Inativo"];
@@ -23,18 +23,18 @@ const MiniMentorCard = ({ name, avatarUrl, startDate, status, mentorProfileId }:
   };
 
   return (
-    <div className="mini-mentor-card" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
-      <div className="mini-avatar-container">
+    <div className={styles["mini-mentor-card"]} onClick={handleCardClick} style={{ cursor: 'pointer' }}>
+      <div className={styles["mini-avatar-container"]}>
         {avatarUrl ? (
           <img src={avatarUrl} alt={name} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
         ) : (
           <User size={32} color="#1f2937" />
         )}
       </div>
-      <div className="mini-info">
+      <div className={styles["mini-info"]}>
         <h4>{name}</h4>
         <p>Início: {startDate}</p>
-        <div className="mini-status">
+        <div className={styles["mini-status"]}>
           <strong>Status:</strong> {isActive ? 'Ativo' : 'Pendente'}
           <Circle size={10} fill={isActive ? "#4ade80" : "#fb7185"} color="transparent" />
         </div>
@@ -194,11 +194,11 @@ const MentoriasPage = () => {
   };
 
   return (
-    <div className="mentorias-page-container">
+    <div className={styles["mentorias-page-container"]}>
         {/* Seção 1: Meus Mentores (Conexões Reais) */}
-        <section className="mentorias-section">
-          <h2 className="section-title title-meus-mentores">Meus Mentores</h2>
-          <div className="meus-mentores-grid">
+        <section className={styles["mentorias-section"]}>
+          <h2 className={`${styles["section-title"]} ${styles["title-meus-mentores"]}`}>Meus Mentores</h2>
+          <div className={styles["meus-mentores-grid"]}>
             {mentoresAtivosComDetalhes.length > 0 ? (
               mentoresAtivosComDetalhes.map(conn => (
                 <MiniMentorCard 
@@ -211,18 +211,18 @@ const MentoriasPage = () => {
                 />
               ))
             ) : (
-              <p className="no-results">Você ainda não possui conexões de mentoria.</p>
+              <p className={styles["no-results"]}>Você ainda não possui conexões de mentoria.</p>
             )}
           </div>
         </section>
 
-        <hr className="section-divider" />
+        <hr className={styles["section-divider"]} />
 
         {/* Seção 2: Encontrar Mentores */}
-        <section className="mentorias-section">
-          <h2 className="section-title">Encontrar Mentores</h2>
+        <section className={styles["mentorias-section"]}>
+          <h2 className={styles["section-title"]}>Encontrar Mentores</h2>
           
-          <div className="filtros-container">
+          <div className={styles["filtros-container"]}>
             <DropdownList 
               label="Habilidades"
               options={opcoesHabilidades}
@@ -259,37 +259,37 @@ const MentoriasPage = () => {
               placeholder="Disponibilidade"
             />
 
-            <button className="limpar-filtros-btn" onClick={resetarFiltros}>
+            <button className={styles["limpar-filtros-btn"]} onClick={resetarFiltros}>
               Limpar Filtros
             </button>
           </div>
 
           {loading ? (
-            <div className="loading-state">
+            <div className={styles["loading-state"]}>
               <p>Buscando mentores na rede...</p>
             </div>
           ) : (
             <>
-              <div className="encontrar-mentores-grid">
+              <div className={styles["encontrar-mentores-grid"]}>
                 {currentMentors.length > 0 ? (
                   currentMentors.map(mentor => (
                     <MentorCard key={mentor.id} {...mentor} />
                   ))
                 ) : (
-                  <p className="no-results">Nenhum mentor encontrado com os filtros selecionados.</p>
+                  <p className={styles["no-results"]}>Nenhum mentor encontrado com os filtros selecionados.</p>
                 )}
               </div>
 
               {/* Paginação */}
               {totalPages > 1 && (
-                <div className="pagination">
+                <div className={styles.pagination}>
                   <button 
                     disabled={currentPage === 1} 
                     onClick={() => { setCurrentPage(prev => prev - 1); window.scrollTo(0,0); }}
                   >
                     Anterior
                   </button>
-                  <span className="page-info">Página {currentPage} de {totalPages}</span>
+                  <span className={styles["page-info"]}>Página {currentPage} de {totalPages}</span>
                   <button 
                     disabled={currentPage === totalPages} 
                     onClick={() => { setCurrentPage(prev => prev + 1); window.scrollTo(0,0); }}

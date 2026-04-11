@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./CalendarCard.css";
+import styles from './CalendarCard.module.css';
 
 const CalendarCard = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }: any, ref: any) => (

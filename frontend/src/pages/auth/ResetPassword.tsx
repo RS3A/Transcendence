@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { loginFetch } from '../../services/api';
-import './ResetPassword.css'
-
-function ResetPassword() {
+import styles from './ResetPassword.module.css';function ResetPassword() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
@@ -113,12 +111,12 @@ function ResetPassword() {
 
   if (validatingToken) {
     return (
-      <div className="auth-container">
-        <div className="auth-card">
-          <div className="auth-tabs">
-            <button className="active">Resetar Senha</button>
+      <div className={styles["auth-container"]}>
+        <div className={styles["auth-card"]}>
+          <div className={styles["auth-tabs"]}>
+            <button className={styles.active}>Resetar Senha</button>
           </div>
-          <div className="loading-message">
+          <div className={styles["loading-message"]}>
             <p>Validando link...</p>
           </div>
         </div>
@@ -128,14 +126,14 @@ function ResetPassword() {
 
   if (!tokenValid) {
     return (
-      <div className="auth-container">
-        <div className="auth-card">
-          <div className="auth-tabs">
-            <button className="active">Resetar Senha</button>
+      <div className={styles["auth-container"]}>
+        <div className={styles["auth-card"]}>
+          <div className={styles["auth-tabs"]}>
+            <button className={styles.active}>Resetar Senha</button>
           </div>
-          <div className="error-message">
+          <div className={styles["error-message"]}>
             <p>{errorMessage}</p>
-            <Link to="/forgot" className="auth-link-back">
+            <Link to="/forgot" className={styles["auth-link-back"]}>
               Solicitar nova recuperação de senha
             </Link>
           </div>
@@ -145,24 +143,24 @@ function ResetPassword() {
   }
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <div className="auth-tabs">
-          <button className="active">Resetar Senha</button>
+    <div className={styles["auth-container"]}>
+      <div className={styles["auth-card"]}>
+        <div className={styles["auth-tabs"]}>
+          <button className={styles.active}>Resetar Senha</button>
         </div>
 
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <p className="auth-description">
+        <form className={styles["auth-form"]} onSubmit={handleSubmit}>
+          <p className={styles["auth-description"]}>
             Digite uma nova senha segura com mínimo 8 caracteres, incluindo maiúscula, número e símbolo especial.
           </p>
 
           {errorMessage && (
-            <div className="error-alert">
+            <div className={styles["error-alert"]}>
               <span>{errorMessage}</span>
             </div>
           )}
 
-          <div className="form-group">
+          <div className={styles["form-group"]}>
             <label htmlFor="newPassword">Nova Senha</label>
             <input
               id="newPassword"
@@ -174,7 +172,7 @@ function ResetPassword() {
             />
           </div>
 
-          <div className="form-group">
+          <div className={styles["form-group"]}>
             <label htmlFor="confirmPassword">Confirmar Senha</label>
             <input
               id="confirmPassword"
@@ -186,11 +184,11 @@ function ResetPassword() {
             />
           </div>
 
-          <button type="submit" className="auth-submit" disabled={loading}>
+          <button type="submit" className={styles["auth-submit"]} disabled={loading}>
             {loading ? 'Resetando...' : 'Resetar Senha'}
           </button>
 
-          <Link to="/login" className="auth-link-back">
+          <Link to="/login" className={styles["auth-link-back"]}>
             Voltar para o login
           </Link>
         </form>

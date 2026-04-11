@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Pencil, Save, Trash2 } from "lucide-react";
-import "./ProfilePage.css";
+import styles from './ProfilePage.module.css';
 import InputGroup from "../../components/common/InputGroup/InputGroup";
 import Habilities from "../../components/common/Habilities/Habilities";
 import Avatar from "../../components/common/Avatar/Avatar";
@@ -467,27 +467,27 @@ useEffect(() => {
 }, []);
 
   return (
-    <div className="perfil-container">
-      <div className="perfil-header">
+    <div className={styles["perfil-container"]}>
+      <div className={styles["perfil-header"]}>
         <Avatar
           avatarUrl={userData.avatarUrl}
           size={128}
           isEditable={true}
           onImageChange={(file) => handleImageUpload(file)}
         />
-        <div className="perfil-badges">
+        <div className={styles["perfil-badges"]}>
           <ProgressBar
             currentXp={userData.xp || 0}
             nextLevelXp={userData.nextLevelXp}
             currentLevel={userData.level || 0}
             size="medium"
           />
-          <div className="perfil-badge">Level: {userData.level || 0}</div>
-          <div className="perfil-badge">XP: {userData.xp || 0}</div>
+          <div className={styles["perfil-badge"]}>Level: {userData.level || 0}</div>
+          <div className={styles["perfil-badge"]}>XP: {userData.xp || 0}</div>
         </div>
       </div>
 
-      <div className="perfil-tabs-nav">
+      <div className={styles["perfil-tabs-nav"]}>
         <button
           onClick={() => setAbaAtiva("gerais")}
          className={`perfil-tab-btn ${abaAtiva === "gerais" ? "ativa" : "inativa"}`}
@@ -501,33 +501,33 @@ useEffect(() => {
           Dados Pessoais
         </button>
       </div>
-      <div className="perfil-conteudo">
-        <div className="perfil-grid">
-          <div className="perfil-coluna">
-            <div className="perfil-titulo-secao">
-              <span className="perfil-tag-titulo">
+      <div className={styles["perfil-conteudo"]}>
+        <div className={styles["perfil-grid"]}>
+          <div className={styles["perfil-coluna"]}>
+            <div className={styles["perfil-titulo-secao"]}>
+              <span className={styles["perfil-tag-titulo"]}>
                 {abaAtiva === "gerais" 
                   ? (userData.role?.toLowerCase() === "mentor" ? "Pessoa Mentora" : "Pessoa Mentorada")
                   : "Dados de contato"}
               </span>
 
               {isEditing ? (
-                <div className="botoes-edicao-topo">
+                <div className={styles["botoes-edicao-topo"]}>
                   <Save
                     size={22}
-                    className="perfil-icone-salvar"
+                    className={styles["perfil-icone-salvar"]}
                     onClick={handleSaveAll}
                   />
                   <Trash2
                     size={22}
-                    className="perfil-icone-cancelar"
+                    className={styles["perfil-icone-cancelar"]}
                     onClick={handleCancel}
                   />
                 </div>
               ) : (
                 <Pencil
                   size={18}
-                  className="perfil-icone-editar"
+                  className={styles["perfil-icone-editar"]}
                   onClick={() => setIsEditing(true)}
                 />
               )}
@@ -557,7 +557,7 @@ useEffect(() => {
                     setUserData({ ...userData, presentationText: val })
                   }
                 />
-                <div className="anos-experiencia">
+                <div className={styles["anos-experiencia"]}>
                   <InputGroup
                     label="Anos de experiência"
                     value={userData.anosExperiencia}
@@ -609,7 +609,7 @@ useEffect(() => {
               </>
             )}
           </div>
-          <div className="perfil-coluna">
+          <div className={styles["perfil-coluna"]}>
             {abaAtiva === "gerais" ? (
             <Habilities 
               selectedSkills={userSkills} 
@@ -621,27 +621,27 @@ useEffect(() => {
                   : "Habilidades que quero receber mentoria"}
               />
             ) : (
-              <div className="perfil-caixa-senha">
+              <div className={styles["perfil-caixa-senha"]}>
                 <h3>Alterar a Senha:</h3>
                 <input
                   type="password"
                   placeholder="Senha Atual"
-                  className="perfil-input"
+                  className={styles["perfil-input"]}
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
                 />
                 <input
                   type="password"
                   placeholder="Nova Senha"
-                  className="perfil-input"
+                  className={styles["perfil-input"]}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                 />
-                <p className="senha-dica">
+                <p className={styles["senha-dica"]}>
                   Mínimo 8 caracteres, com maiúscula, número e símbolo.
                 </p>
                 <button
-                  className="perfil-botao-salvar"
+                  className={styles["perfil-botao-salvar"]}
                   onClick={handleUpdatePassword}
                 >
                   Salvar Nova Senha

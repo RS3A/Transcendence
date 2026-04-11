@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import { isBefore, startOfDay } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import 'react-day-picker/dist/style.css';
+import styles from 'react-day-picker/dist/style.module.css';
 
 interface BookingCalendarProps {
   mentorId?: string;

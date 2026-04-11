@@ -100,8 +100,8 @@ function LoginForm() {
   });
 
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
-      <p className="auth-description">
+    <form className={styles["auth-form"]} onSubmit={handleSubmit}>
+      <p className={styles["auth-description"]}>
         Preencha seus dados de acesso para entrar
       </p>
 
@@ -120,14 +120,14 @@ function LoginForm() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <div className="social-buttons">
-        <button type="button" className="social-btn" onClick={() => handleGoogleLogin()}>
+      <div className={styles["social-buttons"]}>
+        <button type="button" className={styles["social-btn"]} onClick={() => handleGoogleLogin()}>
           <img src={logo_google} alt="Google" />
           <span>Continuar com Google</span>
         </button>
       </div>
 
-      <button type="submit" className="auth-submit">
+      <button type="submit" className={styles["auth-submit"]}>
         Entrar
       </button>
     </form>

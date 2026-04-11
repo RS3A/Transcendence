@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import skillsData from './Habilities.json';
-import './Habilities.css';
+import styles from './Habilities.module.css';
 
 interface Skill {
   id: string;
@@ -49,20 +49,20 @@ const Habilities: React.FC<HabilitiesProps> = ({
   };
 
   return (
-    <div className="perfil-habilidades">
-      <h3 className="perfil-habilidades-titulo">{title}</h3>
+    <div className={styles["perfil-habilidades"]}>
+      <h3 className={styles["perfil-habilidades-titulo"]}>{title}</h3>
 
       {isEditable && (
-        <div className="search-container">
+        <div className={styles["search-container"]}>
           <input
             type="text"
             placeholder="Adicionar habilidade..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="perfil-habilidades-input"
+            className={styles["perfil-habilidades-input"]}
           />
           {suggestions.length > 0 && (
-            <ul className="perfil-habilidades-sugestoes">
+            <ul className={styles["perfil-habilidades-sugestoes"]}>
               {suggestions.map(skill => (
                 <li key={skill.id} onClick={() => addSkill(skill)}>
                   {skill.name}
@@ -73,7 +73,7 @@ const Habilities: React.FC<HabilitiesProps> = ({
         </div>
       )}
 
-      <div className="perfil-habilidades-lista">
+      <div className={styles["perfil-habilidades-lista"]}>
         {selectedSkills.map((skill) => (
           <span 
             key={skill.id} 
@@ -81,7 +81,7 @@ const Habilities: React.FC<HabilitiesProps> = ({
             onClick={() => removeSkill(skill.id)}
           >
             {skill.name}
-            {isEditable && <span className="tag-remover">×</span>}
+            {isEditable && <span className={styles["tag-remover"]}>×</span>}
           </span>
         ))}
       </div>

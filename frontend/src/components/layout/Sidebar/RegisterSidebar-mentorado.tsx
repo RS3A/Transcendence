@@ -1,9 +1,8 @@
-import './RegisterSidebar-mentorado.css'
-import illustration from '../../images/svg/cuate.svg'
+import styles from './RegisterSidebar-mentorado.module.css';import illustration from '../../images/svg/cuate.svg'
 
 function RegisterSidebar() {
   return (
-    <div className="register-sidebar">
+    <div className={styles["register-sidebar"]}>
       <h2>
         Complete os campos<br />
         ao lado para iniciar<br />
@@ -14,7 +13,7 @@ function RegisterSidebar() {
       <img
         src={illustration}
         alt="Ilustração de mentoria"
-        className="register-illustration"
+        className={styles["register-illustration"]}
       />
     </div>
   )

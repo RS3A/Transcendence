@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
-import "./Select.css";
+import styles from './Select.module.css';
 
 const Select = SelectPrimitive.Root;
 
@@ -20,7 +20,7 @@ const SelectTrigger = React.forwardRef<
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="select-trigger-icon" />
+      <ChevronDown className={styles["select-trigger-icon"]} />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -35,7 +35,7 @@ const SelectScrollUpButton = React.forwardRef<
     className={`select-scroll-up-button ${className || ''}`.trim()}
     {...props}
   >
-    <ChevronUp className="select-scroll-up-button-icon" />
+    <ChevronUp className={styles["select-scroll-up-button-icon"]} />
   </SelectPrimitive.ScrollUpButton>
 ));
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
@@ -49,7 +49,7 @@ const SelectScrollDownButton = React.forwardRef<
     className={`select-scroll-down-button ${className || ''}`.trim()}
     {...props}
   >
-    <ChevronDown className="select-scroll-down-button-icon" />
+    <ChevronDown className={styles["select-scroll-down-button-icon"]} />
   </SelectPrimitive.ScrollDownButton>
 ));
 SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName;
@@ -67,7 +67,7 @@ const SelectContent = React.forwardRef<
     >
       <SelectScrollUpButton />
       <SelectPrimitive.Viewport
-        className='select-viewport'
+        className={styles["select-viewport"]}
       >
         {children}
       </SelectPrimitive.Viewport>
@@ -98,9 +98,9 @@ const SelectItem = React.forwardRef<
     className={`select-item ${className || ''}`.trim()}
     {...props}
   >
-    <span className="select-item-indicator">
+    <span className={styles["select-item-indicator"]}>
       <SelectPrimitive.ItemIndicator>
-        <Check className="select-item-indicator-icon" />
+        <Check className={styles["select-item-indicator-icon"]} />
       </SelectPrimitive.ItemIndicator>
     </span>
 

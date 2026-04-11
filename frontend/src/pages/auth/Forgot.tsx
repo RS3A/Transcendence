@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { loginFetch } from '../../services/api';
-import './Forget.css'
-
-function Forgot() {
+import styles from './Forget.module.css';function Forgot() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -34,14 +32,14 @@ function Forgot() {
   }
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <div className="auth-tabs">
-          <button className="active">Recuperar Senha</button>
+    <div className={styles["auth-container"]}>
+      <div className={styles["auth-card"]}>
+        <div className={styles["auth-tabs"]}>
+          <button className={styles.active}>Recuperar Senha</button>
         </div>
 
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <p className="auth-description">
+        <form className={styles["auth-form"]} onSubmit={handleSubmit}>
+          <p className={styles["auth-description"]}>
             Enviaremos um código de verificação a este e-mail se corresponder a uma conta do FTBridge.
           </p>
 
@@ -53,11 +51,11 @@ function Forgot() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <button type="submit" className="auth-submit" disabled={loading}>
+          <button type="submit" className={styles["auth-submit"]} disabled={loading}>
             {loading ? 'Enviando...' : 'Confirmar'}
           </button>
 
-          <Link to="/login" className="auth-link-back">
+          <Link to="/login" className={styles["auth-link-back"]}>
             Voltar para o login
           </Link>
         </form>

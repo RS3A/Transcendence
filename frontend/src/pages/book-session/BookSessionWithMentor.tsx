@@ -1,5 +1,4 @@
-import './BookSessionWithMentor.css'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import styles from './BookSessionWithMentor.module.css';import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import MentorInfo from '../../components/common/MentorInfo/MentorInfo'
 import { MentoringProvider } from '../../components/common/BookingCalendar/MentoringContext'
@@ -275,10 +274,10 @@ function BookSessionContent() {
 
   if (loading) {
     return (
-      <div className="book-session-loading">
-        <div className="loading-content">
-          <div className="loading-spinner"></div>
-          <p className="loading-text">Carregando dados...</p>
+      <div className={styles["book-session-loading"]}>
+        <div className={styles["loading-content"]}>
+          <div className={styles["loading-spinner"]}></div>
+          <p className={styles["loading-text"]}>Carregando dados...</p>
         </div>
       </div>
     );
@@ -286,14 +285,14 @@ function BookSessionContent() {
 
   if (error || !selectedMentor) {
     return (
-      <div className="book-session-error">
-        <div className="error-container">
-          <div className="error-box">
-            <h2 className="error-title">Perfil não encontrado</h2>
-            <p className="error-message">{error || 'Não conseguimos carregar os dados.'}</p>
+      <div className={styles["book-session-error"]}>
+        <div className={styles["error-container"]}>
+          <div className={styles["error-box"]}>
+            <h2 className={styles["error-title"]}>Perfil não encontrado</h2>
+            <p className={styles["error-message"]}>{error || 'Não conseguimos carregar os dados.'}</p>
             <button
               onClick={() => navigate('/mentorias')}
-              className="error-button"
+              className={styles["error-button"]}
             >
               ← Voltar
             </button>
@@ -322,7 +321,7 @@ function BookSessionContent() {
   };
 
   return (
-    <div className="book-session-with-mentor">
+    <div className={styles["book-session-with-mentor"]}>
         <MentorInfo
           mentorId={selectedMentor.profileId || selectedMentor.id || selectedMentor.userId}
           menteeProfileId={menteeProfileId ?? undefined}
@@ -342,7 +341,7 @@ function BookSessionContent() {
         />
 
       {/* Calendar always visible; booking controls only when connected */}
-      <div className="calendar-container">
+      <div className={styles["calendar-container"]}>
         <SlotSelector
           connected={connectionStatus === 'active'} 
           mentorId={schedulerMentorId || '0'}
@@ -352,7 +351,7 @@ function BookSessionContent() {
         />
       </div>
 
-      <div className="calendar-container">
+      <div className={styles["calendar-container"]}>
         <SessionList 
           key={sessionRefreshKey}
           mentorId={schedulerMentorId || '0'}

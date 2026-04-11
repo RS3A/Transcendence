@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { X } from "lucide-react";
-import "./Toast.css";
+import styles from './Toast.module.css';
 
 const ToastProvider = ToastPrimitives.Provider;
 
@@ -83,7 +83,7 @@ const ToastClose = React.forwardRef<
     className={`toast-close ${className || ''}`.trim()}
     {...props}
   >
-    <X className="toast-close-icon" />
+    <X className={styles["toast-close-icon"]} />
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;

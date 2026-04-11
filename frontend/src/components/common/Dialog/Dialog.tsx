@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
-import "./Dialog.css";
+import styles from './Dialog.module.css';
 
 const Dialog = DialogPrimitive.Root;
 
@@ -39,9 +39,9 @@ const DialogContent = React.forwardRef<
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="dialog-close">
-        <X className="dialog-close-icon" />
-        <span className="dialog-close-sr-only">Close</span>
+      <DialogPrimitive.Close className={styles["dialog-close"]}>
+        <X className={styles["dialog-close-icon"]} />
+        <span className={styles["dialog-close-sr-only"]}>Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </DialogPortal>
