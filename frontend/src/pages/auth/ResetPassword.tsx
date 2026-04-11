@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { loginFetch } from '../../services/api';
-import './ResetPassword.css'
+import styles from './ResetPassword.module.css'
 
 function ResetPassword() {
   const navigate = useNavigate();

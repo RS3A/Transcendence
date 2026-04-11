@@ -1,4 +1,4 @@
-import './RegisterSidebar-mentorado.css'
+import styles from './RegisterSidebar-mentorado.module.css'
 import illustration from '../../images/svg/cuate.svg'
 
 function RegisterSidebar() {

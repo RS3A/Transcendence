@@ -1,4 +1,4 @@
-import './ManageSessionWithMentee.css'
+import styles from './ManageSessionWithMentee.module.css'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { MentoringProvider } from '../../components/common/BookingCalendar/MentoringContext'

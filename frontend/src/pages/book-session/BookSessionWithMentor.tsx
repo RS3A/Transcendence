@@ -1,4 +1,4 @@
-import './BookSessionWithMentor.css'
+import styles from './BookSessionWithMentor.module.css'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import MentorInfo from '../../components/common/MentorInfo/MentorInfo'

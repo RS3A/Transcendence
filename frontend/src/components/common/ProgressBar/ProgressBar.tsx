@@ -1,4 +1,4 @@
-import './ProgressBar.css'
+import styles from './ProgressBar.module.css'
 import { normalizeGamificationState } from '../../../utils/gamificationLevels'
 
 interface ProgressBarProps {

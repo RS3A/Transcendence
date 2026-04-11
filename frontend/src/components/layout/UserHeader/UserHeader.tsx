@@ -6,7 +6,7 @@ import { ProgressBar } from '../../common/ProgressBar/ProgressBar'
 import Achievements from '../../common/Achievements/Achievements'
 import { apiFetch } from '../../../services/api'
 import { normalizeGamificationState } from '../../../utils/gamificationLevels'
-import './UserHeader.css'
+import styles from './UserHeader.module.css'
 
 type HistoryItem = {
   reason: string

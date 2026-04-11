@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import './AppShell.css'
+import styles from './AppShell.module.css'
 
 function AppShell({ sidebar, header, footer, children }) {
   const hasAuth = !sidebar

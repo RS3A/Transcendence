@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import './Header.css'
+import styles from './Header.module.css'
 import logo from '../../images/jpg/logo.png'
 import { clearAuthToken, apiFetch } from '../../../services/api'
 

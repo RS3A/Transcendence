@@ -1,4 +1,4 @@
-import './Achievements.css'
+import styles from './Achievements.module.css'
 
 // Support both data formats: from HomeLogged (with id/title/icon) and from backend (with name/iconUrl)
 export interface Achievement {

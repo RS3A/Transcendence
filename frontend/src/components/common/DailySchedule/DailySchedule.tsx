@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Button from '../Button/Button'
 import { apiFetch } from '../../../services/api'
-import './DailySchedule.css'
+import styles from './DailySchedule.module.css'
 
 export interface ScheduleItem {
   id: number

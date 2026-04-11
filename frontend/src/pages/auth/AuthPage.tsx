@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
-import './Auth.css'
+import styles from './Auth.module.css'
 
 function AuthPage() {
   const [mode, setMode] = useState<'login' | 'register'>('login')

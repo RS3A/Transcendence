@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import './RegisterForm.css'
+import styles from './RegisterForm.module.css'
 
 function RegisterForm() {
   const navigate = useNavigate()

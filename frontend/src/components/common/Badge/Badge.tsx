@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./Badge.css";
+import styles from './Badge.module.css';
 
 interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "default" | "secondary" | "destructive" | "outline";

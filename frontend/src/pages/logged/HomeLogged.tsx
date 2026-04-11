@@ -6,7 +6,7 @@ import DailySchedule from '../../components/common/DailySchedule/DailySchedule'
 import { mockRequests, mockAchievements } from './HomeLogged.mock.tsx'
 import { apiFetch } from '../../services/api'
 import { extractBase64FromAvatarUrl } from '../../utils/imageUtils'
-import './HomeLogged.css'
+import styles from './HomeLogged.module.css'
 
 interface PendingRequest {
   id: number

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./Dropdown.css"; 
+import styles from './Dropdown.module.css'; 
 
 interface DropdownListProps {
   label?: string;

@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { Clock, Video, RefreshCw, ExternalLink, X } from "lucide-react";
-import "./SessionList.css";
+import styles from './SessionList.module.css';
 import { format, parseISO, isPast, isWithinInterval, addDays } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { apiFetch } from '../../../services/api';

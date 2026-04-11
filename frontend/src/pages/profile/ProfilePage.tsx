@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Pencil, Save, Trash2 } from "lucide-react";
-import "./ProfilePage.css";
+import styles from './ProfilePage.module.css';
 import InputGroup from "../../components/common/InputGroup/InputGroup";
 import Habilities from "../../components/common/Habilities/Habilities";
 import Avatar from "../../components/common/Avatar/Avatar";

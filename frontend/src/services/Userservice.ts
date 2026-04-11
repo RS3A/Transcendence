@@ -2,7 +2,7 @@ import React, { useState, useEffect, use } from "react";
 // Import do useNavigate mantido caso você precise usar em outro lugar
 import { useNavigate } from "react-router-dom"; 
 import { Pencil, Save, Trash2 } from "lucide-react";
-import "./ProfilePage.css";
+import styles from './ProfilePage.module.css';
 import InputGroup from "../../components/common/InputGroup/InputGroup";
 import Habilities from "../../components/common/Habilities/Habilities";
 import Avatar from "../../components/common/Avatar/Avatar";

@@ -1,4 +1,4 @@
-import './RegisterSidebar-mentor.css'
+import styles from './RegisterSidebar-mentor.module.css'
 import illustration from '../../images/svg/mentor.svg'
 
 function RegisterSidebar() {

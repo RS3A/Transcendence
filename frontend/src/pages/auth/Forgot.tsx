@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { loginFetch } from '../../services/api';
-import './Forget.css'
+import styles from './Forget.module.css'
 
 function Forgot() {
   const navigate = useNavigate();

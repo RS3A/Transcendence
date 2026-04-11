@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Check, X, User } from 'lucide-react'
 import Button from '../Button/Button'
-import './Requests.css'
+import styles from './Requests.module.css'
 
 export interface PendingRequest {
   id: number

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
-import './RegisterPage.css'
+import styles from './RegisterPage.module.css'
 import logo_42 from '../../components/images/jpg/logo-42.png'
 import { useGoogleLogin } from '@react-oauth/google';
 import logo_google from '../../components/images/jpg/logo-google.png'
