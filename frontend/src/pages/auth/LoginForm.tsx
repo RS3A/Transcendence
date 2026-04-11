@@ -4,7 +4,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import logo_42 from '../../components/images/jpg/logo-42.png'
 import logo_google from '../../components/images/jpg/logo-google.png'
 import { loginFetch, saveAuthToken, apiFetch } from '../../services/api';
-
+import styles from './Auth.module.css';
 
 function LoginForm() {
   const navigate = useNavigate();

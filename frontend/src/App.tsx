@@ -27,7 +27,7 @@ const MentorDashboard = lazy(() => import('./pages/mentor-dashboard/MentorDashbo
 function App() {
   return (
     <ChatProvider>
-      <Suspense fallback={<div className={styles["loading-state"]}>Carregando...</div>}>
+      <Suspense fallback={<div className="loading-state">Carregando...</div>}>
         <Toaster />
         <Routes>
 
